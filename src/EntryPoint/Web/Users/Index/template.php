@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-use App\EntryPoint\Web\Users\Index\User;
+use App\EntryPoint\Web\Users\Index\DataReader\User;
 use App\Shared\UrlGenerator;
 use App\Web\Layout\Breadcrumbs\Breadcrumb;
 use Yiisoft\Data\Db\QueryDataReader;
@@ -50,6 +50,17 @@ $this->addToParameter('breadcrumbs', new Breadcrumb('Users'));
         new DataColumn(
             'status',
             content: static fn(User $user) => $user->status->label(),
+        ),
+        new DataColumn(
+            'roles',
+            header: 'Role',
+            content: static fn(User $user) => implode(
+                ', ',
+                array_map(
+                    static fn($role) => $role->label(),
+                    $user->roles,
+                ),
+            ),
         ),
         new ActionColumn(
             before: '<div class="btn-group">',

@@ -9,6 +9,7 @@ use App\User\Application\LoginAlreadyExistException;
 use App\User\Application\UpdateUser\Handler;
 use App\User\Domain\UserId;
 use App\User\Domain\UserRepositoryInterface;
+use App\Web\Access\RbacManager;
 use App\Web\Identity\AuthenticatedUserProvider;
 use App\Web\Layout\ContentNotices\ContentNotices;
 use App\Web\ResponseFactory\ResponseFactory;
@@ -30,8 +31,12 @@ final readonly class Action
         private ResponseFactory $responseFactory,
         private UrlGenerator $urlGenerator,
         private AuthenticatedUserProvider $authenticatedUserProvider,
+        private RbacManager $rbacManager,
     ) {}
 
+    /**
+     * @throws UserException
+     */
     public function __invoke(
         #[RouteArgument('id')]
         UserId $userId,
@@ -39,17 +44,25 @@ final readonly class Action
     ): ResponseInterface {
         $user = $this->userRepository->getOrUserException($userId);
 
-        $form = new Form($user);
+        $currentRole = $this->rbacManager->tryGetRoleByUserId($user->id);
+        $form = new Form(
+            $user,
+            $currentRole,
+            $this->authenticatedUserProvider->getId()->isEqualTo($user->id),
+        );
 
         if (!$this->formHydrator->populateFromPostAndValidate($form, $request)) {
             return $this->renderForm($form);
         }
 
         $command = $form->createCommand();
-        if ($command->status !== $user->status
-            && $this->authenticatedUserProvider->getId()->isEqualTo($user->id)
-        ) {
-            throw new UserException('Cannot change status for current user.');
+        if ($form->isCurrentUser) {
+            if ($command->status !== $user->status) {
+                throw new UserException('Cannot change status for current user.');
+            }
+            if ($command->role !== $currentRole) {
+                throw new UserException('Cannot change role for current user.');
+            }
         }
 
         try {

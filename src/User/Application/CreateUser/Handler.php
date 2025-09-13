@@ -11,6 +11,8 @@ use App\User\Domain\PasswordHasherInterface;
 use App\User\Domain\User;
 use App\User\Domain\UserId;
 use App\User\Domain\UserRepositoryInterface;
+use App\Web\Access\RbacManager;
+use Yiisoft\Db\Connection\ConnectionInterface;
 
 final readonly class Handler
 {
@@ -19,6 +21,8 @@ final readonly class Handler
         private AuthKeyGeneratorInterface $authKeyGenerator,
         private PasswordHasherInterface $passwordHasher,
         private UserRepositoryInterface $userRepository,
+        private RbacManager $rbacManager,
+        private ConnectionInterface $db,
     ) {}
 
     /**
@@ -39,7 +43,12 @@ final readonly class Handler
             $this->authKeyGenerator,
         );
 
-        $this->userRepository->add($user);
+        $this->db->transaction(
+            function () use ($user, $command) {
+                $this->userRepository->add($user);
+                $this->rbacManager->changeRole($user->id, $command->role);
+            },
+        );
 
         return new Result(
             id: $user->id,

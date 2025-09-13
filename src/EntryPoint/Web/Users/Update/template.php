@@ -6,6 +6,7 @@ use App\EntryPoint\Web\Users\ShortUserInfo;
 use App\EntryPoint\Web\Users\Update\Form;
 use App\Shared\UrlGenerator;
 use App\User\Domain\UserStatus;
+use App\Web\Access\Role;
 use App\Web\Layout\Breadcrumbs\Breadcrumb;
 use Yiisoft\FormModel\FieldFactory;
 use Yiisoft\Html\Html;
@@ -39,7 +40,14 @@ $field = new FieldFactory();
             ->open() ?>
         <?= $field->text($form, 'login') ?>
         <?= $field->text($form, 'name') ?>
-        <?= $field->select($form, 'status')->optionsData(UserStatus::labelsByValue()) ?>
+        <?= $field->select($form, 'status')
+            ->optionsData(UserStatus::labelsByValue())
+            ->disabled($form->isCurrentUser)
+?>
+        <?= $field->select($form, 'role')
+    ->optionsData(Role::labelsByValue())
+    ->disabled($form->isCurrentUser)
+?>
         <?= $field->submitButton('Update') ?>
         <?= '</form>' ?>
     </div>

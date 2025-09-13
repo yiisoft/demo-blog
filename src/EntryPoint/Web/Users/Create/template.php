@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 use App\EntryPoint\Web\Users\Create\Form;
 use App\Shared\UrlGenerator;
+use App\Web\Access\Role;
 use App\Web\Layout\Breadcrumbs\Breadcrumb;
 use Yiisoft\FormModel\FieldFactory;
 use Yiisoft\Html\Html;
@@ -37,6 +38,7 @@ $field = new FieldFactory();
         <?= $field->text($form, 'login') ?>
         <?= $field->text($form, 'name') ?>
         <?= $field->password($form, 'password') ?>
+        <?= $field->select($form, 'role')->optionsData(Role::labelsByValue())->prompt('— Select —') ?>
         <?= $field->submitButton('Create') ?>
         <?= '</form>' ?>
     </div>

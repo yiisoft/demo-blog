@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\EntryPoint\Console\CreateUser;
+namespace App\EntryPoint\Console\CreateAdmin;
 
 use App\User\Application\CreateUser\Handler;
 use Symfony\Component\Console\Attribute\AsCommand;
@@ -15,8 +15,8 @@ use Yiisoft\Validator\ValidatorInterface;
 use Yiisoft\Yii\Console\ExitCode;
 
 #[AsCommand(
-    name: 'user:create',
-    description: 'Create a new user',
+    name: 'user:create-admin',
+    description: 'Create a new administrator',
 )]
 final class Action extends Command
 {

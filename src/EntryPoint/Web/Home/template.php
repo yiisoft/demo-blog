@@ -37,7 +37,7 @@ $this->setTitle('Welcome to Yii3 Demo Blog');
             <div class="alert alert-secondary">
                 <h5><i class="bi bi-terminal me-1"></i> Admin User</h5>
                 <p class="mb-2">Create your first admin account via console:</p>
-                <code>./yii user:create admin q1w2e3r4</code>
+                <code>./yii user:create-admin admin q1w2e3r4</code>
             </div>
         </div>
     </div>

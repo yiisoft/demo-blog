@@ -20,6 +20,8 @@ use Yiisoft\Db\Sqlite\Driver;
 use Yiisoft\Db\Sqlite\Dsn;
 use Yiisoft\Di\ServiceProviderInterface;
 
+use function dirname;
+
 final readonly class ServiceProvider implements ServiceProviderInterface
 {
     public function getDefinitions(): array
@@ -40,9 +42,11 @@ final readonly class ServiceProvider implements ServiceProviderInterface
             ),
 
             MigrationService::class => [
-                'class' => MigrationService::class,
                 'setNewMigrationNamespace()' => ['App\\Shared\\Database\\Migration'],
                 'setSourceNamespaces()' => [['App\\Shared\\Database\\Migration']],
+                'setSourcePaths()' => [[
+                    dirname(__DIR__, 2) . '/vendor/yiisoft/rbac-db/migrations/assignments',
+                ]],
             ],
         ];
     }

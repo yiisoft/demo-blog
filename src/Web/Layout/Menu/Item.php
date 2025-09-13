@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Web\Layout\Menu;
 
+use App\Web\Access\Permission;
 use Closure;
 use Stringable;
 
@@ -17,7 +18,7 @@ final readonly class Item
         public string|null $urlName = null,
         public array $urlParameters = [],
         public string|null $customUrl = null,
-        public bool $onlyAuthenticated = false,
+        public Permission|null $permission = null,
         public ?Closure $activeCallback = null,
     ) {}
 }

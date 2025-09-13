@@ -20,7 +20,7 @@ final readonly class ItemHandler
 
     public function handle(Item $item): HandledItem|null
     {
-        if ($item->onlyAuthenticated && $this->currentUser->isGuest()) {
+        if ($item->permission !== null && !$this->currentUser->can($item->permission)) {
             return null;
         }
 

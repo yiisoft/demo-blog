@@ -7,5 +7,6 @@ namespace App\Shared\Database;
 final readonly class TableName
 {
     public const string USER = 'user';
+    public const string RBAC_ASSIGNMENT = 'yii_rbac_assignment';
     public const string POST = 'post';
 }

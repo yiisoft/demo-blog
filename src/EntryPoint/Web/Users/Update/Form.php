@@ -9,6 +9,7 @@ use App\User\Domain\Login;
 use App\User\Domain\UserName;
 use App\User\Domain\User;
 use App\User\Domain\UserStatus;
+use App\Web\Access\Role;
 use Yiisoft\FormModel\Attribute\Safe;
 use Yiisoft\FormModel\FormModel;
 use Yiisoft\Validator\Rule\Length;
@@ -27,16 +28,22 @@ final class Form extends FormModel
     #[Safe]
     public UserStatus $status;
 
+    #[Required]
+    public Role|null $role;
+
     public function __construct(
         public readonly User $user,
+        Role|null $role,
+        public readonly bool $isCurrentUser,
     ) {
         $this->login = $user->login->toString();
         $this->name = $user->name->toString();
         $this->status = $user->status;
+        $this->role = $role;
     }
 
     /**
-     * @psalm-suppress ArgumentTypeCoercion
+     * @psalm-suppress ArgumentTypeCoercion, PossiblyNullArgument
      */
     public function createCommand(): Command
     {
@@ -45,6 +52,7 @@ final class Form extends FormModel
             login: new Login($this->login),
             name: new UserName($this->name),
             status: $this->status,
+            role: $this->role,
         );
     }
 }

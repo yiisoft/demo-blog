@@ -7,11 +7,15 @@ namespace App\User\Application\UpdateUser;
 use App\User\Domain\UserRepositoryInterface;
 use App\User\Application\LoginAlreadyExistException;
 use App\User\Domain\UserStatus;
+use App\Web\Access\RbacManager;
+use Yiisoft\Db\Connection\ConnectionInterface;
 
 final readonly class Handler
 {
     public function __construct(
+        private ConnectionInterface $db,
         private UserRepositoryInterface $userRepository,
+        private RbacManager $rbacManager,
     ) {}
 
     /**
@@ -34,6 +38,11 @@ final readonly class Handler
             UserStatus::Inactive => $user->deactivate(),
         };
 
-        $this->userRepository->update($user);
+        $this->db->transaction(
+            function () use ($user, $command) {
+                $this->userRepository->update($user);
+                $this->rbacManager->changeRole($user->id, $command->role);
+            },
+        );
     }
 }

@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 use App\Shared\UrlGenerator;
+use App\Web\Access\Permission;
 use App\Web\Identity\UserIdentity;
 use App\Web\Layout\Breadcrumbs\Breadcrumbs;
 use App\Web\Layout\ContentNotices\ContentNoticesWidget;
@@ -67,7 +68,7 @@ $this->beginPage()
                 new Item(
                     'Users',
                     urlName: 'users/index',
-                    onlyAuthenticated: true,
+                    permission: Permission::UsersManage,
                     activeCallback: static fn(CurrentRoute $currentRoute) => str_starts_with($currentRoute->getName() ?? '', 'users/'),
                 ),
             ],

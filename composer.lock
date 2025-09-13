@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "8cd53ae460a97b26d09365da081a77f5",
+    "content-hash": "1227480a52f4458e7561b852fd02ab85",
     "packages": [
         {
             "name": "alexkart/curl-builder",
@@ -4867,6 +4867,234 @@
                 }
             ],
             "time": "2025-05-21T06:26:08+00:00"
+        },
+        {
+            "name": "yiisoft/rbac",
+            "version": "2.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/yiisoft/rbac.git",
+                "reference": "39e126486e567ded93ced9a95ea65274d272c73a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/yiisoft/rbac/zipball/39e126486e567ded93ced9a95ea65274d272c73a",
+                "reference": "39e126486e567ded93ced9a95ea65274d272c73a",
+                "shasum": ""
+            },
+            "require": {
+                "php": "8.1 - 8.4",
+                "yiisoft/access": "2.0",
+                "yiisoft/friendly-exception": "^1.1"
+            },
+            "require-dev": {
+                "maglnet/composer-require-checker": "^4.7.1",
+                "phpunit/phpunit": "^10.5.45",
+                "psr/clock": "^1.0",
+                "rector/rector": "^2.0.10",
+                "roave/infection-static-analysis-plugin": "^1.35",
+                "spatie/phpunit-watcher": "^1.24",
+                "vimeo/psalm": "^5.26.1 || ^6.9.2",
+                "yiisoft/di": "^1.3"
+            },
+            "suggest": {
+                "psr/clock": "For using custom clock",
+                "yiisoft/rbac-cycle-db": "For using Cycle as a storage",
+                "yiisoft/rbac-db": "For using Yii Database as a storage",
+                "yiisoft/rbac-php": "For using PHP files as a storage",
+                "yiisoft/rbac-rules-container": "To create rules via Yii Factory"
+            },
+            "type": "library",
+            "extra": {
+                "config-plugin": {
+                    "di": "di.php"
+                },
+                "config-plugin-options": {
+                    "source-directory": "config"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Yiisoft\\Rbac\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "description": "Yii Role-Based Access Control",
+            "homepage": "https://www.yiiframework.com/",
+            "keywords": [
+                "rbac",
+                "yii"
+            ],
+            "support": {
+                "chat": "https://t.me/yii3en",
+                "forum": "https://www.yiiframework.com/forum/",
+                "irc": "ircs://irc.libera.chat:6697/yii",
+                "issues": "https://github.com/yiisoft/rbac/issues?state=open",
+                "source": "https://github.com/yiisoft/rbac",
+                "wiki": "https://www.yiiframework.com/wiki/"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/sponsors/yiisoft",
+                    "type": "github"
+                },
+                {
+                    "url": "https://opencollective.com/yiisoft",
+                    "type": "opencollective"
+                }
+            ],
+            "time": "2025-04-04T12:28:03+00:00"
+        },
+        {
+            "name": "yiisoft/rbac-db",
+            "version": "dev-db2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/yiisoft/rbac-db.git",
+                "reference": "aabf50cd557232edee687e87e6d0d586f28ddf11"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/yiisoft/rbac-db/zipball/aabf50cd557232edee687e87e6d0d586f28ddf11",
+                "reference": "aabf50cd557232edee687e87e6d0d586f28ddf11",
+                "shasum": ""
+            },
+            "require": {
+                "ext-pdo": "*",
+                "php": "8.1 - 8.4",
+                "yiisoft/db": "dev-master",
+                "yiisoft/db-migration": "dev-master",
+                "yiisoft/friendly-exception": "^1.1",
+                "yiisoft/rbac": "^2.1"
+            },
+            "require-dev": {
+                "ext-pdo_sqlite": "*",
+                "maglnet/composer-require-checker": "^4.7.1",
+                "phpunit/phpunit": "^10.5.45",
+                "psr/clock": "^1.0",
+                "rector/rector": "^2.0.11",
+                "roave/infection-static-analysis-plugin": "^1.35",
+                "spatie/phpunit-watcher": "^1.24",
+                "vimeo/psalm": "^5.26.1 || ^6.10",
+                "yiisoft/cache": "^3.0",
+                "yiisoft/db-sqlite": "dev-master"
+            },
+            "suggest": {
+                "yiisoft/db-migration": "For automating schema migration",
+                "yiisoft/db-mssql": "For using with Microsoft SQL Server",
+                "yiisoft/db-mysql": "For using with MySQL",
+                "yiisoft/db-oracle": "For using with Oracle",
+                "yiisoft/db-pgsql": "For using with PosgtgreSQL",
+                "yiisoft/db-sqlite": "For using with SQLite"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Yiisoft\\Rbac\\Db\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "description": "Yii RBAC Database storage",
+            "homepage": "https://www.yiiframework.com/",
+            "keywords": [
+                "db",
+                "rbac",
+                "storage",
+                "yii"
+            ],
+            "support": {
+                "chat": "https://t.me/yii3en",
+                "forum": "https://www.yiiframework.com/forum/",
+                "irc": "ircs://irc.libera.chat:6697/yii",
+                "issues": "https://github.com/yiisoft/rbac-db/issues?state=open",
+                "source": "https://github.com/yiisoft/rbac-db",
+                "wiki": "https://www.yiiframework.com/wiki/"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/sponsors/yiisoft",
+                    "type": "github"
+                },
+                {
+                    "url": "https://opencollective.com/yiisoft",
+                    "type": "opencollective"
+                }
+            ],
+            "time": "2025-09-13T15:28:00+00:00"
+        },
+        {
+            "name": "yiisoft/rbac-php",
+            "version": "2.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/yiisoft/rbac-php.git",
+                "reference": "02aa4e1cc08ca0d1ce9cdf67da8e6690d1059d3b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/yiisoft/rbac-php/zipball/02aa4e1cc08ca0d1ce9cdf67da8e6690d1059d3b",
+                "reference": "02aa4e1cc08ca0d1ce9cdf67da8e6690d1059d3b",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^8.1",
+                "yiisoft/rbac": "^2.0",
+                "yiisoft/var-dumper": "^1.7"
+            },
+            "require-dev": {
+                "ext-uopz": "*",
+                "maglnet/composer-require-checker": "^4.3",
+                "phpunit/phpunit": "^10.5.2",
+                "psr/log": "^1.1.3",
+                "rector/rector": "^1.0.0",
+                "roave/infection-static-analysis-plugin": "^1.18",
+                "slope-it/clock-mock": "0.4.0",
+                "spatie/phpunit-watcher": "^1.23",
+                "vimeo/psalm": "^4.30|^5.17",
+                "yiisoft/files": "^1.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Yiisoft\\Rbac\\Php\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "description": "Yii RBAC PHP File Storage",
+            "homepage": "https://www.yiiframework.com/",
+            "keywords": [
+                "rbac",
+                "storage",
+                "yii"
+            ],
+            "support": {
+                "chat": "https://t.me/yii3en",
+                "forum": "https://www.yiiframework.com/forum/",
+                "irc": "irc://irc.freenode.net/yii",
+                "issues": "https://github.com/yiisoft/rbac/issues",
+                "source": "https://github.com/yiisoft/rbac",
+                "wiki": "https://www.yiiframework.com/wiki/"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/sponsors/yiisoft",
+                    "type": "github"
+                },
+                {
+                    "url": "https://opencollective.com/yiisoft",
+                    "type": "opencollective"
+                }
+            ],
+            "time": "2024-03-07T10:52:17+00:00"
         },
         {
             "name": "yiisoft/request-provider",
@@ -15373,6 +15601,7 @@
         "yiisoft/db": 20,
         "yiisoft/db-migration": 20,
         "yiisoft/db-sqlite": 20,
+        "yiisoft/rbac-db": 20,
         "yiisoft/yii-dataview": 20
     },
     "prefer-stable": false,
@@ -15380,6 +15609,7 @@
     "platform": {
         "php": "^8.4",
         "ext-filter": "*",
+        "ext-intl": "*",
         "ext-mbstring": "*"
     },
     "platform-dev": {},

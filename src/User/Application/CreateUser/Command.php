@@ -5,8 +5,9 @@ declare(strict_types=1);
 namespace App\User\Application\CreateUser;
 
 use App\User\Domain\Login;
-use App\User\Domain\UserName;
 use App\User\Domain\Password;
+use App\User\Domain\UserName;
+use App\Web\Access\Role;
 
 final readonly class Command
 {
@@ -14,5 +15,6 @@ final readonly class Command
         public Login $login,
         public UserName $name,
         public Password $password,
+        public Role $role,
     ) {}
 }

@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 use App\Shared\UrlGenerator;
+use App\Web\Access\Permission;
 use App\Web\Layout\Breadcrumbs\Breadcrumb;
 use Yiisoft\Html\Html;
 use Yiisoft\Html\NoEncode;
@@ -20,7 +21,7 @@ $this->addToParameter('breadcrumbs', new Breadcrumb('Blog'));
 ?>
 <div class="d-flex justify-content-between align-items-center">
     <h1>Blog</h1>
-    <?php if (!$currentUser->isGuest()): ?>
+    <?php if ($currentUser->can(Permission::BlogManage)): ?>
         <div>
             <?= Html::a(
                 NoEncode::string('<i class="bi bi-gear me-1"></i> Admin'),
