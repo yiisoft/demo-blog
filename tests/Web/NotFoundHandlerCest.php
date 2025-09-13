@@ -13,10 +13,7 @@ final class NotFoundHandlerCest
         $I->wantTo('see 404 page.');
         $I->amOnPage('/non-existent-page');
         $I->canSeeResponseCodeIs(404);
-        $I->see('404');
-        $I->see('The page /non-existent-page not found.');
-        $I->see('The above error occurred while the Web server was processing your request.');
-        $I->see('Please contact us if you think this is a server error. Thank you.');
+        $I->see('Page not found');
     }
 
     public function returnHome(WebTester $I): void
@@ -26,6 +23,6 @@ final class NotFoundHandlerCest
         $I->canSeeResponseCodeIs(404);
         $I->click('Go Back Home');
         $I->expectTo('see page home.');
-        $I->see('Hello!');
+        $I->see('Welcome to Yii3 Demo Blog');
     }
 }

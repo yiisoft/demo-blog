@@ -2,12 +2,17 @@
 
 declare(strict_types=1);
 
-use App\Handler\NotFound\NotFoundHandler;
+use App\Shared\Uuid\UuidValueTypeCaster;
+use App\Web\ResponseFactory\NotFoundMiddleware;
+use App\Web\ResponseFactory\UserExceptionMiddleware;
 use Yiisoft\Csrf\CsrfTokenMiddleware;
 use Yiisoft\DataResponse\Middleware\FormatDataResponse;
 use Yiisoft\Definitions\DynamicReference;
 use Yiisoft\Definitions\Reference;
 use Yiisoft\ErrorHandler\Middleware\ErrorCatcher;
+use Yiisoft\Hydrator\TypeCaster\CompositeTypeCaster;
+use Yiisoft\Hydrator\TypeCaster\HydratorTypeCaster;
+use Yiisoft\Hydrator\TypeCaster\PhpNativeTypeCaster;
 use Yiisoft\Input\Http\HydratorAttributeParametersResolver;
 use Yiisoft\Input\Http\RequestInputParametersResolver;
 use Yiisoft\Middleware\Dispatcher\CompositeParametersResolver;
@@ -16,6 +21,7 @@ use Yiisoft\Middleware\Dispatcher\ParametersResolverInterface;
 use Yiisoft\RequestProvider\RequestCatcherMiddleware;
 use Yiisoft\Router\Middleware\Router;
 use Yiisoft\Session\SessionMiddleware;
+use Yiisoft\User\Login\Cookie\CookieLoginMiddleware;
 use Yiisoft\Yii\Http\Application;
 
 /** @var array $params */
@@ -28,22 +34,31 @@ return [
                 'withMiddlewares()' => [
                     [
                         ErrorCatcher::class,
+                        UserExceptionMiddleware::class,
                         SessionMiddleware::class,
+                        CookieLoginMiddleware::class,
                         CsrfTokenMiddleware::class,
                         FormatDataResponse::class,
                         RequestCatcherMiddleware::class,
                         Router::class,
+                        NotFoundMiddleware::class,
                     ],
                 ],
             ]),
-            'fallbackHandler' => Reference::to(NotFoundHandler::class),
         ],
     ],
 
     ParametersResolverInterface::class => [
         'class' => CompositeParametersResolver::class,
         '__construct()' => [
-            Reference::to(HydratorAttributeParametersResolver::class),
+            DynamicReference::to([
+                'class' => HydratorAttributeParametersResolver::class,
+                'typeCaster' => static fn() => new CompositeTypeCaster(
+                    new PhpNativeTypeCaster(),
+                    new UuidValueTypeCaster(throwUserException: true),
+                    new HydratorTypeCaster(),
+                ),
+            ]),
             Reference::to(RequestInputParametersResolver::class),
         ],
     ],

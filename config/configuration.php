@@ -25,7 +25,7 @@ return [
         'di-delegates' => [],
         'di-delegates-console' => '$di-delegates',
         'di-delegates-web' => '$di-delegates',
-        'di-providers' => [],
+        'di-providers' => 'common/di-providers.php',
         'di-providers-web' => [
             '$di-providers',
         ],
@@ -39,6 +39,7 @@ return [
         'bootstrap' => 'common/bootstrap.php',
         'bootstrap-web' => '$bootstrap',
         'bootstrap-console' => '$bootstrap',
+        'widgets-web' => 'web/widgets.php',
     ],
     'config-plugin-environments' => [
         Environment::DEV => [

@@ -6,6 +6,9 @@ settings:
   shuffle: true
   colors: true
 
+params:
+  - tests/.env
+
 paths:
   tests: tests
   output: tests/_output

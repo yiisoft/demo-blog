@@ -20,7 +20,7 @@ final class HomePageCest
 
         assertSame(200, $response->getStatusCode());
         assertStringContainsString(
-            'Don\'t forget to check the guide',
+            'Welcome to Yii3 Demo Blog',
             $response->getBody()->getContents(),
         );
     }

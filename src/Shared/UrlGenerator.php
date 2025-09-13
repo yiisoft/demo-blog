@@ -1,0 +1,45 @@
+<?php
+
+declare(strict_types=1);
+
+namespace App\Shared;
+
+use Yiisoft\Router\UrlGeneratorInterface;
+
+/**
+ * @psalm-import-type UrlArgumentsType from UrlGeneratorInterface
+ */
+final readonly class UrlGenerator
+{
+    public function __construct(
+        private UrlGeneratorInterface $generator,
+    ) {}
+
+    public function home(): string
+    {
+        return $this->generate('home');
+    }
+
+    public function login(): string
+    {
+        return $this->generate('login');
+    }
+
+    public function logout(): string
+    {
+        return $this->generate('logout');
+    }
+
+    public function changePassword(): string
+    {
+        return $this->generate('change-password');
+    }
+
+    /**
+     * @param UrlArgumentsType $arguments
+     */
+    public function generate(string $name, array $arguments = [], array $queryParameters = []): string
+    {
+        return $this->generator->generate($name, $arguments, $queryParameters);
+    }
+}
