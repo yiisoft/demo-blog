@@ -12,7 +12,7 @@ final readonly class Md5PasswordHasher implements PasswordHasherInterface
 {
     public function hash(Password $password): string
     {
-        return md5($password->asString());
+        return md5($password->toString());
     }
 
     public function validate(Password $password, #[SensitiveParameter] string $hash): bool

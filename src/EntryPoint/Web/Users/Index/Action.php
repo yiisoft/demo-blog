@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\EntryPoint\Web\Users\Index;
 
 use App\User\Domain\Login;
+use App\User\Domain\UserName;
 use App\User\Domain\UserId;
 use App\Web\ResponseFactory\ResponseFactory;
 use Psr\Http\Message\ResponseInterface;
@@ -23,7 +24,7 @@ final readonly class Action
     {
         $dataReader = new QueryDataReader(
             $this->db->createQuery()
-                ->select(['id', 'login'])
+                ->select(['id', 'login', 'name'])
                 ->from('user')
                 ->resultCallback(
                     static function (array $rows): array {
@@ -31,18 +32,20 @@ final readonly class Action
                          * @var non-empty-list<array{
                          *     id: string,
                          *     login: non-empty-string,
+                         *     name: non-empty-string,
                          * }> $rows
                          */
                         return array_map(
                             static fn(array $row) => new User(
                                 id: UserId::fromString($row['id']),
                                 login: new Login($row['login']),
+                                name: new UserName($row['name']),
                             ),
                             $rows,
                         );
                     },
                 ),
-            Sort::only(['id', 'login'])->withOrder(['id' => 'desc']),
+            Sort::only(['id', 'login', 'name'])->withOrder(['id' => 'desc']),
         );
 
         return $this->responseFactory->render(

@@ -6,6 +6,7 @@ namespace App\EntryPoint\Web\Users\Create;
 
 use App\User\Application\CreateUser\Command;
 use App\User\Domain\Login;
+use App\User\Domain\UserName;
 use App\User\Domain\Password;
 use Yiisoft\FormModel\FormModel;
 use Yiisoft\Validator\Rule\Length;
@@ -18,6 +19,10 @@ final class Form extends FormModel
     public string $login = '';
 
     #[Required]
+    #[Length(max: UserName::LENGTH_LIMIT)]
+    public string $name = '';
+
+    #[Required]
     #[Length(min: Password::LENGTH_MIN, max: Password::LENGTH_MAX)]
     public string $password = '';
 
@@ -28,6 +33,7 @@ final class Form extends FormModel
     {
         return new Command(
             login: new Login($this->login),
+            name: new UserName($this->name),
             password: new Password($this->password),
         );
     }

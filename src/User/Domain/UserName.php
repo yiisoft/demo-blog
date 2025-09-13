@@ -7,9 +7,9 @@ namespace App\User\Domain;
 use Stringable;
 use Webmozart\Assert\Assert;
 
-final readonly class Login implements Stringable
+final readonly class UserName implements Stringable
 {
-    public const int LENGTH_LIMIT = 50;
+    public const int LENGTH_LIMIT = 100;
 
     /**
      * @param non-empty-string $value
@@ -18,11 +18,6 @@ final readonly class Login implements Stringable
         private string $value,
     ) {
         Assert::maxLength($value, self::LENGTH_LIMIT);
-    }
-
-    public function isEqualTo(self $other): bool
-    {
-        return $this->value === $other->value;
     }
 
     /**

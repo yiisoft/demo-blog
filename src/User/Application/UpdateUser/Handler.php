@@ -27,6 +27,7 @@ final readonly class Handler
         }
 
         $user->changeLogin($command->login);
+        $user->changeName($command->name);
 
         $this->userRepository->update($user);
     }

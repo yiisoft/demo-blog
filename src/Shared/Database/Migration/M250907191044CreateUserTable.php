@@ -15,6 +15,7 @@ final class M250907191044CreateUserTable implements RevertibleMigrationInterface
         $b->createTable('user', [
             'id' => $cb::char(36)->notNull()->primaryKey(),
             'login' => $cb::string(50)->notNull()->unique(),
+            'name' => $cb::string(100)->notNull(),
             'password_hash' => $cb::string()->notNull(),
             'auth_key' => $cb::string(32)->notNull(),
         ]);

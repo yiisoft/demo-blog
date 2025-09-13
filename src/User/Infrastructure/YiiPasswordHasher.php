@@ -17,12 +17,12 @@ final readonly class YiiPasswordHasher implements PasswordHasherInterface
 
     public function hash(Password $password): string
     {
-        return $this->passwordHasher->hash($password->asString());
+        return $this->passwordHasher->hash($password->toString());
     }
 
     public function validate(Password $password, #[SensitiveParameter] string $hash): bool
     {
-        $passwordAsString = $password->asString();
+        $passwordAsString = $password->toString();
         if ($passwordAsString === '') {
             return false;
         }

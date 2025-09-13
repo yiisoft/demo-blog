@@ -6,6 +6,7 @@ namespace App\EntryPoint\Web\Users\Update;
 
 use App\User\Application\UpdateUser\Command;
 use App\User\Domain\Login;
+use App\User\Domain\UserName;
 use App\User\Domain\User;
 use Yiisoft\FormModel\FormModel;
 use Yiisoft\Validator\Rule\Length;
@@ -17,10 +18,15 @@ final class Form extends FormModel
     #[Length(max: Login::LENGTH_LIMIT)]
     public string $login = '';
 
+    #[Required]
+    #[Length(max: UserName::LENGTH_LIMIT)]
+    public string $name = '';
+
     public function __construct(
         public readonly User $user,
     ) {
-        $this->login = $user->login->asString();
+        $this->login = $user->login->toString();
+        $this->name = $user->name->toString();
     }
 
     /**
@@ -31,6 +37,7 @@ final class Form extends FormModel
         return new Command(
             id: $this->user->id,
             login: new Login($this->login),
+            name: new UserName($this->name),
         );
     }
 }

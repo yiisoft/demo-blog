@@ -70,7 +70,7 @@ $this->beginPage()
                 $identity = $currentUser->getIdentity();
                 ?>
                 <span class="me-2">
-                    <?= Html::encode($identity->user->login) ?>
+                    <?= Html::encode($identity->user->name) ?>
                 </span>
                 <div class="dropdown text-end">
                     <a href="#" class="d-block link-body-emphasis text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">

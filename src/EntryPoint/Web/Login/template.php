@@ -24,7 +24,10 @@ $this->addToParameter('bodyClass', 'd-flex h-100 align-items-center py-4 bg-body
 ?>
 <main class="loginForm w-100 m-auto">
     <div class="loginForm_logo">
-        <?= Html::img($assetManager->getUrl(MainAsset::class, 'logo.svg'), 'Yii3 Demo Blog')->height(48) ?>
+        <?= Html::a(
+            Html::img($assetManager->getUrl(MainAsset::class, 'logo.svg'), 'Yii3 Demo Blog')->height(48),
+            $urlGenerator->home(),
+        ) ?>
     </div>
     <?= Html::form()
         ->post($urlGenerator->login())

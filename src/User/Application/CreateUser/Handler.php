@@ -33,6 +33,7 @@ final readonly class Handler
         $user = new User(
             new UserId($this->uuidGenerator->uuid7()),
             $command->login,
+            $command->name,
             $command->password,
             $this->passwordHasher,
             $this->authKeyGenerator,

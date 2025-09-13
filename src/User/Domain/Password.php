@@ -22,7 +22,7 @@ final readonly class Password
         Assert::lengthBetween($value, self::LENGTH_MIN, self::LENGTH_MAX);
     }
 
-    public function asString(): string
+    public function toString(): string
     {
         return $this->value;
     }

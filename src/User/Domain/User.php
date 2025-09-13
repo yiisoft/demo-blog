@@ -10,6 +10,8 @@ final class User
 
     public private(set) Login $login;
 
+    public private(set) UserName $name;
+
     private string $passwordHash;
 
     public private(set) string $authKey;
@@ -17,12 +19,14 @@ final class User
     public function __construct(
         UserId $id,
         Login $login,
+        UserName $name,
         Password $password,
         PasswordHasherInterface $passwordHasher,
         AuthKeyGeneratorInterface $authKeyGenerator,
     ) {
         $this->id = $id;
         $this->login = $login;
+        $this->name = $name;
         $this->setPassword($password, $passwordHasher);
         $this->generateAuthKey($authKeyGenerator);
     }
@@ -35,6 +39,11 @@ final class User
     public function changeLogin(Login $login): void
     {
         $this->login = $login;
+    }
+
+    public function changeName(UserName $name): void
+    {
+        $this->name = $name;
     }
 
     public function changePassword(Password $password, PasswordHasherInterface $passwordHasher): void

@@ -7,6 +7,7 @@ namespace App\EntryPoint\Console\CreateUser;
 use App\User\Application\CreateUser\Command;
 use App\User\Domain\Login;
 use App\User\Domain\Password;
+use App\User\Domain\UserName;
 use Symfony\Component\Console\Input\InputInterface;
 use Yiisoft\Validator\Rule\Length;
 use Yiisoft\Validator\Rule\Required;
@@ -34,6 +35,7 @@ final readonly class Model
     {
         return new Command(
             login: new Login($this->login),
+            name: new UserName($this->login),
             password: new Password($this->password),
         );
     }

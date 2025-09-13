@@ -8,6 +8,7 @@ use App\Shared\Database\TableName;
 use App\Shared\DataMapper\EntityHydratorInterface;
 use App\Shared\DataMapper\PropertyReaderInterface;
 use App\User\Domain\Login;
+use App\User\Domain\UserName;
 use App\User\Domain\User;
 use App\User\Domain\UserId;
 use App\User\Domain\UserRepositoryInterface;
@@ -75,6 +76,7 @@ final readonly class DbUserRepository implements UserRepositoryInterface
     {
         return [
             'login' => $user->login,
+            'name' => $user->name,
             'password_hash' => $this->propertyReader->read($user, 'passwordHash'),
             'auth_key' => $user->authKey,
         ];
@@ -84,13 +86,14 @@ final readonly class DbUserRepository implements UserRepositoryInterface
     {
         return $this->db->createQuery()
             ->from(TableName::USER)
-            ->select(['id', 'login', 'password_hash', 'auth_key'])
+            ->select(['id', 'login', 'name', 'password_hash', 'auth_key'])
             ->resultCallback(
                 function (array $rows): array {
                     /**
                      * @var non-empty-list<array{
                      *     id: string,
                      *     login: non-empty-string,
+                     *     name: non-empty-string,
                      *     password_hash: string,
                      *     auth_key: string,
                      * }> $rows
@@ -101,6 +104,7 @@ final readonly class DbUserRepository implements UserRepositoryInterface
                             [
                                 'id' => UserId::fromString($row['id']),
                                 'login' => new Login($row['login']),
+                                'name' => new UserName($row['name']),
                                 'passwordHash' => $row['password_hash'],
                                 'authKey' => $row['auth_key'],
                             ],

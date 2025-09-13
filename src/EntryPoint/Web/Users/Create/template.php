@@ -35,6 +35,7 @@ $field = new FieldFactory();
             ->csrf($csrf)
             ->open() ?>
         <?= $field->text($form, 'login') ?>
+        <?= $field->text($form, 'name') ?>
         <?= $field->password($form, 'password') ?>
         <?= $field->submitButton('Create') ?>
         <?= '</form>' ?>

@@ -43,6 +43,10 @@ $this->addToParameter('breadcrumbs', new Breadcrumb('Users'));
             'login',
             filter: true,
         ),
+        new DataColumn(
+            'name',
+            filter: true,
+        ),
         new ActionColumn(
             before: '<div class="btn-group">',
             after: '</div>',
