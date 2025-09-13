@@ -10,6 +10,7 @@ use App\Web\Layout\MainAsset;
 use App\Web\Layout\Menu\Item;
 use App\Web\Layout\Menu\MainMenu;
 use Yiisoft\Html\Html;
+use Yiisoft\Router\CurrentRoute;
 use Yiisoft\User\CurrentUser;
 use Yiisoft\Yii\View\Renderer\Csrf;
 
@@ -58,7 +59,12 @@ $this->beginPage()
         <?= MainMenu::widget([
             'items' => [
                 new Item('Home', urlName: 'home'),
-                new Item('Users', urlName: 'users/index', onlyAuthenticated: true),
+                new Item(
+                    'Users',
+                    urlName: 'users/index',
+                    onlyAuthenticated: true,
+                    activeCallback: static fn (CurrentRoute $currentRoute) => str_starts_with($currentRoute->getName() ?? '', 'users/'),
+                ),
             ],
         ]) ?>
         <div class="col-md-3 d-flex align-items-center justify-content-end">
