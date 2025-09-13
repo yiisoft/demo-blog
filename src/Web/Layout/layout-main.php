@@ -60,6 +60,11 @@ $this->beginPage()
             'items' => [
                 new Item('Home', urlName: 'home'),
                 new Item(
+                    'Blog',
+                    urlName: 'blog/post/index',
+                    activeCallback: static fn(CurrentRoute $currentRoute) => str_starts_with($currentRoute->getName() ?? '', 'blog/'),
+                ),
+                new Item(
                     'Users',
                     urlName: 'users/index',
                     onlyAuthenticated: true,

@@ -7,15 +7,10 @@ namespace App\User\Domain;
 final class User
 {
     public readonly UserId $id;
-
     public private(set) Login $login;
-
     public private(set) UserName $name;
-
     private string $passwordHash;
-
     public private(set) string $authKey;
-
     public private(set) UserStatus $status;
 
     public function __construct(

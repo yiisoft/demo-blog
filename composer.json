@@ -40,6 +40,7 @@
         "php": "^8.4",
         "ext-filter": "*",
         "ext-mbstring": "*",
+        "ext-intl": "*",
         "httpsoft/http-message": "^1.1.6",
         "psr/container": "^2.0.2",
         "psr/http-factory": "^1.1",
