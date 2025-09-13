@@ -47,6 +47,10 @@ $this->addToParameter('breadcrumbs', new Breadcrumb('Users'));
             'name',
             filter: true,
         ),
+        new DataColumn(
+            'status',
+            content: static fn(User $user) => $user->status->label(),
+        ),
         new ActionColumn(
             before: '<div class="btn-group">',
             after: '</div>',

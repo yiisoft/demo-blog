@@ -6,6 +6,7 @@ namespace App\User\Application\UpdateUser;
 
 use App\User\Domain\UserRepositoryInterface;
 use App\User\Application\LoginAlreadyExistException;
+use App\User\Domain\UserStatus;
 
 final readonly class Handler
 {
@@ -28,6 +29,10 @@ final readonly class Handler
 
         $user->changeLogin($command->login);
         $user->changeName($command->name);
+        match ($command->status) {
+            UserStatus::Active => $user->activate(),
+            UserStatus::Inactive => $user->deactivate(),
+        };
 
         $this->userRepository->update($user);
     }

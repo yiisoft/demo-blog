@@ -12,6 +12,7 @@ use App\User\Domain\UserName;
 use App\User\Domain\User;
 use App\User\Domain\UserId;
 use App\User\Domain\UserRepositoryInterface;
+use App\User\Domain\UserStatus;
 use Yiisoft\Db\Connection\ConnectionInterface;
 use Yiisoft\Db\Query\QueryInterface;
 use Yiisoft\ErrorHandler\Exception\UserException;
@@ -77,6 +78,7 @@ final readonly class DbUserRepository implements UserRepositoryInterface
         return [
             'login' => $user->login,
             'name' => $user->name,
+            'status' => $user->status,
             'password_hash' => $this->propertyReader->read($user, 'passwordHash'),
             'auth_key' => $user->authKey,
         ];
@@ -86,7 +88,7 @@ final readonly class DbUserRepository implements UserRepositoryInterface
     {
         return $this->db->createQuery()
             ->from(TableName::USER)
-            ->select(['id', 'login', 'name', 'password_hash', 'auth_key'])
+            ->select(['id', 'login', 'name', 'status', 'password_hash', 'auth_key'])
             ->resultCallback(
                 function (array $rows): array {
                     /**
@@ -94,6 +96,7 @@ final readonly class DbUserRepository implements UserRepositoryInterface
                      *     id: string,
                      *     login: non-empty-string,
                      *     name: non-empty-string,
+                     *     status: string,
                      *     password_hash: string,
                      *     auth_key: string,
                      * }> $rows
@@ -105,6 +108,7 @@ final readonly class DbUserRepository implements UserRepositoryInterface
                                 'id' => UserId::fromString($row['id']),
                                 'login' => new Login($row['login']),
                                 'name' => new UserName($row['name']),
+                                'status' => UserStatus::from((int) $row['status']),
                                 'passwordHash' => $row['password_hash'],
                                 'authKey' => $row['auth_key'],
                             ],

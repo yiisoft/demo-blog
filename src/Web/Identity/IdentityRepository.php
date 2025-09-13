@@ -25,7 +25,7 @@ final readonly class IdentityRepository implements IdentityRepositoryInterface
         }
 
         $user = $this->userRepository->tryGet($userId);
-        if ($user === null) {
+        if ($user === null || !$user->canSignIn()) {
             return null;
         }
 

@@ -20,10 +20,10 @@ final readonly class Handler
     public function handle(Command $command): ?User
     {
         $user = $this->userRepository->tryGetByLogin($command->login);
-        if ($user === null) {
-            return null;
-        }
-        if (!$user->isValidPassword($command->password, $this->passwordHasher)) {
+        if ($user === null
+            || !$user->canSignIn()
+            || !$user->isValidPassword($command->password, $this->passwordHasher)
+        ) {
             return null;
         }
 

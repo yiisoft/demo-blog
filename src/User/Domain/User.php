@@ -16,6 +16,8 @@ final class User
 
     public private(set) string $authKey;
 
+    public private(set) UserStatus $status;
+
     public function __construct(
         UserId $id,
         Login $login,
@@ -29,6 +31,12 @@ final class User
         $this->name = $name;
         $this->setPassword($password, $passwordHasher);
         $this->generateAuthKey($authKeyGenerator);
+        $this->status = UserStatus::Active;
+    }
+
+    public function canSignIn(): bool
+    {
+        return $this->status === UserStatus::Active;
     }
 
     public function isValidPassword(Password $password, PasswordHasherInterface $passwordHasher): bool
@@ -49,6 +57,16 @@ final class User
     public function changePassword(Password $password, PasswordHasherInterface $passwordHasher): void
     {
         $this->setPassword($password, $passwordHasher);
+    }
+
+    public function activate(): void
+    {
+        $this->status = UserStatus::Active;
+    }
+
+    public function deactivate(): void
+    {
+        $this->status = UserStatus::Inactive;
     }
 
     public function isValidAuthKey(string $key, AuthKeyGeneratorInterface $authKeyGenerator): bool

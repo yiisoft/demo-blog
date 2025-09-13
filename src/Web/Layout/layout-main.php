@@ -63,7 +63,7 @@ $this->beginPage()
                     'Users',
                     urlName: 'users/index',
                     onlyAuthenticated: true,
-                    activeCallback: static fn (CurrentRoute $currentRoute) => str_starts_with($currentRoute->getName() ?? '', 'users/'),
+                    activeCallback: static fn(CurrentRoute $currentRoute) => str_starts_with($currentRoute->getName() ?? '', 'users/'),
                 ),
             ],
         ]) ?>

@@ -7,6 +7,7 @@ namespace App\EntryPoint\Web\Users\Index;
 use App\User\Domain\Login;
 use App\User\Domain\UserName;
 use App\User\Domain\UserId;
+use App\User\Domain\UserStatus;
 use App\Web\ResponseFactory\ResponseFactory;
 use Psr\Http\Message\ResponseInterface;
 use Yiisoft\Data\Db\QueryDataReader;
@@ -24,7 +25,7 @@ final readonly class Action
     {
         $dataReader = new QueryDataReader(
             $this->db->createQuery()
-                ->select(['id', 'login', 'name'])
+                ->select(['id', 'login', 'name', 'status'])
                 ->from('user')
                 ->resultCallback(
                     static function (array $rows): array {
@@ -33,6 +34,7 @@ final readonly class Action
                          *     id: string,
                          *     login: non-empty-string,
                          *     name: non-empty-string,
+                         *     status: string,
                          * }> $rows
                          */
                         return array_map(
@@ -40,12 +42,13 @@ final readonly class Action
                                 id: UserId::fromString($row['id']),
                                 login: new Login($row['login']),
                                 name: new UserName($row['name']),
+                                status: UserStatus::from((int) $row['status']),
                             ),
                             $rows,
                         );
                     },
                 ),
-            Sort::only(['id', 'login', 'name'])->withOrder(['id' => 'desc']),
+            Sort::only(['id', 'login', 'name', 'status'])->withOrder(['id' => 'desc']),
         );
 
         return $this->responseFactory->render(
