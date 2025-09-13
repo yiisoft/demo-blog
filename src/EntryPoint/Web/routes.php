@@ -15,9 +15,17 @@ return [
         ->middleware(Authentication::class)
         ->routes(
             Route::post('/logout')->action(Web\Logout\Action::class)->name('logout'),
-            Route::methods(['GET', 'POST'], '/change-password')
-                ->action(Web\ChangePassword\Action::class)
-                ->name('change-password'),
+
+            /**
+             * Profile
+             */
+            Route::methods(['GET', 'POST'], '/profile/change-password')
+                ->action(Web\Profile\ChangePassword\Action::class)
+                ->name('profile/change-password'),
+            Route::methods(['GET', 'POST'], '/profile/update')
+                ->action(Web\Profile\UpdateProfile\Action::class)
+                ->name('profile/update'),
+
             /**
              * Users
              */

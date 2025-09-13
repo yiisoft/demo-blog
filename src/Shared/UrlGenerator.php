@@ -30,9 +30,14 @@ final readonly class UrlGenerator
         return $this->generate('logout');
     }
 
-    public function changePassword(): string
+    public function profileChangePassword(): string
     {
-        return $this->generate('change-password');
+        return $this->generate('profile/change-password');
+    }
+
+    public function profileUpdate(): string
+    {
+        return $this->generate('profile/update');
     }
 
     /**

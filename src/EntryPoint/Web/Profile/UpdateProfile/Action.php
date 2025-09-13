@@ -2,11 +2,10 @@
 
 declare(strict_types=1);
 
-namespace App\EntryPoint\Web\ChangePassword;
+namespace App\EntryPoint\Web\Profile\UpdateProfile;
 
 use App\Shared\UrlGenerator;
-use App\User\Application\ChangePassword\Handler;
-use App\User\Domain\PasswordHasherInterface;
+use App\User\Application\UpdateProfile\Handler;
 use App\User\Domain\UserRepositoryInterface;
 use App\Web\Identity\AuthenticatedUserProvider;
 use App\Web\Layout\ContentNotices\ContentNotices;
@@ -20,7 +19,6 @@ final readonly class Action
     public function __construct(
         private UserRepositoryInterface $userRepository,
         private AuthenticatedUserProvider $authenticatedUserProvider,
-        private PasswordHasherInterface $passwordHasher,
         private ResponseFactory $responseFactory,
         private FormHydrator $formHydrator,
         private Handler $handler,
@@ -34,28 +32,21 @@ final readonly class Action
             $this->authenticatedUserProvider->getId(),
         );
 
-        $form = new Form($user, $this->passwordHasher);
+        $form = new Form($user);
         if (!$this->formHydrator->populateFromPostAndValidate($form, $request)) {
-            return $this->renderForm($form);
+            return $this->responseFactory->render(
+                __DIR__ . '/template.php',
+                ['form' => $form],
+            );
         }
 
         $this->handler->handle(
             $form->createCommand(),
         );
 
-        $this->contentNotices->success('Password changed successfully.');
+        $this->contentNotices->success('Profile updated successfully.');
         return $this->responseFactory->temporarilyRedirect(
-            $this->urlGenerator->changePassword(),
-        );
-    }
-
-    private function renderForm(Form $form): ResponseInterface
-    {
-        return $this->responseFactory->render(
-            __DIR__ . '/template.php',
-            [
-                'form' => $form,
-            ],
+            $this->urlGenerator->profileUpdate(),
         );
     }
 }

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\EntryPoint\Web\ChangePassword;
+namespace App\EntryPoint\Web\Profile\ChangePassword;
 
 use App\User\Application\ChangePassword\Command;
 use App\User\Domain\Password;

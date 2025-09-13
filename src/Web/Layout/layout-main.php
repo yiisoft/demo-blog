@@ -78,7 +78,10 @@ $this->beginPage()
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end text-small">
                         <li>
-                            <?= Html::a('Change password', $urlGenerator->changePassword(), ['class' => 'dropdown-item']) ?>
+                            <?= Html::a('Update profile', $urlGenerator->profileUpdate(), ['class' => 'dropdown-item']) ?>
+                        </li>
+                        <li>
+                            <?= Html::a('Change password', $urlGenerator->profileChangePassword(), ['class' => 'dropdown-item']) ?>
                         </li>
                         <li>
                             <hr class="dropdown-divider">

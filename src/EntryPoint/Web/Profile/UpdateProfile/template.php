@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-use App\EntryPoint\Web\ChangePassword\Form;
+use App\EntryPoint\Web\Profile\UpdateProfile\Form;
 use App\Shared\UrlGenerator;
 use App\Web\Layout\Breadcrumbs\Breadcrumb;
 use Yiisoft\FormModel\FieldFactory;
@@ -17,25 +17,24 @@ use Yiisoft\Yii\View\Renderer\Csrf;
  * @var Form $form
  */
 
-$this->setTitle('Password Change');
+$this->setTitle('Profile / Update profile');
 $this->addToParameter(
     'breadcrumbs',
-    new Breadcrumb('Change my password'),
+    new Breadcrumb('Profile'),
+    new Breadcrumb('Update'),
 );
 
 $field = new FieldFactory();
 ?>
-<h1>Change my password</h1>
+<h1>Update profile</h1>
 <div class="row mt-4">
     <div class="col-md-6">
         <?= $field->errorSummary($form)->onlyCommonErrors() ?>
         <?= Html::form()
-            ->post($urlGenerator->changePassword())
+            ->post($urlGenerator->profileUpdate())
             ->csrf($csrf)
             ->open() ?>
-        <?= $field->password($form, 'current') ?>
-        <?= $field->password($form, 'new') ?>
-        <?= $field->password($form, 'new2') ?>
+        <?= $field->text($form, 'name') ?>
         <?= $field->submitButton('Save') ?>
         <?= '</form>' ?>
     </div>
