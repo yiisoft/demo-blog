@@ -28,6 +28,9 @@ return [
             Route::methods(['GET', 'POST'], '/users/update/{id}')
                 ->action(Web\Users\Update\Action::class)
                 ->name('users/update'),
+            Route::methods(['GET', 'POST'], '/users/change-password/{id}')
+                ->action(Web\Users\ChangePassword\Action::class)
+                ->name('users/change-password'),
             Route::methods(['GET', 'POST'], '/users/delete/{id}')
                 ->action(Web\Users\Delete\Action::class)
                 ->name('users/delete'),

@@ -53,6 +53,11 @@ $this->addToParameter('breadcrumbs', new Breadcrumb('Users'));
                     title: 'Update',
                 ),
                 new ActionButton(
+                    Html::i()->class('bi bi-key'),
+                    static fn(User $user) => $urlGenerator->generate('users/change-password', ['id' => $user->id]),
+                    title: 'Change password',
+                ),
+                new ActionButton(
                     Html::i()->class('bi bi-x-lg'),
                     static fn(User $user) => $urlGenerator->generate('users/delete', ['id' => $user->id]),
                     title: 'Delete',

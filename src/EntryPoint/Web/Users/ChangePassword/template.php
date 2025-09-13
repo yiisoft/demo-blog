@@ -2,8 +2,8 @@
 
 declare(strict_types=1);
 
+use App\EntryPoint\Web\Users\ChangePassword\Form;
 use App\EntryPoint\Web\Users\ShortUserInfo;
-use App\EntryPoint\Web\Users\Update\Form;
 use App\Shared\UrlGenerator;
 use App\Web\Layout\Breadcrumbs\Breadcrumb;
 use Yiisoft\FormModel\FieldFactory;
@@ -13,31 +13,31 @@ use Yiisoft\Yii\View\Renderer\Csrf;
 
 /**
  * @var WebView $this
- * @var UrlGenerator $urlGenerator
  * @var Csrf $csrf
+ * @var UrlGenerator $urlGenerator
  * @var Form $form
  */
 
-$this->setTitle('Update user');
+$this->setTitle('Change User Password');
 $this->addToParameter(
     'breadcrumbs',
     new Breadcrumb('Users', $urlGenerator->generate('users/index')),
-    new Breadcrumb('Update user'),
+    new Breadcrumb('Change password'),
 );
 
 $field = new FieldFactory();
 ?>
-<h1>Update User</h1>
+<h1>Change User Password</h1>
 <div class="row mt-4">
     <div class="col-md-6">
         <?= ShortUserInfo::widget([$form->user]) ?>
         <?= $field->errorSummary($form)->onlyCommonErrors() ?>
         <?= Html::form()
-            ->post($urlGenerator->generate('users/update', ['id' => $form->user->id]))
+            ->post($urlGenerator->generate('users/change-password', ['id' => $form->user->id]))
             ->csrf($csrf)
             ->open() ?>
-        <?= $field->text($form, 'login') ?>
-        <?= $field->submitButton('Update') ?>
+        <?= $field->password($form, 'password') ?>
+        <?= $field->submitButton('Change Password') ?>
         <?= '</form>' ?>
     </div>
 </div>

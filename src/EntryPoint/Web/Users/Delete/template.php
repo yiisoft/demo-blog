@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use App\EntryPoint\Web\Users\ShortUserInfo;
 use App\Shared\UrlGenerator;
 use App\User\Domain\User;
 use App\Web\Layout\Breadcrumbs\Breadcrumb;
@@ -25,13 +26,7 @@ $this->addToParameter(
 ?>
 <h1>Delete user "<?= Html::encode($user->login) ?>"?</h1>
 <div class="container-fluid mt-4">
-    <p>
-        <strong>ID:</strong> <?= Html::encode($user->id) ?>
-    </p>
-    <p>
-        <strong>Login:</strong> <?= Html::encode($user->login) ?>
-    </p>
-
+    <?= ShortUserInfo::widget([$user]) ?>
     <?= Html::form()
         ->post($urlGenerator->generate('users/delete', ['id' => $user->id]))
         ->csrf($csrf)
