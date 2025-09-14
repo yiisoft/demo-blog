@@ -24,8 +24,8 @@ $this->addToParameter('breadcrumbs', new Breadcrumb('Blog'));
     <?php if ($currentUser->can(Permission::BlogManage)): ?>
         <div>
             <?= Html::a(
-                NoEncode::string('<i class="bi bi-gear me-1"></i> Admin'),
-                $urlGenerator->generate('blog/admin/post/index'),
+                NoEncode::string('<i class="bi bi-card-list me-1"></i> Manage'),
+                $urlGenerator->generate('blog/manage/post/index'),
                 ['class' => 'btn btn-outline-secondary btn-sm'],
             ) ?>
         </div>

@@ -67,9 +67,9 @@ $this->beginPage()
                 ),
                 new Item(
                     'Users',
-                    urlName: 'users/index',
-                    permission: Permission::UsersManage,
-                    activeCallback: static fn(CurrentRoute $currentRoute) => str_starts_with($currentRoute->getName() ?? '', 'users/'),
+                    urlName: 'user/index',
+                    permission: Permission::UserManage,
+                    activeCallback: static fn(CurrentRoute $currentRoute) => str_starts_with($currentRoute->getName() ?? '', 'user/'),
                 ),
             ],
         ]) ?>

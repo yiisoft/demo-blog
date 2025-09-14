@@ -6,7 +6,7 @@ use App\Web\Access\Permission;
 use App\Web\Access\Role;
 
 return [
-    ['name' => Permission::UsersManage->value, 'type' => 'permission'],
+    ['name' => Permission::UserManage->value, 'type' => 'permission'],
     ['name' => Permission::BlogManage->value, 'type' => 'permission'],
 
     /**
@@ -17,7 +17,7 @@ return [
         'description' => Role::Admin->label(),
         'type' => 'role',
         'children' => [
-            Permission::UsersManage->value,
+            Permission::UserManage->value,
             Permission::BlogManage->value,
         ],
     ],

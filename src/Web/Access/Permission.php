@@ -6,6 +6,6 @@ namespace App\Web\Access;
 
 enum Permission: string
 {
-    case UsersManage = 'users.manage';
+    case UserManage = 'user.manage';
     case BlogManage = 'blog.manage';
 }

@@ -19,31 +19,31 @@ return [
     Group::create()
         ->middleware(CheckAccess::definition(Permission::BlogManage))
         ->routes(
-            Route::get('/blog/admin')->action(Web\Blog\Admin\Post\Index\Action::class)->name('blog/admin/post/index'),
-            Route::methods(['GET', 'POST'], '/blog/admin/post/create')->action(Web\Blog\Admin\Post\Create\Action::class)->name('blog/admin/post/create'),
-            Route::methods(['GET', 'POST'], '/blog/admin/post/update/{id}')->action(Web\Blog\Admin\Post\Update\Action::class)->name('blog/admin/post/update'),
-            Route::methods(['GET', 'POST'], '/blog/admin/post/delete/{id}')->action(Web\Blog\Admin\Post\Delete\Action::class)->name('blog/admin/post/delete'),
+            Route::get('/blog/manage')->action(Web\Blog\Manage\Post\Index\Action::class)->name('blog/manage/post/index'),
+            Route::methods(['GET', 'POST'], '/blog/manage/post/create')->action(Web\Blog\Manage\Post\Create\Action::class)->name('blog/manage/post/create'),
+            Route::methods(['GET', 'POST'], '/blog/manage/post/update/{id}')->action(Web\Blog\Manage\Post\Update\Action::class)->name('blog/manage/post/update'),
+            Route::methods(['GET', 'POST'], '/blog/manage/post/delete/{id}')->action(Web\Blog\Manage\Post\Delete\Action::class)->name('blog/manage/post/delete'),
         ),
 
     /**
      * Users
      */
     Group::create()
-        ->middleware(CheckAccess::definition(Permission::UsersManage))
+        ->middleware(CheckAccess::definition(Permission::UserManage))
         ->routes(
-            Route::get('/users')->action(Web\Users\Index\Action::class)->name('users/index'),
+            Route::get('/users')->action(Web\User\Index\Action::class)->name('user/index'),
             Route::methods(['GET', 'POST'], '/users/create')
-                ->action(Web\Users\Create\Action::class)
-                ->name('users/create'),
+                ->action(Web\User\Create\Action::class)
+                ->name('user/create'),
             Route::methods(['GET', 'POST'], '/users/update/{id}')
-                ->action(Web\Users\Update\Action::class)
-                ->name('users/update'),
+                ->action(Web\User\Update\Action::class)
+                ->name('user/update'),
             Route::methods(['GET', 'POST'], '/users/change-password/{id}')
-                ->action(Web\Users\ChangePassword\Action::class)
-                ->name('users/change-password'),
+                ->action(Web\User\ChangePassword\Action::class)
+                ->name('user/change-password'),
             Route::methods(['GET', 'POST'], '/users/delete/{id}')
-                ->action(Web\Users\Delete\Action::class)
-                ->name('users/delete'),
+                ->action(Web\User\Delete\Action::class)
+                ->name('user/delete'),
         ),
 
     /**
