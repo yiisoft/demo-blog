@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Blog\Application\UpdatePost;
 
 use App\Blog\Domain\Post\PostId;
+use App\Blog\Domain\Post\PostSlug;
 use App\Blog\Domain\Post\PostStatus;
 use App\Blog\Domain\Post\PostTitle;
 use App\User\Domain\UserId;
@@ -16,6 +17,7 @@ final readonly class Command
         public PostId $id,
         public PostTitle $title,
         public string $body,
+        public PostSlug $slug,
         public PostStatus $status,
         public ?DateTimeImmutable $publicationDate,
         public UserId $updatedBy,

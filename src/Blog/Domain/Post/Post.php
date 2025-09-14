@@ -14,6 +14,7 @@ final class Post
     public private(set) PostStatus $status;
     public private(set) PostTitle $title;
     public private(set) string $body;
+    public private(set) PostSlug $slug;
     public private(set) DateTimeImmutable|null $publicationDate;
     public readonly DateTimeImmutable $createdAt;
     public readonly UserId $createdBy;
@@ -24,6 +25,7 @@ final class Post
         PostId $id,
         PostTitle $title,
         string $body,
+        PostSlug $slug,
         DateTimeImmutable|null $publicationDate,
         UserId $createdBy,
     ) {
@@ -31,6 +33,7 @@ final class Post
         $this->status = PostStatus::Draft;
         $this->title = $title;
         $this->body = $body;
+        $this->slug = $slug;
         $this->publicationDate = $publicationDate;
         $this->createdAt = new DateTimeImmutable();
         $this->createdBy = $createdBy;
@@ -43,9 +46,14 @@ final class Post
         $this->title = $title;
     }
 
-    public function changeContent(string $content): void
+    public function changeBody(string $body): void
     {
-        $this->body = $content;
+        $this->body = $body;
+    }
+
+    public function changeSlug(PostSlug $slug): void
+    {
+        $this->slug = $slug;
     }
 
     public function changePublicationDate(DateTimeImmutable|null $date): void

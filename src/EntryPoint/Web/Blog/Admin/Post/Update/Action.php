@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\EntryPoint\Web\Blog\Admin\Post\Update;
 
+use App\Blog\Application\SlugAlreadyExistException;
 use App\Blog\Application\UpdatePost\Handler;
 use App\Blog\Domain\Post\PostId;
 use App\Blog\Domain\Post\PostRepositoryInterface;
@@ -15,6 +16,7 @@ use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Yiisoft\FormModel\FormHydrator;
 use Yiisoft\Router\HydratorAttribute\RouteArgument;
+use Yiisoft\Strings\Inflector;
 
 use function sprintf;
 
@@ -28,6 +30,7 @@ final readonly class Action
         private ResponseFactory $responseFactory,
         private UrlGenerator $urlGenerator,
         private AuthenticatedUserProvider $authenticatedUserProvider,
+        private Inflector $inflector,
     ) {}
 
     public function __invoke(
@@ -39,14 +42,20 @@ final readonly class Action
         $form = new Form($post);
 
         if (!$this->formHydrator->populateFromPostAndValidate($form, $request)) {
-            return $this->responseFactory->render(
-                __DIR__ . '/template.php',
-                ['form' => $form],
-            );
+            return $this->renderForm($form);
         }
 
-        $updatedBy = $this->authenticatedUserProvider->getId();
-        $this->handler->handle($form->createCommand($updatedBy));
+        $command = $form->createCommand(
+            $this->authenticatedUserProvider->getId(),
+            $this->inflector,
+        );
+
+        try {
+            $this->handler->handle($command);
+        } catch (SlugAlreadyExistException $exception) {
+            $form->getValidationResult()->addError($exception->getMessage(), valuePath: ['slug']);
+            return $this->renderForm($form);
+        }
 
         $this->contentNotices->success(
             sprintf(
@@ -55,5 +64,13 @@ final readonly class Action
             ),
         );
         return $this->responseFactory->temporarilyRedirect($this->urlGenerator->generate('blog/admin/post/index'));
+    }
+
+    private function renderForm(Form $form): ResponseInterface
+    {
+        return $this->responseFactory->render(
+            __DIR__ . '/template.php',
+            ['form' => $form],
+        );
     }
 }

@@ -17,6 +17,7 @@ final class M250913084053CreateBlogTables implements RevertibleMigrationInterfac
             'status' => $cb::tinyint()->unsigned()->notNull(),
             'title' => $cb::string(255)->notNull(),
             'body' => $cb::text()->notNull(),
+            'slug' => $cb::string(255)->notNull()->unique(),
             'publication_date' => $cb::dateTime()->null(),
             'created_at' => $cb::dateTime()->notNull(),
             'created_by' => $cb::char(36)->notNull(),

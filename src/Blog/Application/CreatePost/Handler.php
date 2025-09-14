@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Blog\Application\CreatePost;
 
+use App\Blog\Application\SlugAlreadyExistException;
 use App\Blog\Domain\Post\Post;
 use App\Blog\Domain\Post\PostId;
 use App\Blog\Domain\Post\PostRepositoryInterface;
@@ -19,10 +20,15 @@ final readonly class Handler
 
     public function handle(Command $command): Result
     {
+        if ($this->postRepository->hasBySlug($command->slug)) {
+            throw new SlugAlreadyExistException($command->slug);
+        }
+
         $post = new Post(
             new PostId($this->uuidGenerator->uuid7()),
             $command->title,
-            $command->content,
+            $command->body,
+            $command->slug,
             $command->publicationDate,
             $command->createdBy,
         );

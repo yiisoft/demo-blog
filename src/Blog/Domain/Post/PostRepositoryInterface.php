@@ -8,6 +8,8 @@ interface PostRepositoryInterface
 {
     public function getOrUserException(PostId $id): Post;
 
+    public function hasBySlug(PostSlug $slug, PostId|null $excludeId = null): bool;
+
     public function add(Post $post): void;
 
     public function update(Post $post): void;

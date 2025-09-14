@@ -38,7 +38,8 @@ $field = new FieldFactory();
             ->csrf($csrf)
             ->open() ?>
         <?= $field->text($form, 'title') ?>
-        <?= $field->textarea($form, 'content')->addInputAttributes(['rows' => 10]) ?>
+        <?= $field->textarea($form, 'body')->addInputAttributes(['rows' => 10]) ?>
+        <?= $field->text($form, 'slug') ?>
         <?= $field->select($form, 'status')->optionsData(PostStatus::labelsByValue()) ?>
         <?= $field->date($form, 'publicationDate') ?>
         <?= $field->submitButton('Create Post')->afterInput(

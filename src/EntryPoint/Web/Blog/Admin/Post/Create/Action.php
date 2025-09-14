@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\EntryPoint\Web\Blog\Admin\Post\Create;
 
 use App\Blog\Application\CreatePost\Handler;
+use App\Blog\Application\SlugAlreadyExistException;
 use App\Shared\UrlGenerator;
 use App\Web\Identity\AuthenticatedUserProvider;
 use App\Web\Layout\ContentNotices\ContentNotices;
@@ -12,6 +13,7 @@ use App\Web\ResponseFactory\ResponseFactory;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Yiisoft\FormModel\FormHydrator;
+use Yiisoft\Strings\Inflector;
 
 use function sprintf;
 
@@ -24,6 +26,7 @@ final readonly class Action
         private ResponseFactory $responseFactory,
         private UrlGenerator $urlGenerator,
         private AuthenticatedUserProvider $authenticatedUserProvider,
+        private Inflector $inflector,
     ) {}
 
     public function __invoke(ServerRequestInterface $request): ResponseInterface
@@ -31,14 +34,20 @@ final readonly class Action
         $form = new Form();
 
         if (!$this->formHydrator->populateFromPostAndValidate($form, $request)) {
-            return $this->responseFactory->render(
-                __DIR__ . '/template.php',
-                ['form' => $form],
-            );
+            return $this->renderForm($form);
         }
 
-        $currentUserId = $this->authenticatedUserProvider->getId();
-        $result = $this->handler->handle($form->createCommand($currentUserId));
+        $command = $form->createCommand(
+            $this->authenticatedUserProvider->getId(),
+            $this->inflector,
+        );
+
+        try {
+            $result = $this->handler->handle($command);
+        } catch (SlugAlreadyExistException $exception) {
+            $form->getValidationResult()->addError($exception->getMessage(), valuePath: ['slug']);
+            return $this->renderForm($form);
+        }
 
         $this->contentNotices->success(
             sprintf(
@@ -48,5 +57,13 @@ final readonly class Action
             ),
         );
         return $this->responseFactory->temporarilyRedirect($this->urlGenerator->generate('blog/admin/post/index'));
+    }
+
+    private function renderForm(Form $form): ResponseInterface
+    {
+        return $this->responseFactory->render(
+            __DIR__ . '/template.php',
+            ['form' => $form],
+        );
     }
 }

@@ -7,6 +7,7 @@ namespace App\Blog\Infrastructure;
 use App\Blog\Domain\Post\Post;
 use App\Blog\Domain\Post\PostId;
 use App\Blog\Domain\Post\PostRepositoryInterface;
+use App\Blog\Domain\Post\PostSlug;
 use App\Blog\Domain\Post\PostStatus;
 use App\Blog\Domain\Post\PostTitle;
 use App\Shared\Database\TableName;
@@ -15,6 +16,7 @@ use App\User\Domain\UserId;
 use DateTimeImmutable;
 use Yiisoft\Db\Connection\ConnectionInterface;
 use Yiisoft\Db\Query\QueryInterface;
+use Yiisoft\Db\QueryBuilder\Condition\NotEquals;
 use Yiisoft\ErrorHandler\Exception\UserException;
 
 final readonly class DbPostRepository implements PostRepositoryInterface
@@ -32,6 +34,15 @@ final readonly class DbPostRepository implements PostRepositoryInterface
         /** @var Post */
         return $this->createQuery()->where(['id' => $id])->one()
             ?? throw new UserException('Post not found.');
+    }
+
+    public function hasBySlug(PostSlug $slug, PostId|null $excludeId = null): bool
+    {
+        $query = $this->db->createQuery()->from(TableName::POST)->where(['slug' => $slug]);
+        if ($excludeId !== null) {
+            $query->andWhere(new NotEquals('id', $excludeId));
+        }
+        return $query->exists();
     }
 
     public function add(Post $post): void
@@ -61,6 +72,7 @@ final readonly class DbPostRepository implements PostRepositoryInterface
             'status' => $post->status,
             'title' => $post->title,
             'body' => $post->body,
+            'slug' => $post->slug,
             'publication_date' => $post->publicationDate,
             'created_at' => $post->createdAt,
             'created_by' => $post->createdBy,
@@ -73,7 +85,18 @@ final readonly class DbPostRepository implements PostRepositoryInterface
     {
         return $this->db->createQuery()
             ->from(TableName::POST)
-            ->select(['id', 'status', 'title', 'body', 'publication_date', 'created_at', 'created_by', 'updated_at', 'updated_by'])
+            ->select([
+                'id',
+                'status',
+                'title',
+                'body',
+                'slug',
+                'publication_date',
+                'created_at',
+                'created_by',
+                'updated_at',
+                'updated_by',
+            ])
             ->resultCallback(
                 function (array $rows): array {
                     /**
@@ -82,6 +105,7 @@ final readonly class DbPostRepository implements PostRepositoryInterface
                      *     status: string,
                      *     title: non-empty-string,
                      *     body: string,
+                     *     slug: non-empty-string,
                      *     publication_date: string|null,
                      *     created_at: string,
                      *     created_by: string,
@@ -97,6 +121,7 @@ final readonly class DbPostRepository implements PostRepositoryInterface
                                 'status' => PostStatus::from((int) $row['status']),
                                 'title' => new PostTitle($row['title']),
                                 'body' => $row['body'],
+                                'slug' => new PostSlug($row['slug']),
                                 'publicationDate' => $row['publication_date'] ? new DateTimeImmutable($row['publication_date']) : null,
                                 'createdAt' => new DateTimeImmutable($row['created_at']),
                                 'createdBy' => UserId::fromString($row['created_by']),
