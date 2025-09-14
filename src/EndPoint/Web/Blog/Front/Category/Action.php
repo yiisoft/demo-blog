@@ -2,19 +2,19 @@
 
 declare(strict_types=1);
 
-namespace App\EndPoint\Web\Blog\Listing;
+namespace App\EndPoint\Web\Blog\Front\Category;
 
 use App\Blog\Domain\Category\CategoryRepositoryInterface;
 use App\Blog\Domain\Category\CategorySlug;
-use App\EndPoint\Web\Blog\Listing\CategoryReader\CategoryReader;
-use App\EndPoint\Web\Blog\Listing\PostDataReader\PostDataReaderFactory;
+use App\EndPoint\Web\Blog\Front\Shared\CategoryReader\CategoryReader;
+use App\EndPoint\Web\Blog\Front\Shared\PostDataReader\PostDataReaderFactory;
 use App\Shared\UrlGenerator;
 use App\Web\ResponseFactory\ResponseFactory;
 use Psr\Http\Message\ResponseInterface;
 use Yiisoft\Data\Paginator\OffsetPaginator;
 use Yiisoft\Router\HydratorAttribute\RouteArgument;
 
-final readonly class CategoryAction
+final readonly class Action
 {
     public function __construct(
         private PostDataReaderFactory $postDataReaderFactory,
@@ -55,7 +55,7 @@ final readonly class CategoryAction
         $paginator = $paginator->withCurrentPage($page);
 
         return $this->responseFactory->render(
-            __DIR__ . '/template-category.php',
+            __DIR__ . '/template.php',
             [
                 'category' => $category,
                 'paginator' => $paginator,

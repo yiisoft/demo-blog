@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\EndPoint\Web\Blog\Listing\PostDataReader;
+namespace App\EndPoint\Web\Blog\Front\Shared\PostDataReader;
 
 use App\Blog\Domain\Post\PostId;
 use App\Blog\Domain\Post\PostSlug;

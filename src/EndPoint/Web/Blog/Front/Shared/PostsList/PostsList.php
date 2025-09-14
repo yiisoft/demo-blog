@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\EndPoint\Web\Blog\Listing\PostsList;
+namespace App\EndPoint\Web\Blog\Front\Shared\PostsList;
 
-use App\EndPoint\Web\Blog\Listing\PostDataReader\Post;
+use App\EndPoint\Web\Blog\Front\Shared\PostDataReader\Post;
 use Yiisoft\Data\Paginator\OffsetPaginator;
 use Yiisoft\View\WebView;
 use Yiisoft\Widget\Widget;

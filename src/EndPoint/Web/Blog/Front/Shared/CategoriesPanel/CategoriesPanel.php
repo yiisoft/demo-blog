@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace App\EndPoint\Web\Blog\Listing\CategoriesPanel;
+namespace App\EndPoint\Web\Blog\Front\Shared\CategoriesPanel;
 
 use App\Blog\Domain\Category\CategoryId;
-use App\EndPoint\Web\Blog\Listing\CategoryReader\Category;
+use App\EndPoint\Web\Blog\Front\Shared\CategoryReader\Category;
 use Yiisoft\View\WebView;
 use Yiisoft\Widget\Widget;
 

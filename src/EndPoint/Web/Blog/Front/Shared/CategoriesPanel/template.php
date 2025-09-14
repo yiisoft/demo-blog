@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 use App\Blog\Domain\Category\CategoryId;
-use App\EndPoint\Web\Blog\Listing\CategoryReader\Category;
+use App\EndPoint\Web\Blog\Front\Shared\CategoryReader\Category;
 use App\Shared\UrlGenerator;
 use Yiisoft\Html\Html;
 

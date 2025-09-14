@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\EndPoint\Web\Blog\Listing\PostDataReader;
+namespace App\EndPoint\Web\Blog\Front\Shared\PostDataReader;
 
 use App\Blog\Domain\Category\CategoryId;
 use App\Blog\Domain\Category\CategoryName;
@@ -88,7 +88,7 @@ final readonly class PostDataReaderFactory
 
     /**
      * @param list<string> $postIds
-     * @return array<string, list<Category>>
+     * @return Category
      */
     private function findCategoriesByUserIds(array $postIds): array
     {

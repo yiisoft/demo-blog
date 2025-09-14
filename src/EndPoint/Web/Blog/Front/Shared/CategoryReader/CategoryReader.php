@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\EndPoint\Web\Blog\Listing\CategoryReader;
+namespace App\EndPoint\Web\Blog\Front\Shared\CategoryReader;
 
 use App\Blog\Domain\Category\CategoryId;
 use App\Blog\Domain\Category\CategoryName;

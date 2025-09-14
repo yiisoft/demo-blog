@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-use App\EndPoint\Web\Blog\Listing\PostDataReader\Post;
+use App\EndPoint\Web\Blog\Front\Shared\PostDataReader\Post;
 use App\Shared\Formatter;
 use App\Shared\UrlGenerator;
 use Yiisoft\Data\Paginator\OffsetPaginator;

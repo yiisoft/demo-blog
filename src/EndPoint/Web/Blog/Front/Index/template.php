@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-use App\EndPoint\Web\Blog\Listing\CategoriesPanel\CategoriesPanel;
-use App\EndPoint\Web\Blog\Listing\CategoryReader\Category;
-use App\EndPoint\Web\Blog\Listing\PostsList\PostsList;
+use App\EndPoint\Web\Blog\Front\Shared\CategoriesPanel\CategoriesPanel;
+use App\EndPoint\Web\Blog\Front\Shared\CategoryReader\Category;
+use App\EndPoint\Web\Blog\Front\Shared\PostsList\PostsList;
 use App\Shared\Formatter;
 use App\Shared\UrlGenerator;
 use App\Web\Access\Permission;
