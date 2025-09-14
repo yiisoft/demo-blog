@@ -15,7 +15,7 @@ return [
     /**
      * Blog
      */
-    Route::get('/blog')->action(Web\Blog\Post\Index\Action::class)->name('blog/post/index'),
+    Route::get('/blog[/page/{page}]')->action(Web\Blog\Listing\IndexAction::class)->name('blog/post/index'),
     Group::create()
         ->middleware(CheckAccess::definition(Permission::BlogManage))
         ->routes(

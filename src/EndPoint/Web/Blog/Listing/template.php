@@ -2,9 +2,12 @@
 
 declare(strict_types=1);
 
+use App\EndPoint\Web\Blog\Listing\PostsList\PostsList;
+use App\Shared\Formatter;
 use App\Shared\UrlGenerator;
 use App\Web\Access\Permission;
 use App\Web\Layout\Breadcrumbs\Breadcrumb;
+use Yiisoft\Data\Paginator\OffsetPaginator;
 use Yiisoft\Html\Html;
 use Yiisoft\Html\NoEncode;
 use Yiisoft\User\CurrentUser;
@@ -14,10 +17,15 @@ use Yiisoft\View\WebView;
  * @var WebView $this
  * @var UrlGenerator $urlGenerator
  * @var CurrentUser $currentUser
+ * @var Formatter $formatter
+ * @var OffsetPaginator $paginator
  */
 
 $this->setTitle('Blog');
-$this->addToParameter('breadcrumbs', new Breadcrumb('Blog'));
+$this->addToParameter(
+    'breadcrumbs',
+    new Breadcrumb('Blog', urlName: $paginator->isOnFirstPage() ? null : 'blog/post/index'),
+);
 ?>
 <div class="d-flex justify-content-between align-items-center">
     <h1>Blog</h1>
@@ -32,5 +40,5 @@ $this->addToParameter('breadcrumbs', new Breadcrumb('Blog'));
     <?php endif; ?>
 </div>
 <div class="mt-4">
-    <p class="text-muted">No posts published yet.</p>
+    <?= PostsList::widget([$paginator]) ?>
 </div>

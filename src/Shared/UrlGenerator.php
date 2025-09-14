@@ -40,6 +40,11 @@ final readonly class UrlGenerator
         return $this->generate('profile/update');
     }
 
+    public function blog(int|string $page = 1): string
+    {
+        return $this->generate('blog/post/index', $page === 1 ? [] : ['page' => $page]);
+    }
+
     /**
      * @param UrlArgumentsType $arguments
      */

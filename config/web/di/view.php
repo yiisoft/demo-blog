@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use App\Shared\Formatter;
 use App\Shared\UrlGenerator;
 use App\Web\Layout\Layout;
 use Yiisoft\Aliases\Aliases;
@@ -21,6 +22,7 @@ return [
                 'aliases' => Reference::to(Aliases::class),
                 'urlGenerator' => Reference::to(UrlGenerator::class),
                 'currentUser' => Reference::to(CurrentUser::class),
+                'formatter' => Reference::to(Formatter::class),
             ],
         ],
     ],

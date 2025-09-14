@@ -21,8 +21,8 @@ use Yiisoft\Yii\View\Renderer\Csrf;
 $this->setTitle('Update post');
 $this->addToParameter(
     'breadcrumbs',
-    new Breadcrumb('Blog', $urlGenerator->generate('blog/post/index')),
-    new Breadcrumb('Manage', $urlGenerator->generate('blog/manage/post/index')),
+    new Breadcrumb('Blog', urlName: 'blog/post/index'),
+    new Breadcrumb('Manage', urlName: 'blog/manage/post/index'),
     new Breadcrumb('Update post'),
 );
 
