@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Shared;
 
+use App\Blog\Domain\Category\CategorySlug;
 use Yiisoft\Router\UrlGeneratorInterface;
 
 /**
@@ -43,6 +44,14 @@ final readonly class UrlGenerator
     public function blog(int|string $page = 1): string
     {
         return $this->generate('blog/post/index', $page === 1 ? [] : ['page' => $page]);
+    }
+
+    public function category(CategorySlug $slug, int|string $page = 1): string
+    {
+        return $this->generate('blog/category/index', [
+            'slug' => $slug,
+            ...($page === 1 ? [] : ['page' => $page]),
+        ]);
     }
 
     /**

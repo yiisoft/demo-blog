@@ -33,6 +33,12 @@ final readonly class DbCategoryRepository implements CategoryRepositoryInterface
             ?? throw new UserException('Category not found.');
     }
 
+    public function tryGetBySlug(CategorySlug $slug): Category|null
+    {
+        /** @var Category|null */
+        return $this->createQuery()->where(['slug' => $slug])->one();
+    }
+
     public function hasBySlug(CategorySlug $slug, CategoryId|null $excludeId = null): bool
     {
         $query = $this->db->createQuery()->from(TableName::CATEGORY)->where(['slug' => $slug]);

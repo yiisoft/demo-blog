@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\EndPoint\Web\Blog\Listing\CategoriesPanel;
 
+use App\Blog\Domain\Category\CategoryId;
 use App\EndPoint\Web\Blog\Listing\CategoryReader\Category;
 use Yiisoft\View\WebView;
 use Yiisoft\Widget\Widget;
@@ -13,15 +14,16 @@ final class CategoriesPanel extends Widget
     public function __construct(
         /** @var list<Category> */
         private readonly array $categories,
+        private readonly CategoryId|null $currentCategoryId,
         private readonly WebView $view,
     ) {}
 
     /**
      * @param list<Category> $categories
      */
-    public static function create(array $categories): self
+    public static function create(array $categories, CategoryId|null $currentCategoryId = null): self
     {
-        return self::widget([$categories]);
+        return self::widget([$categories, $currentCategoryId]);
     }
 
 
@@ -33,7 +35,10 @@ final class CategoriesPanel extends Widget
 
         return $this->view->render(
             __DIR__ . '/template.php',
-            ['categories' => $this->categories],
+            [
+                'categories' => $this->categories,
+                'currentCategoryId' => $this->currentCategoryId,
+            ],
         );
     }
 }

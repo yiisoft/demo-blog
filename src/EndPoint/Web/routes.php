@@ -15,7 +15,6 @@ return [
     /**
      * Blog
      */
-    Route::get('/blog[/page/{page}]')->action(Web\Blog\Listing\IndexAction::class)->name('blog/post/index'),
     Group::create()
         ->middleware(CheckAccess::definition(Permission::BlogManage))
         ->routes(
@@ -28,6 +27,8 @@ return [
             Route::methods(['GET', 'POST'], '/blog/manage/category/update/{id}')->action(Web\Blog\Manage\Category\Update\Action::class)->name('blog/manage/category/update'),
             Route::methods(['GET', 'POST'], '/blog/manage/category/delete/{id}')->action(Web\Blog\Manage\Category\Delete\Action::class)->name('blog/manage/category/delete'),
         ),
+    Route::get('/blog/category/{slug}[/{page}]')->action(Web\Blog\Listing\CategoryAction::class)->name('blog/category/index'),
+    Route::get('/blog[/{page}]')->action(Web\Blog\Listing\IndexAction::class)->name('blog/post/index'),
 
     /**
      * Users

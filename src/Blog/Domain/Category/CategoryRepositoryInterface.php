@@ -8,6 +8,8 @@ interface CategoryRepositoryInterface
 {
     public function getOrUserException(CategoryId $id): Category;
 
+    public function tryGetBySlug(CategorySlug $slug): Category|null;
+
     public function hasBySlug(CategorySlug $slug, CategoryId|null $excludeId = null): bool;
 
     public function add(Category $category): void;
