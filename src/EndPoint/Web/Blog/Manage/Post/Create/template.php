@@ -38,6 +38,7 @@ $field = new FieldFactory();
             ->open() ?>
         <?= $field->text($form, 'title') ?>
         <?= $field->textarea($form, 'body')->addInputAttributes(['rows' => 10]) ?>
+        <?= $field->checkboxList($form, 'categoryIds')->items($form->categories)->uncheckValue('') ?>
         <?= $field->text($form, 'slug') ?>
         <?= $field->select($form, 'status')->optionsData(PostStatus::labelsByValue()) ?>
         <?= $field->date($form, 'publicationDate') ?>

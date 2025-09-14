@@ -20,5 +20,6 @@ final readonly class Post
         public User $createdBy,
         public DateTimeImmutable $updatedAt,
         public User $updatedBy,
+        public string $categories,
     ) {}
 }

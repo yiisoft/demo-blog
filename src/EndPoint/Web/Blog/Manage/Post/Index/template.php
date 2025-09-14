@@ -32,11 +32,18 @@ $this->addToParameter(
 ?>
 <div class="d-flex justify-content-between align-items-center">
     <h1>Posts</h1>
-    <?= Html::a(
-        NoEncode::string('<i class="bi bi-file-earmark-plus me-1"></i> Create post'),
-        $urlGenerator->generate('blog/manage/post/create'),
-        ['class' => 'btn btn-outline-primary btn-sm'],
-    ) ?>
+    <div>
+        <?= Html::a(
+            NoEncode::string('<i class="bi bi-card-list me-1"></i> Categories'),
+            $urlGenerator->generate('blog/manage/category/index'),
+            ['class' => 'btn btn-outline-secondary btn-sm me-1'],
+        ) ?>
+        <?= Html::a(
+            NoEncode::string('<i class="bi bi-file-earmark-plus me-1"></i> Create post'),
+            $urlGenerator->generate('blog/manage/post/create'),
+            ['class' => 'btn btn-outline-primary btn-sm'],
+        ) ?>
+    </div>
 </div>
 <?= GridView::widget()
     ->dataReader($dataReader)
@@ -67,22 +74,16 @@ $this->addToParameter(
             },
             encodeContent: false,
         ),
+        new DataColumn('categories'),
         new DataColumn(
-            'createdBy',
-            header: 'Created By',
+            header: 'Info',
             content: static function (Post $post): string {
                 return Html::encode($post->createdBy->name)
+                    . ' '
+                    . Html::small($post->createdAt->format('Y-m-d H:m:i'), ['class' => 'text-muted'])
                     . '<br>'
-                    . Html::small($post->createdAt->format('Y-m-d H:m:i'), ['class' => 'text-muted']);
-            },
-            encodeContent: false,
-        ),
-        new DataColumn(
-            'UpdatedBy',
-            header: 'Updated By',
-            content: static function (Post $post): string {
-                return Html::encode($post->updatedBy->name)
-                    . '<br>'
+                    . Html::encode($post->updatedBy->name)
+                    . ' '
                     . Html::small($post->updatedAt->format('Y-m-d H:m:i'), ['class' => 'text-muted']);
             },
             encodeContent: false,

@@ -17,7 +17,7 @@ final readonly class Handler
     public function handle(Command $command): void
     {
         if ($this->postRepository->hasBySlug($command->slug, $command->id)) {
-            throw new SlugAlreadyExistException($command->slug);
+            throw SlugAlreadyExistException::fromPostSlug($command->slug);
         }
 
         $post = $this->postRepository->getOrUserException($command->id);
@@ -26,6 +26,7 @@ final readonly class Handler
         $post->changeBody($command->body);
         $post->changeSlug($command->slug);
         $post->changePublicationDate($command->publicationDate);
+        $post->changeCategories($command->categoryIds);
         $post->updatedBy($command->updatedBy);
 
         match ($command->status) {

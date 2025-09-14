@@ -2,18 +2,19 @@
 
 declare(strict_types=1);
 
-namespace App\EndPoint\Web\Blog\Manage\Post\Create;
+namespace App\EndPoint\Web\Blog\Manage\Category\Update;
 
-use App\Blog\Application\CreatePost\Handler;
 use App\Blog\Application\SlugAlreadyExistException;
-use App\Blog\Read\CategoriesList\CategoriesListReader;
+use App\Blog\Application\UpdateCategory\Handler;
+use App\Blog\Domain\Category\CategoryId;
+use App\Blog\Domain\Category\CategoryRepositoryInterface;
 use App\Shared\UrlGenerator;
-use App\Web\Identity\AuthenticatedUserProvider;
 use App\Web\Layout\ContentNotices\ContentNotices;
 use App\Web\ResponseFactory\ResponseFactory;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Yiisoft\FormModel\FormHydrator;
+use Yiisoft\Router\HydratorAttribute\RouteArgument;
 use Yiisoft\Strings\Inflector;
 
 use function sprintf;
@@ -23,31 +24,29 @@ final readonly class Action
     public function __construct(
         private FormHydrator $formHydrator,
         private Handler $handler,
+        private CategoryRepositoryInterface $categoryRepository,
         private ContentNotices $contentNotices,
         private ResponseFactory $responseFactory,
         private UrlGenerator $urlGenerator,
-        private AuthenticatedUserProvider $authenticatedUserProvider,
         private Inflector $inflector,
-        private CategoriesListReader $categoriesListReader,
     ) {}
 
-    public function __invoke(ServerRequestInterface $request): ResponseInterface
-    {
-        $form = new Form(
-            $this->categoriesListReader->all(),
-        );
+    public function __invoke(
+        #[RouteArgument('id')]
+        CategoryId $categoryId,
+        ServerRequestInterface $request,
+    ): ResponseInterface {
+        $category = $this->categoryRepository->getOrUserException($categoryId);
+        $form = new Form($category);
 
         if (!$this->formHydrator->populateFromPostAndValidate($form, $request)) {
             return $this->renderForm($form);
         }
 
-        $command = $form->createCommand(
-            $this->authenticatedUserProvider->getId(),
-            $this->inflector,
-        );
+        $command = $form->createCommand($this->inflector);
 
         try {
-            $result = $this->handler->handle($command);
+            $this->handler->handle($command);
         } catch (SlugAlreadyExistException $exception) {
             $form->getValidationResult()->addError($exception->getMessage(), valuePath: ['slug']);
             return $this->renderForm($form);
@@ -55,12 +54,11 @@ final readonly class Action
 
         $this->contentNotices->success(
             sprintf(
-                'Post "%s" with ID "%s" is created.',
-                $form->title,
-                $result->id,
+                'Category "%s" is updated.',
+                $form->name,
             ),
         );
-        return $this->responseFactory->temporarilyRedirect($this->urlGenerator->generate('blog/manage/post/index'));
+        return $this->responseFactory->temporarilyRedirect($this->urlGenerator->generate('blog/manage/category/index'));
     }
 
     private function renderForm(Form $form): ResponseInterface

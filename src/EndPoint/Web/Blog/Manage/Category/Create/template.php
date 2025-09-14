@@ -2,9 +2,8 @@
 
 declare(strict_types=1);
 
-use App\EndPoint\Web\User\Create\Form;
+use App\EndPoint\Web\Blog\Manage\Category\Create\Form;
 use App\Shared\UrlGenerator;
-use App\Web\Access\Role;
 use App\Web\Layout\Breadcrumbs\Breadcrumb;
 use Yiisoft\FormModel\FieldFactory;
 use Yiisoft\Html\Html;
@@ -18,29 +17,30 @@ use Yiisoft\Yii\View\Renderer\Csrf;
  * @var Form $form
  */
 
-$this->setTitle('New user');
+$this->setTitle('New category');
 $this->addToParameter(
     'breadcrumbs',
-    new Breadcrumb('Users', $urlGenerator->generate('user/index')),
-    new Breadcrumb('New user'),
+    new Breadcrumb('Blog', urlName: 'blog/post/index'),
+    new Breadcrumb('Manage', urlName: 'blog/manage/post/index'),
+    new Breadcrumb('Categories', urlName: 'blog/manage/category/index'),
+    new Breadcrumb('New category'),
 );
 
 $field = new FieldFactory();
 ?>
-<h1>New User</h1>
+<h1>Create Category</h1>
 <div class="row mt-4">
-    <div class="col-md-6">
+    <div class="col-md-8">
         <?= $field->errorSummary($form)->onlyCommonErrors() ?>
         <?= Html::form()
-            ->post($urlGenerator->generate('user/create'))
+            ->post($urlGenerator->generate('blog/manage/category/create'))
             ->csrf($csrf)
             ->open() ?>
-        <?= $field->text($form, 'login') ?>
         <?= $field->text($form, 'name') ?>
-        <?= $field->password($form, 'password') ?>
-        <?= $field->select($form, 'role')->optionsData(Role::labelsByValue())->prompt('— Select —') ?>
+        <?= $field->textarea($form, 'description')->addInputAttributes(['rows' => 3]) ?>
+        <?= $field->text($form, 'slug') ?>
         <?= $field->submitButton('Create')->afterInput(
-            Html::a('Cancel', $urlGenerator->generate('user/index'), ['class' => 'btn btn-outline-secondary ms-2']),
+            Html::a('Cancel', $urlGenerator->generate('blog/manage/category/index'), ['class' => 'btn btn-outline-secondary ms-2']),
         ) ?>
         <?= '</form>' ?>
     </div>

@@ -35,10 +35,14 @@ final class PostDataReader extends QueryDataReader
                     'p.updated_at',
                     'p.updated_by',
                     'uu.name AS updated_by_name',
+                    "GROUP_CONCAT(c.name, ', ') AS category_names",
                 ])
                 ->from(TableName::POST . ' p')
                 ->innerJoin(TableName::USER . ' uc', 'uc.id = p.created_by')
                 ->innerJoin(TableName::USER . ' uu', 'uu.id = p.updated_by')
+                ->leftJoin(TableName::POST_CATEGORY . ' pc', 'p.id = pc.post_id')
+                ->leftJoin(TableName::CATEGORY . ' c', 'pc.category_id = c.id')
+                ->groupBy('p.id')
                 ->resultCallback(
                     static function (array $rows): array {
                         /**
@@ -53,6 +57,7 @@ final class PostDataReader extends QueryDataReader
                          *     updated_at: string,
                          *     updated_by: string,
                          *     updated_by_name: non-empty-string,
+                         *     category_names: string|null,
                          * }> $rows
                          */
                         return array_map(
@@ -71,12 +76,20 @@ final class PostDataReader extends QueryDataReader
                                     UserId::fromString($row['updated_by']),
                                     new UserName($row['updated_by_name']),
                                 ),
+                                categories: $row['category_names'] ?? '',
                             ),
                             $rows,
                         );
                     },
                 ),
-            Sort::only(['status', 'title', 'publicationDate'])->withOrder(['publicationDate' => 'desc']),
+            Sort::only([
+                'status',
+                'title',
+                'publicationDate' => [
+                    'asc' => ['publicationDate' => SORT_ASC, 'id' => SORT_ASC],
+                    'desc' => ['publicationDate' => SORT_DESC, 'id' => SORT_DESC],
+                ],
+            ])->withOrder(['publicationDate' => 'desc']),
             fieldMapper: [
                 'id' => 'p.id',
                 'status' => 'p.status',

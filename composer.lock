@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "1227480a52f4458e7561b852fd02ab85",
+    "content-hash": "fee60d996aab20c59a766f3294233244",
     "packages": [
         {
             "name": "alexkart/curl-builder",
@@ -4954,12 +4954,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/yiisoft/rbac-db.git",
-                "reference": "aabf50cd557232edee687e87e6d0d586f28ddf11"
+                "reference": "d20843449991355ffc897d445055bce6de70c449"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/rbac-db/zipball/aabf50cd557232edee687e87e6d0d586f28ddf11",
-                "reference": "aabf50cd557232edee687e87e6d0d586f28ddf11",
+                "url": "https://api.github.com/repos/yiisoft/rbac-db/zipball/d20843449991355ffc897d445055bce6de70c449",
+                "reference": "d20843449991355ffc897d445055bce6de70c449",
                 "shasum": ""
             },
             "require": {
@@ -5026,7 +5026,7 @@
                     "type": "opencollective"
                 }
             ],
-            "time": "2025-09-13T15:28:00+00:00"
+            "time": "2025-09-13T15:49:21+00:00"
         },
         {
             "name": "yiisoft/rbac-php",
@@ -6132,12 +6132,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/yiisoft/yii-dataview.git",
-                "reference": "44d72698eacc4217affa401c408735f4bb7847ae"
+                "reference": "1f713debf368ba5a2a156e67fde93a3ce4baaefe"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/yii-dataview/zipball/44d72698eacc4217affa401c408735f4bb7847ae",
-                "reference": "44d72698eacc4217affa401c408735f4bb7847ae",
+                "url": "https://api.github.com/repos/yiisoft/yii-dataview/zipball/1f713debf368ba5a2a156e67fde93a3ce4baaefe",
+                "reference": "1f713debf368ba5a2a156e67fde93a3ce4baaefe",
                 "shasum": ""
             },
             "require": {
@@ -6220,7 +6220,7 @@
                     "type": "opencollective"
                 }
             ],
-            "time": "2025-09-13T03:42:21+00:00"
+            "time": "2025-09-14T09:02:38+00:00"
         },
         {
             "name": "yiisoft/yii-event",
@@ -11075,16 +11075,16 @@
         },
         {
             "name": "phpunit/phpunit",
-            "version": "11.5.38",
+            "version": "11.5.39",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "5bd0e4f64a2261b7ade7054c51547beaf2d99e43"
+                "reference": "ad5597f79d8489d2870073ac0bc0dd0ad1fa9931"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/5bd0e4f64a2261b7ade7054c51547beaf2d99e43",
-                "reference": "5bd0e4f64a2261b7ade7054c51547beaf2d99e43",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/ad5597f79d8489d2870073ac0bc0dd0ad1fa9931",
+                "reference": "ad5597f79d8489d2870073ac0bc0dd0ad1fa9931",
                 "shasum": ""
             },
             "require": {
@@ -11156,7 +11156,7 @@
             "support": {
                 "issues": "https://github.com/sebastianbergmann/phpunit/issues",
                 "security": "https://github.com/sebastianbergmann/phpunit/security/policy",
-                "source": "https://github.com/sebastianbergmann/phpunit/tree/11.5.38"
+                "source": "https://github.com/sebastianbergmann/phpunit/tree/11.5.39"
             },
             "funding": [
                 {
@@ -11180,7 +11180,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2025-09-11T10:34:07+00:00"
+            "time": "2025-09-14T06:20:41+00:00"
         },
         {
             "name": "psr/http-client",

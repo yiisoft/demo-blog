@@ -2,13 +2,11 @@
 
 declare(strict_types=1);
 
-namespace App\EndPoint\Web\Blog\Manage\Post\Create;
+namespace App\EndPoint\Web\Blog\Manage\Category\Create;
 
-use App\Blog\Application\CreatePost\Handler;
+use App\Blog\Application\CreateCategory\Handler;
 use App\Blog\Application\SlugAlreadyExistException;
-use App\Blog\Read\CategoriesList\CategoriesListReader;
 use App\Shared\UrlGenerator;
-use App\Web\Identity\AuthenticatedUserProvider;
 use App\Web\Layout\ContentNotices\ContentNotices;
 use App\Web\ResponseFactory\ResponseFactory;
 use Psr\Http\Message\ResponseInterface;
@@ -26,25 +24,18 @@ final readonly class Action
         private ContentNotices $contentNotices,
         private ResponseFactory $responseFactory,
         private UrlGenerator $urlGenerator,
-        private AuthenticatedUserProvider $authenticatedUserProvider,
         private Inflector $inflector,
-        private CategoriesListReader $categoriesListReader,
     ) {}
 
     public function __invoke(ServerRequestInterface $request): ResponseInterface
     {
-        $form = new Form(
-            $this->categoriesListReader->all(),
-        );
+        $form = new Form();
 
         if (!$this->formHydrator->populateFromPostAndValidate($form, $request)) {
             return $this->renderForm($form);
         }
 
-        $command = $form->createCommand(
-            $this->authenticatedUserProvider->getId(),
-            $this->inflector,
-        );
+        $command = $form->createCommand($this->inflector);
 
         try {
             $result = $this->handler->handle($command);
@@ -55,12 +46,12 @@ final readonly class Action
 
         $this->contentNotices->success(
             sprintf(
-                'Post "%s" with ID "%s" is created.',
-                $form->title,
+                'Category "%s" with ID "%s" is created.',
+                $form->name,
                 $result->id,
             ),
         );
-        return $this->responseFactory->temporarilyRedirect($this->urlGenerator->generate('blog/manage/post/index'));
+        return $this->responseFactory->temporarilyRedirect($this->urlGenerator->generate('blog/manage/category/index'));
     }
 
     private function renderForm(Form $form): ResponseInterface

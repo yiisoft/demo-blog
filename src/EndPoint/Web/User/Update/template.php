@@ -43,13 +43,13 @@ $field = new FieldFactory();
         <?= $field->select($form, 'status')
             ->optionsData(UserStatus::labelsByValue())
             ->disabled($form->isCurrentUser)
-        ?>
+?>
         <?= $field->select($form, 'role')
-            ->optionsData(Role::labelsByValue())
-            ->disabled($form->isCurrentUser)
-        ?>
+    ->optionsData(Role::labelsByValue())
+    ->disabled($form->isCurrentUser)
+?>
         <?= $field->submitButton('Save')->afterInput(
-            Html::a('Cancel', $urlGenerator->generate('user/index'), ['class' => 'btn btn-outline-secondary ms-2'])
+            Html::a('Cancel', $urlGenerator->generate('user/index'), ['class' => 'btn btn-outline-secondary ms-2']),
         ) ?>
         <?= '</form>' ?>
     </div>

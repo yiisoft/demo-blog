@@ -21,7 +21,7 @@ final readonly class Handler
     public function handle(Command $command): Result
     {
         if ($this->postRepository->hasBySlug($command->slug)) {
-            throw new SlugAlreadyExistException($command->slug);
+            throw SlugAlreadyExistException::fromPostSlug($command->slug);
         }
 
         $post = new Post(
@@ -31,6 +31,7 @@ final readonly class Handler
             $command->slug,
             $command->publicationDate,
             $command->createdBy,
+            $command->categoryIds,
         );
 
         match ($command->status) {

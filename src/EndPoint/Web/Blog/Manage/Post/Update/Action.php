@@ -8,6 +8,7 @@ use App\Blog\Application\SlugAlreadyExistException;
 use App\Blog\Application\UpdatePost\Handler;
 use App\Blog\Domain\Post\PostId;
 use App\Blog\Domain\Post\PostRepositoryInterface;
+use App\Blog\Read\CategoriesList\CategoriesListReader;
 use App\Shared\UrlGenerator;
 use App\Web\Identity\AuthenticatedUserProvider;
 use App\Web\Layout\ContentNotices\ContentNotices;
@@ -31,6 +32,7 @@ final readonly class Action
         private UrlGenerator $urlGenerator,
         private AuthenticatedUserProvider $authenticatedUserProvider,
         private Inflector $inflector,
+        private CategoriesListReader $categoriesListReader,
     ) {}
 
     public function __invoke(
@@ -39,7 +41,10 @@ final readonly class Action
         ServerRequestInterface $request,
     ): ResponseInterface {
         $post = $this->postRepository->getOrUserException($postId);
-        $form = new Form($post);
+        $form = new Form(
+            $post,
+            $this->categoriesListReader->all(),
+        );
 
         if (!$this->formHydrator->populateFromPostAndValidate($form, $request)) {
             return $this->renderForm($form);
@@ -63,7 +68,9 @@ final readonly class Action
                 $form->title,
             ),
         );
-        return $this->responseFactory->temporarilyRedirect($this->urlGenerator->generate('blog/manage/post/index'));
+        return $this->responseFactory->temporarilyRedirect(
+            $this->urlGenerator->generate('blog/manage/post/update', ['id' => $post->id]),
+        );
     }
 
     private function renderForm(Form $form): ResponseInterface

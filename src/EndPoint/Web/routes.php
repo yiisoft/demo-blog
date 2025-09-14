@@ -23,6 +23,10 @@ return [
             Route::methods(['GET', 'POST'], '/blog/manage/post/create')->action(Web\Blog\Manage\Post\Create\Action::class)->name('blog/manage/post/create'),
             Route::methods(['GET', 'POST'], '/blog/manage/post/update/{id}')->action(Web\Blog\Manage\Post\Update\Action::class)->name('blog/manage/post/update'),
             Route::methods(['GET', 'POST'], '/blog/manage/post/delete/{id}')->action(Web\Blog\Manage\Post\Delete\Action::class)->name('blog/manage/post/delete'),
+            Route::get('/blog/manage/categories')->action(Web\Blog\Manage\Category\Index\Action::class)->name('blog/manage/category/index'),
+            Route::methods(['GET', 'POST'], '/blog/manage/category/create')->action(Web\Blog\Manage\Category\Create\Action::class)->name('blog/manage/category/create'),
+            Route::methods(['GET', 'POST'], '/blog/manage/category/update/{id}')->action(Web\Blog\Manage\Category\Update\Action::class)->name('blog/manage/category/update'),
+            Route::methods(['GET', 'POST'], '/blog/manage/category/delete/{id}')->action(Web\Blog\Manage\Category\Delete\Action::class)->name('blog/manage/category/delete'),
         ),
 
     /**

@@ -38,7 +38,7 @@ $field = new FieldFactory();
             ->open() ?>
         <?= $field->password($form, 'password') ?>
         <?= $field->submitButton('Save')->afterInput(
-            Html::a('Cancel', $urlGenerator->generate('user/index'), ['class' => 'btn btn-outline-secondary ms-2'])
+            Html::a('Cancel', $urlGenerator->generate('user/index'), ['class' => 'btn btn-outline-secondary ms-2']),
         ) ?>
         <?= '</form>' ?>
     </div>

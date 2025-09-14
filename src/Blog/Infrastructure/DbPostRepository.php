@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Blog\Infrastructure;
 
+use App\Blog\Domain\Category\CategoryId;
 use App\Blog\Domain\Post\Post;
 use App\Blog\Domain\Post\PostId;
 use App\Blog\Domain\Post\PostRepositoryInterface;
@@ -47,23 +48,43 @@ final readonly class DbPostRepository implements PostRepositoryInterface
 
     public function add(Post $post): void
     {
-        $this->db->createCommand()
-            ->insert(TableName::POST, ['id' => $post->id, ...$this->extractData($post)])
-            ->execute();
+        $this->db->transaction(
+            function () use ($post) {
+                $this->db->createCommand()
+                    ->insert(TableName::POST, ['id' => $post->id, ...$this->extractData($post)])
+                    ->execute();
+
+                $this->saveCategories($post);
+            },
+        );
     }
 
     public function update(Post $post): void
     {
-        $this->db->createCommand()
-            ->update(TableName::POST, $this->extractData($post), ['id' => $post->id])
-            ->execute();
+        $this->db->transaction(
+            function () use ($post) {
+                $this->db->createCommand()
+                    ->update(TableName::POST, $this->extractData($post), ['id' => $post->id])
+                    ->execute();
+
+                $this->saveCategories($post);
+            },
+        );
     }
 
     public function delete(PostId $id): void
     {
-        $this->db->createCommand()
-            ->delete(TableName::POST, ['id' => $id])
-            ->execute();
+        $this->db->transaction(
+            function () use ($id) {
+                $this->db->createCommand()
+                    ->delete(TableName::POST_CATEGORY, ['post_id' => $id])
+                    ->execute();
+
+                $this->db->createCommand()
+                    ->delete(TableName::POST, ['id' => $id])
+                    ->execute();
+            },
+        );
     }
 
     private function extractData(Post $post): array
@@ -81,22 +102,43 @@ final readonly class DbPostRepository implements PostRepositoryInterface
         ];
     }
 
+    private function saveCategories(Post $post): void
+    {
+        $this->db->createCommand()
+            ->delete(TableName::POST_CATEGORY, ['post_id' => $post->id])
+            ->execute();
+
+        if (!empty($post->categoryIds)) {
+            $rows = array_map(
+                static fn(CategoryId $categoryId) => [(string) $post->id, (string) $categoryId],
+                $post->categoryIds,
+            );
+
+            $this->db->createCommand()
+                ->insertBatch(TableName::POST_CATEGORY, $rows, ['post_id', 'category_id'])
+                ->execute();
+        }
+    }
+
     private function createQuery(): QueryInterface
     {
         return $this->db->createQuery()
-            ->from(TableName::POST)
+            ->from(TableName::POST . ' p')
+            ->leftJoin(TableName::POST_CATEGORY . ' pc', 'p.id = pc.post_id')
             ->select([
-                'id',
-                'status',
-                'title',
-                'body',
-                'slug',
-                'publication_date',
-                'created_at',
-                'created_by',
-                'updated_at',
-                'updated_by',
+                'p.id',
+                'p.status',
+                'p.title',
+                'p.body',
+                'p.slug',
+                'p.publication_date',
+                'p.created_at',
+                'p.created_by',
+                'p.updated_at',
+                'p.updated_by',
+                "GROUP_CONCAT(pc.category_id, ',') AS category_ids",
             ])
+            ->groupBy('p.id')
             ->resultCallback(
                 function (array $rows): array {
                     /**
@@ -111,24 +153,36 @@ final readonly class DbPostRepository implements PostRepositoryInterface
                      *     created_by: string,
                      *     updated_at: string,
                      *     updated_by: string,
+                     *     category_ids: string|null,
                      * }> $rows
                      */
                     return array_map(
-                        fn($row) => $this->entityHydrator->create(
-                            Post::class,
-                            [
-                                'id' => PostId::fromString($row['id']),
-                                'status' => PostStatus::from((int) $row['status']),
-                                'title' => new PostTitle($row['title']),
-                                'body' => $row['body'],
-                                'slug' => new PostSlug($row['slug']),
-                                'publicationDate' => $row['publication_date'] ? new DateTimeImmutable($row['publication_date']) : null,
-                                'createdAt' => new DateTimeImmutable($row['created_at']),
-                                'createdBy' => UserId::fromString($row['created_by']),
-                                'updatedAt' => new DateTimeImmutable($row['updated_at']),
-                                'updatedBy' => UserId::fromString($row['updated_by']),
-                            ],
-                        ),
+                        function ($row) {
+                            $categoryIds = [];
+                            if ($row['category_ids'] !== null && $row['category_ids'] !== '') {
+                                $categoryIds = array_map(
+                                    static fn(string $id) => CategoryId::fromString($id),
+                                    explode(',', $row['category_ids']),
+                                );
+                            }
+
+                            return $this->entityHydrator->create(
+                                Post::class,
+                                [
+                                    'id' => PostId::fromString($row['id']),
+                                    'status' => PostStatus::from((int) $row['status']),
+                                    'title' => new PostTitle($row['title']),
+                                    'body' => $row['body'],
+                                    'slug' => new PostSlug($row['slug']),
+                                    'publicationDate' => $row['publication_date'] ? new DateTimeImmutable($row['publication_date']) : null,
+                                    'createdAt' => new DateTimeImmutable($row['created_at']),
+                                    'createdBy' => UserId::fromString($row['created_by']),
+                                    'updatedAt' => new DateTimeImmutable($row['updated_at']),
+                                    'updatedBy' => UserId::fromString($row['updated_by']),
+                                    'categoryIds' => $categoryIds,
+                                ],
+                            );
+                        },
                         $rows,
                     );
                 },

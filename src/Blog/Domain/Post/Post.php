@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Blog\Domain\Post;
 
+use App\Blog\Domain\Category\CategoryId;
 use App\User\Domain\UserId;
 use DateTimeImmutable;
 use LogicException;
@@ -20,7 +21,14 @@ final class Post
     public readonly UserId $createdBy;
     public private(set) DateTimeImmutable $updatedAt;
     public private(set) UserId $updatedBy;
+    /**
+     * @var list<CategoryId>
+     */
+    public private(set) array $categoryIds;
 
+    /**
+     * @param list<CategoryId> $categoryIds
+     */
     public function __construct(
         PostId $id,
         PostTitle $title,
@@ -28,6 +36,7 @@ final class Post
         PostSlug $slug,
         DateTimeImmutable|null $publicationDate,
         UserId $createdBy,
+        array $categoryIds,
     ) {
         $this->id = $id;
         $this->status = PostStatus::Draft;
@@ -39,6 +48,7 @@ final class Post
         $this->createdBy = $createdBy;
         $this->updatedAt = new DateTimeImmutable();
         $this->updatedBy = $createdBy;
+        $this->categoryIds = $categoryIds;
     }
 
     public function changeTitle(PostTitle $title): void
@@ -103,5 +113,13 @@ final class Post
     {
         $this->updatedBy = $userId;
         $this->updatedAt = new DateTimeImmutable();
+    }
+
+    /**
+     * @param list<CategoryId> $categoryIds
+     */
+    public function changeCategories(array $categoryIds): void
+    {
+        $this->categoryIds = $categoryIds;
     }
 }

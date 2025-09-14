@@ -5,9 +5,11 @@ declare(strict_types=1);
 namespace App\EndPoint\Web\Blog\Manage\Post\Create;
 
 use App\Blog\Application\CreatePost\Command;
+use App\Blog\Domain\Category\CategoryId;
 use App\Blog\Domain\Post\PostSlug;
 use App\Blog\Domain\Post\PostStatus;
 use App\Blog\Domain\Post\PostTitle;
+use App\Shared\Uuid\UuidValueCollection;
 use App\User\Domain\UserId;
 use DateTimeImmutable;
 use Yiisoft\FormModel\Attribute\Safe;
@@ -15,6 +17,7 @@ use Yiisoft\FormModel\FormModel;
 use Yiisoft\Hydrator\Attribute\Parameter\ToDateTime;
 use Yiisoft\Hydrator\Attribute\Parameter\Trim;
 use Yiisoft\Strings\Inflector;
+use Yiisoft\Validator\Label;
 use Yiisoft\Validator\Result;
 use Yiisoft\Validator\Rule\Callback;
 use Yiisoft\Validator\Rule\Length;
@@ -45,6 +48,19 @@ final class Form extends FormModel
     #[Callback(method: 'validatePublicationDate')]
     public ?DateTimeImmutable $publicationDate = null;
 
+    /**
+     * @var list<CategoryId>
+     */
+    #[Label('Categories')]
+    #[UuidValueCollection(CategoryId::class)]
+    #[Safe]
+    public array $categoryIds = [];
+
+    public function __construct(
+        /** @var array<string, string> */
+        public readonly array $categories,
+    ) {}
+
     public function validatePublicationDate(mixed $value): Result
     {
         if ($this->status === PostStatus::Published && $value === null) {
@@ -70,6 +86,7 @@ final class Form extends FormModel
             status: $this->status,
             publicationDate: $this->publicationDate,
             createdBy: $currentUserId,
+            categoryIds: $this->categoryIds,
         );
     }
 }

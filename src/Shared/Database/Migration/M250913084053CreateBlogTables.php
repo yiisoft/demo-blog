@@ -24,10 +24,22 @@ final class M250913084053CreateBlogTables implements RevertibleMigrationInterfac
             'updated_at' => $cb::dateTime()->notNull(),
             'updated_by' => $cb::char(36)->notNull(),
         ]);
+        $b->createTable('category', [
+            'id' => $cb::char(36)->notNull()->primaryKey(),
+            'name' => $cb::string(100)->notNull(),
+            'desc' => $cb::text()->notNull(),
+            'slug' => $cb::string(100)->notNull()->unique(),
+        ]);
+        $b->createTable('post_category', [
+            'post_id' => $cb::char(36)->notNull(),
+            'category_id' => $cb::char(36)->notNull(),
+        ]);
     }
 
     public function down(MigrationBuilder $b): void
     {
+        $b->dropTable('post_category');
+        $b->dropTable('category');
         $b->dropTable('post');
     }
 }
