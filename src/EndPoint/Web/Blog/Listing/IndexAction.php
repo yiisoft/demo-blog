@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\EndPoint\Web\Blog\Listing;
 
+use App\EndPoint\Web\Blog\Listing\CategoryReader\CategoryReader;
 use App\EndPoint\Web\Blog\Listing\PostDataReader\PostDataReader;
 use App\Shared\UrlGenerator;
 use App\Web\ResponseFactory\ResponseFactory;
@@ -17,6 +18,7 @@ final readonly class IndexAction
         private PostDataReader $dataReader,
         private ResponseFactory $responseFactory,
         private UrlGenerator $urlGenerator,
+        private CategoryReader $categoryReader,
     ) {}
 
     public function __invoke(
@@ -39,6 +41,7 @@ final readonly class IndexAction
             __DIR__ . '/template.php',
             [
                 'paginator' => $paginator,
+                'categories' => $this->categoryReader->find(),
             ],
         );
     }

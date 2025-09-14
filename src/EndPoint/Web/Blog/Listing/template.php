@@ -2,6 +2,8 @@
 
 declare(strict_types=1);
 
+use App\EndPoint\Web\Blog\Listing\CategoriesPanel\CategoriesPanel;
+use App\EndPoint\Web\Blog\Listing\CategoryReader\Category;
 use App\EndPoint\Web\Blog\Listing\PostsList\PostsList;
 use App\Shared\Formatter;
 use App\Shared\UrlGenerator;
@@ -19,6 +21,7 @@ use Yiisoft\View\WebView;
  * @var CurrentUser $currentUser
  * @var Formatter $formatter
  * @var OffsetPaginator $paginator
+ * @var list<Category> $categories
  */
 
 $this->setTitle('Blog');
@@ -27,7 +30,7 @@ $this->addToParameter(
     new Breadcrumb('Blog', urlName: $paginator->isOnFirstPage() ? null : 'blog/post/index'),
 );
 ?>
-<div class="d-flex justify-content-between align-items-center">
+<div class="d-flex justify-content-between align-items-center mb-4">
     <h1>Blog</h1>
     <?php if ($currentUser->can(Permission::BlogManage)): ?>
         <div>
@@ -39,6 +42,7 @@ $this->addToParameter(
         </div>
     <?php endif; ?>
 </div>
-<div class="mt-4">
+<?= CategoriesPanel::create($categories) ?>
+<div class="mb-4">
     <?= PostsList::widget([$paginator]) ?>
 </div>
