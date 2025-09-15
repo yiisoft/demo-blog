@@ -8,7 +8,7 @@ use App\EndPoint\Web\Blog\Front\Shared\CategoryReader\Category;
 use App\EndPoint\Web\Blog\Front\Shared\PostsList\PostsList;
 use App\Shared\Formatter;
 use App\Shared\UrlGenerator;
-use App\Web\Layout\Breadcrumbs\Breadcrumb;
+use App\EndPoint\Web\Shared\Layout\Breadcrumbs\Breadcrumb;
 use Yiisoft\Data\Paginator\OffsetPaginator;
 use Yiisoft\Html\Html;
 use Yiisoft\User\CurrentUser;

@@ -7,7 +7,7 @@ namespace App\User\Application\UpdateUser;
 use App\User\Domain\UserRepositoryInterface;
 use App\User\Application\LoginAlreadyExistException;
 use App\User\Domain\UserStatus;
-use App\Web\Access\RbacManager;
+use App\EndPoint\Web\Shared\Access\RbacManager;
 use Yiisoft\Db\Connection\ConnectionInterface;
 
 final readonly class Handler

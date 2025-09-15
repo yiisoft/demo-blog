@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 use App\EndPoint\Web\User\Index\DataReader\User;
 use App\Shared\UrlGenerator;
-use App\Web\Layout\Breadcrumbs\Breadcrumb;
+use App\EndPoint\Web\Shared\Layout\Breadcrumbs\Breadcrumb;
 use Yiisoft\Data\Db\QueryDataReader;
 use Yiisoft\Html\Html;
 use Yiisoft\Html\NoEncode;

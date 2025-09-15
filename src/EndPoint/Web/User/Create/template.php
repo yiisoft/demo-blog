@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 use App\EndPoint\Web\User\Create\Form;
 use App\Shared\UrlGenerator;
-use App\Web\Access\Role;
-use App\Web\Layout\Breadcrumbs\Breadcrumb;
+use App\EndPoint\Web\Shared\Access\Role;
+use App\EndPoint\Web\Shared\Layout\Breadcrumbs\Breadcrumb;
 use Yiisoft\FormModel\FieldFactory;
 use Yiisoft\Html\Html;
 use Yiisoft\View\WebView;

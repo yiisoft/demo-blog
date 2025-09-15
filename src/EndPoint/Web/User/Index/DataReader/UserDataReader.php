@@ -8,7 +8,7 @@ use App\User\Domain\Login;
 use App\User\Domain\UserId;
 use App\User\Domain\UserName;
 use App\User\Domain\UserStatus;
-use App\Web\Access\RbacManager;
+use App\EndPoint\Web\Shared\Access\RbacManager;
 use Yiisoft\Arrays\ArrayHelper;
 use Yiisoft\Data\Db\QueryDataReader;
 use Yiisoft\Data\Reader\Sort;

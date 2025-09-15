@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 use App\Environment;
-use App\Web\Layout\Form\FormTheme;
+use App\EndPoint\Web\Shared\Layout\Form\FormTheme;
 
 return [
     'yiisoft/form' => [

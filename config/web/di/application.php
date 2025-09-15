@@ -3,8 +3,8 @@
 declare(strict_types=1);
 
 use App\Shared\Uuid\UuidValueTypeCaster;
-use App\Web\ResponseFactory\NotFoundMiddleware;
-use App\Web\ResponseFactory\UserExceptionMiddleware;
+use App\EndPoint\Web\Shared\ResponseFactory\NotFoundMiddleware;
+use App\EndPoint\Web\Shared\ResponseFactory\UserExceptionMiddleware;
 use Yiisoft\Csrf\CsrfTokenMiddleware;
 use Yiisoft\DataResponse\Middleware\FormatDataResponse;
 use Yiisoft\Definitions\DynamicReference;

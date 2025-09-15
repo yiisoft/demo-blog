@@ -5,7 +5,7 @@ declare(strict_types=1);
 use App\EndPoint\Web\User\ChangePassword\Form;
 use App\EndPoint\Web\User\ShortUserInfo;
 use App\Shared\UrlGenerator;
-use App\Web\Layout\Breadcrumbs\Breadcrumb;
+use App\EndPoint\Web\Shared\Layout\Breadcrumbs\Breadcrumb;
 use Yiisoft\FormModel\FieldFactory;
 use Yiisoft\Html\Html;
 use Yiisoft\View\WebView;

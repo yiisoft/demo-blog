@@ -3,8 +3,8 @@
 declare(strict_types=1);
 
 use App\EndPoint\Web;
-use App\Web\Access\CheckAccess;
-use App\Web\Access\Permission;
+use App\EndPoint\Web\Shared\Access\CheckAccess;
+use App\EndPoint\Web\Shared\Access\Permission;
 use Yiisoft\Auth\Middleware\Authentication;
 use Yiisoft\Router\Group;
 use Yiisoft\Router\Route;

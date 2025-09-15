@@ -8,7 +8,7 @@ use App\User\Domain\Login;
 use App\User\Domain\UserName;
 use App\User\Domain\UserId;
 use App\User\Domain\UserStatus;
-use App\Web\Access\Role;
+use App\EndPoint\Web\Shared\Access\Role;
 
 final readonly class Command
 {

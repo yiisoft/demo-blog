@@ -11,7 +11,7 @@ use App\User\Domain\PasswordHasherInterface;
 use App\User\Domain\User;
 use App\User\Domain\UserId;
 use App\User\Domain\UserRepositoryInterface;
-use App\Web\Access\RbacManager;
+use App\EndPoint\Web\Shared\Access\RbacManager;
 use Yiisoft\Db\Connection\ConnectionInterface;
 
 final readonly class Handler

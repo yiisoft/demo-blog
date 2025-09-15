@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 use App\Shared\Formatter;
 use App\Shared\UrlGenerator;
-use App\Web\Layout\Layout;
+use App\EndPoint\Web\Shared\Layout\Layout;
 use Yiisoft\Aliases\Aliases;
 use Yiisoft\Assets\AssetManager;
 use Yiisoft\Definitions\Reference;

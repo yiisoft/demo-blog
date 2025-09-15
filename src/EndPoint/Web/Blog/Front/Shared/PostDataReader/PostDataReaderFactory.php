@@ -88,7 +88,7 @@ final readonly class PostDataReaderFactory
 
     /**
      * @param list<string> $postIds
-     * @return Category
+     * @return array<string, list<Category>>
      */
     private function findCategoriesByUserIds(array $postIds): array
     {

@@ -9,7 +9,7 @@ use App\User\Domain\Login;
 use App\User\Domain\UserName;
 use App\User\Domain\User;
 use App\User\Domain\UserStatus;
-use App\Web\Access\Role;
+use App\EndPoint\Web\Shared\Access\Role;
 use Yiisoft\FormModel\Attribute\Safe;
 use Yiisoft\FormModel\FormModel;
 use Yiisoft\Validator\Rule\Length;

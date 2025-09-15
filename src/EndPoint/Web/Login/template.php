@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 use App\EndPoint\Web\Login\Form;
 use App\Shared\UrlGenerator;
-use App\Web\Layout\MainAsset;
+use App\EndPoint\Web\Shared\Layout\MainAsset;
 use Yiisoft\Assets\AssetManager;
 use Yiisoft\Html\Html;
 use Yiisoft\View\WebView;

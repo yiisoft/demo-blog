@@ -6,7 +6,7 @@ use App\EndPoint\Web\Blog\Manage\Category\Index\DataReader\Category;
 use App\EndPoint\Web\Blog\Manage\Category\Index\DataReader\CategoryDataReader;
 use App\EndPoint\Web\Blog\Manage\Category\Index\NameFilterFactory;
 use App\Shared\UrlGenerator;
-use App\Web\Layout\Breadcrumbs\Breadcrumb;
+use App\EndPoint\Web\Shared\Layout\Breadcrumbs\Breadcrumb;
 use Yiisoft\Html\Html;
 use Yiisoft\Html\NoEncode;
 use Yiisoft\View\WebView;

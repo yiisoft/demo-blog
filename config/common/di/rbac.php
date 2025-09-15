@@ -14,7 +14,7 @@ return [
         '__construct()' => [
             'itemsStorage' => DynamicReference::to([
                 'class' => ItemsStorage::class,
-                '__construct()' => [dirname(__DIR__, 3) . '/src/Web/Access/config.php'],
+                '__construct()' => [dirname(__DIR__, 3) . '/src/EndPoint/Web/Shared/Access/config.php'],
             ]),
             'assignmentsStorage' => DynamicReference::to(AssignmentsStorage::class),
         ],

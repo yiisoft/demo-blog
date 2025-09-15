@@ -8,7 +8,7 @@ use App\User\Application\CreateUser\Command;
 use App\User\Domain\Login;
 use App\User\Domain\Password;
 use App\User\Domain\UserName;
-use App\Web\Access\Role;
+use App\EndPoint\Web\Shared\Access\Role;
 use Symfony\Component\Console\Input\InputInterface;
 use Yiisoft\Validator\Rule\Length;
 use Yiisoft\Validator\Rule\Required;

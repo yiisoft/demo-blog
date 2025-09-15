@@ -9,7 +9,7 @@ use App\Blog\Domain\Category\CategorySlug;
 use App\EndPoint\Web\Blog\Front\Shared\CategoryReader\CategoryReader;
 use App\EndPoint\Web\Blog\Front\Shared\PostDataReader\PostDataReaderFactory;
 use App\Shared\UrlGenerator;
-use App\Web\ResponseFactory\ResponseFactory;
+use App\EndPoint\Web\Shared\ResponseFactory\ResponseFactory;
 use Psr\Http\Message\ResponseInterface;
 use Yiisoft\Data\Paginator\OffsetPaginator;
 use Yiisoft\Router\HydratorAttribute\RouteArgument;

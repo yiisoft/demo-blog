@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\EndPoint\Web\Blog\Manage\Post\Index;
 
 use App\EndPoint\Web\Blog\Manage\Post\Index\DataReader\PostDataReader;
-use App\Web\ResponseFactory\ResponseFactory;
+use App\EndPoint\Web\Shared\ResponseFactory\ResponseFactory;
 use Psr\Http\Message\ResponseInterface;
 use Yiisoft\Db\Connection\ConnectionInterface;
 

@@ -8,7 +8,7 @@ use App\EndPoint\Web\Blog\Manage\Post\Index\DataReader\PostDataReader;
 use App\EndPoint\Web\Blog\Manage\Post\Index\TitleFilterFactory;
 use App\EndPoint\Web\Blog\Manage\Post\PostStatusBadge;
 use App\Shared\UrlGenerator;
-use App\Web\Layout\Breadcrumbs\Breadcrumb;
+use App\EndPoint\Web\Shared\Layout\Breadcrumbs\Breadcrumb;
 use Yiisoft\Html\Html;
 use Yiisoft\Html\NoEncode;
 use Yiisoft\View\WebView;
