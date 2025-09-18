@@ -16,9 +16,29 @@
 
 - PHP 8.4 or higher.
 
-## Installation
+## General usage
 
-...
+1. Clone this repository.
+
+2. Move to your project root directory.
+
+3. Install composer dependencies:
+
+```shell
+composer install
+```
+
+4. Run application:
+
+```shell
+./yii serve
+
+# on Windows
+yii server
+```
+
+The application will be started on http://127.0.0.1:8080/.
+
 
 ## Support
 
