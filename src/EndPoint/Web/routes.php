@@ -28,6 +28,7 @@ return [
             Route::methods(['GET', 'POST'], '/blog/manage/category/delete/{id}')->action(Web\Blog\Manage\Category\Delete\Action::class)->name('blog/manage/category/delete'),
         ),
     Route::get('/blog/category/{slug}[/{page}]')->action(Web\Blog\Front\Category\Action::class)->name('blog/category/index'),
+    Route::get('/blog/post/{slug}')->action(Web\Blog\Front\Post\Action::class)->name('blog/post/view'),
     Route::get('/blog[/{page}]')->action(Web\Blog\Front\Index\Action::class)->name('blog/post/index'),
 
     /**

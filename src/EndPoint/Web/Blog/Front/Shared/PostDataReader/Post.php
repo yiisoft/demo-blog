@@ -18,7 +18,7 @@ final readonly class Post
         public PostId $id,
         public PostTitle $title,
         public PostSlug $slug,
-        string $body,
+        public string $body,
         public DateTimeImmutable $publicationDate,
         /** @var list<Category> */
         public array $categories,

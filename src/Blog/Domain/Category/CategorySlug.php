@@ -20,7 +20,7 @@ final readonly class CategorySlug implements Stringable
         Assert::maxLength($value, self::LENGTH_LIMIT);
     }
 
-    public static function tryFromString(string $value): CategorySlug|null
+    public static function tryFromString(string $value): self|null
     {
         $length = mb_strlen($value);
         return $value === '' || $length > self::LENGTH_LIMIT

@@ -19,6 +19,14 @@ final readonly class PostSlug
         Assert::maxLength($value, self::LENGTH_LIMIT);
     }
 
+    public static function tryFromString(string $value): self|null
+    {
+        $length = mb_strlen($value);
+        return $value === '' || $length > self::LENGTH_LIMIT
+            ? null
+            : new self($value);
+    }
+
     /**
      * @return non-empty-string
      */

@@ -24,7 +24,7 @@ use Yiisoft\Yii\DataView\Pagination\PaginationContext;
     <div class="card shadow-sm border-0 rounded-3 mb-4">
         <div class="card-body">
             <h5 class="h5 mb-2">
-                <?= Html::a($post->title, '#', [
+                <?= Html::a($post->title, $urlGenerator->post($post->slug), [
                     'class' => 'text-dark text-decoration-underline link-primary link-opacity-100-hover',
                 ]) ?>
             </h5>
@@ -37,7 +37,7 @@ use Yiisoft\Yii\DataView\Pagination\PaginationContext;
             <?php if ($post->categories !== []) { ?>
                 <div class="mt-3">
                     <?php foreach ($post->categories as $category) { ?>
-                        <?= Html::a($category->name, '#', [
+                        <?= Html::a($category->name, $urlGenerator->category($category->slug), [
                             'class' => 'badge fw-light bg-light text-dark border text-decoration-none link-primary link-opacity-75-hover',
                         ]) ?>
                     <?php } ?>
