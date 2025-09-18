@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Shared;
 
+use App\Blog\Domain\Category\CategoryId;
 use App\Blog\Domain\Category\CategorySlug;
 use App\Blog\Domain\Post\PostId;
 use App\Blog\Domain\Post\PostSlug;
@@ -54,6 +55,11 @@ final readonly class UrlGenerator
             'slug' => $slug,
             ...($page === 1 ? [] : ['page' => $page]),
         ]);
+    }
+
+    public function categoryUpdate(CategoryId $id): string
+    {
+        return $this->generate('blog/manage/category/update', ['id' => $id]);
     }
 
     public function post(PostSlug $slug): string

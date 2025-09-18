@@ -63,7 +63,7 @@ $this->addToParameter(
             buttons: [
                 new ActionButton(
                     Html::i()->class('bi bi-pencil'),
-                    static fn(Category $category) => $urlGenerator->generate('blog/manage/category/update', ['id' => $category->id]),
+                    static fn(Category $category) => $urlGenerator->categoryUpdate($category->id),
                     title: 'Edit',
                 ),
                 new ActionButton(
