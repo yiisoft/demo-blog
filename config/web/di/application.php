@@ -18,7 +18,6 @@ use Yiisoft\Input\Http\RequestInputParametersResolver;
 use Yiisoft\Middleware\Dispatcher\CompositeParametersResolver;
 use Yiisoft\Middleware\Dispatcher\MiddlewareDispatcher;
 use Yiisoft\Middleware\Dispatcher\ParametersResolverInterface;
-use Yiisoft\RequestProvider\RequestCatcherMiddleware;
 use Yiisoft\Router\Middleware\Router;
 use Yiisoft\Session\SessionMiddleware;
 use Yiisoft\User\Login\Cookie\CookieLoginMiddleware;
@@ -39,7 +38,6 @@ return [
                         CookieLoginMiddleware::class,
                         CsrfTokenMiddleware::class,
                         FormatDataResponse::class,
-                        RequestCatcherMiddleware::class,
                         Router::class,
                         NotFoundMiddleware::class,
                     ],
