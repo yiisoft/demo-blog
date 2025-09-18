@@ -6132,12 +6132,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/yiisoft/yii-dataview.git",
-                "reference": "5ca73f3197f1b43033d6e4d40fa1f13121037c4f"
+                "reference": "399136a4b2108e35dffff65186101b5ab43cf5ee"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/yii-dataview/zipball/5ca73f3197f1b43033d6e4d40fa1f13121037c4f",
-                "reference": "5ca73f3197f1b43033d6e4d40fa1f13121037c4f",
+                "url": "https://api.github.com/repos/yiisoft/yii-dataview/zipball/399136a4b2108e35dffff65186101b5ab43cf5ee",
+                "reference": "399136a4b2108e35dffff65186101b5ab43cf5ee",
                 "shasum": ""
             },
             "require": {
@@ -6220,7 +6220,7 @@
                     "type": "opencollective"
                 }
             ],
-            "time": "2025-09-18T11:00:35+00:00"
+            "time": "2025-09-18T20:23:41+00:00"
         },
         {
             "name": "yiisoft/yii-event",
