@@ -93,6 +93,11 @@ $this->addToParameter(
             after: '</div>',
             buttons: [
                 new ActionButton(
+                    Html::i()->class('bi bi-eye'),
+                    static fn(Post $post) => $urlGenerator->post($post->slug),
+                    title: 'View',
+                ),
+                new ActionButton(
                     Html::i()->class('bi bi-pencil'),
                     static fn(Post $post) => $urlGenerator->postUpdate($post->id),
                     title: 'Update',

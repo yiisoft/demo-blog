@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\EndPoint\Web\Blog\Manage\Post\Index\DataReader;
 
 use App\Blog\Domain\Post\PostId;
+use App\Blog\Domain\Post\PostSlug;
 use App\Blog\Domain\Post\PostStatus;
 use App\Blog\Domain\Post\PostTitle;
 use App\Shared\Database\TableName;
@@ -28,6 +29,7 @@ final class PostDataReader extends QueryDataReader
                     'p.id',
                     'p.status',
                     'p.title',
+                    'p.slug',
                     'p.publication_date',
                     'p.created_at',
                     'p.created_by',
@@ -50,6 +52,7 @@ final class PostDataReader extends QueryDataReader
                          *     id: string,
                          *     status: string,
                          *     title: non-empty-string,
+                         *     slug: non-empty-string,
                          *     publication_date: string|null,
                          *     created_at: string,
                          *     created_by: string,
@@ -65,6 +68,7 @@ final class PostDataReader extends QueryDataReader
                                 id: PostId::fromString($row['id']),
                                 status: PostStatus::from((int) $row['status']),
                                 title: new PostTitle($row['title']),
+                                slug: new PostSlug($row['slug']),
                                 publicationDate: $row['publication_date'] ? new DateTimeImmutable($row['publication_date']) : null,
                                 createdAt: new DateTimeImmutable($row['created_at']),
                                 createdBy: new User(

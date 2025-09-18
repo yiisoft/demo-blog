@@ -62,6 +62,11 @@ $this->addToParameter(
             after: '</div>',
             buttons: [
                 new ActionButton(
+                    Html::i()->class('bi bi-eye'),
+                    static fn(Category $category) => $urlGenerator->category($category->slug),
+                    title: 'View',
+                ),
+                new ActionButton(
                     Html::i()->class('bi bi-pencil'),
                     static fn(Category $category) => $urlGenerator->categoryUpdate($category->id),
                     title: 'Edit',
