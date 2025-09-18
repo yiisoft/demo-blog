@@ -6,9 +6,7 @@ namespace App\Blog\Domain\Category;
 
 final class Category
 {
-    public function __construct(public readonly CategoryId $id, public private(set) CategoryName $name, public private(set) string $description, public private(set) CategorySlug $slug)
-    {
-    }
+    public function __construct(public readonly CategoryId $id, public private(set) CategoryName $name, public private(set) string $description, public private(set) CategorySlug $slug) {}
 
     public function changeName(CategoryName $name): void
     {
