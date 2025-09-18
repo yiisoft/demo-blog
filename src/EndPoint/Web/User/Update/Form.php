@@ -28,18 +28,15 @@ final class Form extends FormModel
     #[Safe]
     public UserStatus $status;
 
-    #[Required]
-    public Role|null $role;
-
     public function __construct(
         public readonly User $user,
-        Role|null $role,
+        #[Required]
+        public Role|null $role,
         public readonly bool $isCurrentUser,
     ) {
         $this->login = $user->login->toString();
         $this->name = $user->name->toString();
         $this->status = $user->status;
-        $this->role = $role;
     }
 
     /**

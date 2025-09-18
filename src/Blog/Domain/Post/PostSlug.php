@@ -6,7 +6,7 @@ namespace App\Blog\Domain\Post;
 
 use Webmozart\Assert\Assert;
 
-final readonly class PostSlug
+final readonly class PostSlug implements \Stringable
 {
     public const int LENGTH_LIMIT = 255;
 
@@ -38,7 +38,7 @@ final readonly class PostSlug
     /**
      * @return non-empty-string
      */
-    public function __toString()
+    public function __toString(): string
     {
         return $this->toString();
     }

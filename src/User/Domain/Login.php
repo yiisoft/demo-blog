@@ -36,7 +36,7 @@ final readonly class Login implements Stringable
     /**
      * @return non-empty-string
      */
-    public function __toString()
+    public function __toString(): string
     {
         return $this->toString();
     }

@@ -11,44 +11,26 @@ use LogicException;
 
 final class Post
 {
-    public readonly PostId $id;
-    public private(set) PostStatus $status;
-    public private(set) PostTitle $title;
-    public private(set) string $body;
-    public private(set) PostSlug $slug;
-    public private(set) DateTimeImmutable|null $publicationDate;
+    public private(set) PostStatus $status = PostStatus::Draft;
     public readonly DateTimeImmutable $createdAt;
-    public readonly UserId $createdBy;
     public private(set) DateTimeImmutable $updatedAt;
     public private(set) UserId $updatedBy;
-    /**
-     * @var list<CategoryId>
-     */
-    public private(set) array $categoryIds;
 
     /**
      * @param list<CategoryId> $categoryIds
      */
     public function __construct(
-        PostId $id,
-        PostTitle $title,
-        string $body,
-        PostSlug $slug,
-        DateTimeImmutable|null $publicationDate,
-        UserId $createdBy,
-        array $categoryIds,
+        public readonly PostId $id,
+        public private(set) PostTitle $title,
+        public private(set) string $body,
+        public private(set) PostSlug $slug,
+        public private(set) DateTimeImmutable|null $publicationDate,
+        public readonly UserId $createdBy,
+        public private(set) array $categoryIds,
     ) {
-        $this->id = $id;
-        $this->status = PostStatus::Draft;
-        $this->title = $title;
-        $this->body = $body;
-        $this->slug = $slug;
-        $this->publicationDate = $publicationDate;
         $this->createdAt = new DateTimeImmutable();
-        $this->createdBy = $createdBy;
         $this->updatedAt = new DateTimeImmutable();
-        $this->updatedBy = $createdBy;
-        $this->categoryIds = $categoryIds;
+        $this->updatedBy = $this->createdBy;
     }
 
     public function changeTitle(PostTitle $title): void

@@ -33,6 +33,6 @@ final class ContentNoticesWidget extends Widget
                 );
         }
 
-        return '<div class="container-fluid">' . implode($html) . '</div>';
+        return '<div class="container-fluid">' . implode('', $html) . '</div>';
     }
 }

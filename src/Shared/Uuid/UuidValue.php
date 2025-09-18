@@ -40,7 +40,7 @@ abstract readonly class UuidValue implements Stringable
         return $this->uuid->equals($other->uuid);
     }
 
-    final public function __toString()
+    final public function __toString(): string
     {
         return $this->toString();
     }

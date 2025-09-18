@@ -52,7 +52,7 @@ $this->addToParameter(
                     <?= Html::a(
                         $category->name,
                         $urlGenerator->generate('blog/category/index', ['slug' => $category->slug]),
-                        ['class' => 'badge fw-light bg-light text-dark border text-decoration-none link-primary link-opacity-75-hover me-2']
+                        ['class' => 'badge fw-light bg-light text-dark border text-decoration-none link-primary link-opacity-75-hover me-2'],
                     ) ?>
                 <?php } ?>
             </div>
