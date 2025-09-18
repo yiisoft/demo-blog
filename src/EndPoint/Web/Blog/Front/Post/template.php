@@ -35,7 +35,7 @@ $this->addToParameter(
                 <div>
                     <?= Html::a(
                         NoEncode::string('<i class="bi bi-pencil me-1"></i> Edit'),
-                        $urlGenerator->generate('blog/manage/post/update', ['id' => $post->id]),
+                        $urlGenerator->postUpdate($post->id),
                         ['class' => 'btn btn-outline-primary btn-sm'],
                     ) ?>
                 </div>

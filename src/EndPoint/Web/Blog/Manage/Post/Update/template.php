@@ -33,7 +33,7 @@ $field = new FieldFactory();
     <div class="col-md-8">
         <?= $field->errorSummary($form)->onlyCommonErrors() ?>
         <?= Html::form()
-            ->post($urlGenerator->generate('blog/manage/post/update', ['id' => $form->post->id]))
+            ->post($urlGenerator->postUpdate($form->post->id))
             ->csrf($csrf)
             ->open() ?>
         <?= $field->text($form, 'title') ?>

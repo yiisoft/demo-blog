@@ -69,7 +69,7 @@ final readonly class Action
             ),
         );
         return $this->responseFactory->temporarilyRedirect(
-            $this->urlGenerator->generate('blog/manage/post/update', ['id' => $post->id]),
+            $this->urlGenerator->postUpdate($post->id),
         );
     }
 

@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Shared;
 
 use App\Blog\Domain\Category\CategorySlug;
+use App\Blog\Domain\Post\PostId;
 use App\Blog\Domain\Post\PostSlug;
 use Yiisoft\Router\UrlGeneratorInterface;
 
@@ -58,6 +59,11 @@ final readonly class UrlGenerator
     public function post(PostSlug $slug): string
     {
         return $this->generate('blog/post/view', ['slug' => $slug]);
+    }
+
+    public function postUpdate(PostId $id): string
+    {
+        return $this->generate('blog/manage/post/update', ['id' => $id]);
     }
 
     /**

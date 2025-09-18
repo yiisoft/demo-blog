@@ -94,7 +94,7 @@ $this->addToParameter(
             buttons: [
                 new ActionButton(
                     Html::i()->class('bi bi-pencil'),
-                    static fn(Post $post) => $urlGenerator->generate('blog/manage/post/update', ['id' => $post->id]),
+                    static fn(Post $post) => $urlGenerator->postUpdate($post->id),
                     title: 'Update',
                 ),
                 new ActionButton(
