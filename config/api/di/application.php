@@ -54,11 +54,15 @@ return [
         '__construct()' => [
             DynamicReference::to([
                 'class' => HydratorAttributeParametersResolver::class,
-                'typeCaster' => static fn() => new CompositeTypeCaster(
-                    new PhpNativeTypeCaster(),
-                    new UuidValueTypeCaster(throwUserException: true),
-                    new HydratorTypeCaster(),
-                ),
+                '__construct()' => [
+                    'typeCaster' => DynamicReference::to(
+                        static fn() => new CompositeTypeCaster(
+                            new PhpNativeTypeCaster(),
+                            new UuidValueTypeCaster(throwUserException: true),
+                            new HydratorTypeCaster(),
+                        ),
+                    ),
+                ],
             ]),
             Reference::to(RequestInputParametersResolver::class),
         ],
