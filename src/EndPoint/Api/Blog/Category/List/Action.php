@@ -16,8 +16,7 @@ final readonly class Action
         private ResponseFactory $responseFactory,
         private CategoryReader $categoryReader,
         private UrlGenerator $urlGenerator,
-    ) {
-    }
+    ) {}
 
     public function __invoke(): ResponseInterface
     {

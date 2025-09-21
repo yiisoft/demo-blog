@@ -16,8 +16,7 @@ final readonly class CategoryPresenter implements PresenterInterface
 {
     public function __construct(
         private UrlGenerator $urlGenerator,
-    ) {
-    }
+    ) {}
 
     public function present(mixed $value, DataResponse $response): DataResponse
     {

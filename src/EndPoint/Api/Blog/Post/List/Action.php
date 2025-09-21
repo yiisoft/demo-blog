@@ -19,8 +19,7 @@ final readonly class Action
         private ResponseFactory $responseFactory,
         private PostDataReaderFactory $postDataReaderFactory,
         private UrlGenerator $urlGenerator,
-    ) {
-    }
+    ) {}
 
     public function __invoke(
         #[Query('page')]

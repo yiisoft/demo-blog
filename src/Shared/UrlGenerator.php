@@ -17,8 +17,7 @@ final readonly class UrlGenerator
 {
     public function __construct(
         private UrlGeneratorInterface $generator,
-    ) {
-    }
+    ) {}
 
     public function home(): string
     {
