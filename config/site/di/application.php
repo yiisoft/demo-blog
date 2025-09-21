@@ -53,7 +53,7 @@ return [
                 'class' => HydratorAttributeParametersResolver::class,
                 'typeCaster' => static fn() => new CompositeTypeCaster(
                     new PhpNativeTypeCaster(),
-                    new UuidValueTypeCaster(throwUserException: true),
+                    new UuidValueTypeCaster(),
                     new HydratorTypeCaster(),
                 ),
             ]),
