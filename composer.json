@@ -83,6 +83,7 @@
         "yiisoft/rbac": "^2.1",
         "yiisoft/rbac-db": "dev-db2",
         "yiisoft/rbac-php": "^2.0",
+        "yiisoft/request-body-parser": "^1.1",
         "yiisoft/request-provider": "^1.2",
         "yiisoft/router": "^4",
         "yiisoft/router-fastroute": "^4.0.2",
