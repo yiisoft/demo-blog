@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\EndPoint\Site\Blog\Front\Shared\PostDataReader;
+namespace App\Blog\Read\RichPostDataReader;
 
 use App\Blog\Domain\Category\CategoryId;
 use App\Blog\Domain\Category\CategoryName;

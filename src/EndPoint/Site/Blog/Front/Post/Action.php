@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace App\EndPoint\Site\Blog\Front\Post;
 
 use App\Blog\Domain\Post\PostSlug;
-use App\EndPoint\Site\Blog\Front\Shared\PostDataReader\Post;
-use App\EndPoint\Site\Blog\Front\Shared\PostDataReader\PostDataReaderFactory;
+use App\Blog\Read\RichPostDataReader\Post;
+use App\Blog\Read\RichPostDataReader\PostDataReaderFactory;
 use App\EndPoint\Site\Shared\ResponseFactory\ResponseFactory;
 use Psr\Http\Message\ResponseInterface;
 use Yiisoft\Data\Reader\Filter\Equals;

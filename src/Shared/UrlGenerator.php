@@ -17,7 +17,8 @@ final readonly class UrlGenerator
 {
     public function __construct(
         private UrlGeneratorInterface $generator,
-    ) {}
+    ) {
+    }
 
     public function home(): string
     {
@@ -62,9 +63,11 @@ final readonly class UrlGenerator
         return $this->generate('blog/manage/category/update', ['id' => $id]);
     }
 
-    public function post(PostSlug $slug): string
+    public function post(PostSlug $slug, bool $absolute = false): string
     {
-        return $this->generate('blog/post/view', ['slug' => $slug]);
+        return $absolute
+            ? $this->generateAbsolute('blog/post/view', ['slug' => $slug])
+            : $this->generate('blog/post/view', ['slug' => $slug]);
     }
 
     public function postUpdate(PostId $id): string
@@ -78,5 +81,13 @@ final readonly class UrlGenerator
     public function generate(string $name, array $arguments = [], array $queryParameters = []): string
     {
         return $this->generator->generate($name, $arguments, $queryParameters);
+    }
+
+    /**
+     * @param UrlArgumentsType $arguments
+     */
+    public function generateAbsolute(string $name, array $arguments = [], array $queryParameters = []): string
+    {
+        return $this->generator->generateAbsolute($name, $arguments, $queryParameters);
     }
 }
