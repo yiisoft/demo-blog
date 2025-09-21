@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 use App\Blog\Domain\Category\Category as DomainCategory;
 use App\EndPoint\Site\Blog\Front\Shared\CategoriesPanel\CategoriesPanel;
-use App\EndPoint\Site\Blog\Front\Shared\CategoryReader\Category;
+use App\Blog\Read\RichCategories\Category;
 use App\EndPoint\Site\Blog\Front\Shared\PostsList\PostsList;
 use App\EndPoint\Site\Shared\Access\Permission;
 use App\Shared\Formatter;

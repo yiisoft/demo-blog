@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\EndPoint\Site\Blog\Front\Shared\CategoriesPanel;
 
 use App\Blog\Domain\Category\CategoryId;
-use App\EndPoint\Site\Blog\Front\Shared\CategoryReader\Category;
+use App\Blog\Read\RichCategories\Category;
 use Yiisoft\View\WebView;
 use Yiisoft\Widget\Widget;
 

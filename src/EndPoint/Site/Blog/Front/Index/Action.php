@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\EndPoint\Site\Blog\Front\Index;
 
-use App\EndPoint\Site\Blog\Front\Shared\CategoryReader\CategoryReader;
+use App\Blog\Read\RichCategories\CategoryReader;
 use App\EndPoint\Site\Blog\Front\Shared\PostDataReader\PostDataReaderFactory;
 use App\Shared\UrlGenerator;
 use App\EndPoint\Site\Shared\ResponseFactory\ResponseFactory;

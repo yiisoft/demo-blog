@@ -1,0 +1,25 @@
+<?php
+
+declare(strict_types=1);
+
+namespace App\EndPoint\Api\Blog\Category\List;
+
+use App\Blog\Read\RichCategories\Category;
+use App\EndPoint\Api\Shared\ResponseFactory\Presenter\PresenterInterface;
+use Yiisoft\DataResponse\DataResponse;
+
+/**
+ * @implements PresenterInterface<Category>
+ */
+final readonly class CategoryPresenter implements PresenterInterface
+{
+    public function present(mixed $value, DataResponse $response): DataResponse
+    {
+        return $response->withData([
+            'id' => $value->id->toString(),
+            'name' => $value->name->toString(),
+            'slug' => $value->slug->toString(),
+            'count_posts' => $value->countPosts,
+        ]);
+    }
+}

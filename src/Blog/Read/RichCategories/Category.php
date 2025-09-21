@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\EndPoint\Site\Blog\Front\Shared\CategoryReader;
+namespace App\Blog\Read\RichCategories;
 
 use App\Blog\Domain\Category\CategoryId;
 use App\Blog\Domain\Category\CategoryName;
