@@ -6,6 +6,7 @@ namespace App\EndPoint\Api\Blog\Category\List;
 
 use App\Blog\Read\RichCategories\Category;
 use App\EndPoint\Api\Shared\ResponseFactory\Presenter\PresenterInterface;
+use App\Shared\UrlGenerator;
 use Yiisoft\DataResponse\DataResponse;
 
 /**
@@ -13,12 +14,17 @@ use Yiisoft\DataResponse\DataResponse;
  */
 final readonly class CategoryPresenter implements PresenterInterface
 {
+    public function __construct(
+        private UrlGenerator $urlGenerator,
+    ) {
+    }
+
     public function present(mixed $value, DataResponse $response): DataResponse
     {
         return $response->withData([
             'id' => $value->id->toString(),
             'name' => $value->name->toString(),
-            'slug' => $value->slug->toString(),
+            'url' => $this->urlGenerator->category($value->slug, absolute: true),
             'count_posts' => $value->countPosts,
         ]);
     }

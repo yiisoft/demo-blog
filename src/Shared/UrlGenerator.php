@@ -50,12 +50,15 @@ final readonly class UrlGenerator
         return $this->generate('blog/post/index', $page === 1 ? [] : ['page' => $page]);
     }
 
-    public function category(CategorySlug $slug, int|string $page = 1): string
+    public function category(CategorySlug $slug, int|string $page = 1, bool $absolute = false): string
     {
-        return $this->generate('blog/category/index', [
+        $arguments = [
             'slug' => $slug,
             ...($page === 1 ? [] : ['page' => $page]),
-        ]);
+        ];
+        return $absolute
+            ? $this->generateAbsolute('blog/category/index', $arguments)
+            : $this->generate('blog/category/index', $arguments);
     }
 
     public function categoryUpdate(CategoryId $id): string
