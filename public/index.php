@@ -43,6 +43,15 @@ $runner = new HttpApplicationRunner(
     debug: Environment::appDebug(),
     checkEvents: Environment::appDebug(),
     environment: Environment::appEnv(),
+    bootstrapGroup: 'bootstrap-site',
+    eventsGroup: 'events-site',
+    diGroup: 'di-site',
+    diProvidersGroup: 'di-providers-site',
+    diDelegatesGroup: 'di-delegates-site',
+    diTagsGroup: 'di-tags-site',
+    paramsGroup: 'params-site',
+    nestedParamsGroups: ['params', 'params-web'],
+    nestedEventsGroups: ['events', 'events-web'],
     temporaryErrorHandler: new ErrorHandler(
         new Logger(
             [

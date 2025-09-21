@@ -7,7 +7,7 @@ namespace App\User\Application\CreateUser;
 use App\User\Domain\Login;
 use App\User\Domain\Password;
 use App\User\Domain\UserName;
-use App\EndPoint\Web\Shared\Access\Role;
+use App\EndPoint\Site\Shared\Access\Role;
 
 final readonly class Command
 {
