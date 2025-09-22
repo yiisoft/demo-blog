@@ -4,14 +4,13 @@ declare(strict_types=1);
 
 namespace App\EndPoint\Api\Blog\Post\List;
 
-use App\Blog\Domain\Category\CategoryId;
 use App\Blog\Read\RichPostDataReader\PostDataReaderFactory;
 use App\EndPoint\Api\Shared\ResponseFactory\Presenter\OffsetPaginatorPresenter;
 use App\EndPoint\Api\Shared\ResponseFactory\ResponseFactory;
 use App\Shared\UrlGenerator;
 use Psr\Http\Message\ResponseInterface;
 use Yiisoft\Data\Paginator\OffsetPaginator;
-use Yiisoft\Input\Http\Attribute\Parameter\Query;
+use Yiisoft\Http\Status;
 
 final readonly class Action
 {
@@ -21,23 +20,16 @@ final readonly class Action
         private UrlGenerator $urlGenerator,
     ) {}
 
-    public function __invoke(
-        #[Query('page')]
-        int $page = 1,
-        #[Query('categoryId')]
-        CategoryId|null $categoryId = null,
-    ): ResponseInterface {
+    public function __invoke(Input $input): ResponseInterface
+    {
         $paginator = new OffsetPaginator(
-            $this->postDataReaderFactory->create($categoryId),
+            $this->postDataReaderFactory->create($input->categoryId),
         );
 
-        if ($page < 1) {
-            return $this->responseFactory->fail('Invalid page number.');
+        if ($input->page !== 1 && $input->page > $paginator->getTotalPages()) {
+            return $this->responseFactory->fail('Page not found.', httpCode: Status::NOT_FOUND);
         }
-        if ($page !== 1 && $page > $paginator->getTotalPages()) {
-            return $this->responseFactory->fail('Page not found.');
-        }
-        $paginator = $paginator->withCurrentPage($page);
+        $paginator = $paginator->withCurrentPage($input->page);
 
         return $this->responseFactory->success(
             $paginator,

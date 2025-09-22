@@ -1,0 +1,23 @@
+<?php
+
+declare(strict_types=1);
+
+namespace App\EndPoint\Api\Blog\Post\List;
+
+use App\Blog\Domain\Category\CategoryId;
+use Yiisoft\Hydrator\Validator\Attribute\Validate;
+use Yiisoft\Input\Http\AbstractInput;
+use Yiisoft\Input\Http\Attribute\Data\FromQuery;
+use Yiisoft\Validator\EmptyCondition\WhenMissing;
+use Yiisoft\Validator\Rule\Integer;
+use Yiisoft\Validator\Rule\Uuid;
+
+#[FromQuery]
+final class Input extends AbstractInput
+{
+    #[Integer(min: 1)]
+    public int $page = 1;
+
+    #[Validate(new Uuid(message: 'Invalid category ID format.', skipOnEmpty: new WhenMissing()))]
+    public CategoryId|null $categoryId = null;
+}
