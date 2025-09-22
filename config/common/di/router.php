@@ -11,9 +11,9 @@ return [
     RouteCollectionInterface::class => static fn() => new RouteCollection(
         new RouteCollector()->addRoute(
             Group::create('/api')->routes(
-                ...require(dirname(__DIR__, 3) . '/src/EndPoint/Api/routes.php'),
+                ...require(dirname(__DIR__, 2) . '/api/routes.php'),
             ),
-            ...require(dirname(__DIR__, 3) . '/src/EndPoint/Site/routes.php'),
+            ...require(dirname(__DIR__, 2) . '/site/routes.php'),
         ),
     ),
 ];
