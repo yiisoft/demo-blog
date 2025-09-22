@@ -35,11 +35,20 @@ class FunctionalTester extends \Codeception\Actor
      * Define custom actions here
      */
 
-    public function sendRequest(ServerRequestInterface $request): ResponseInterface
+    public function sendSiteRequest(ServerRequestInterface $request): ResponseInterface
     {
         $runner = new HttpApplicationRunner(
             rootPath: dirname(__DIR__, 2),
             environment: Environment::appEnv(),
+            bootstrapGroup: 'bootstrap-site',
+            eventsGroup: 'events-site',
+            diGroup: 'di-site',
+            diProvidersGroup: 'di-providers-site',
+            diDelegatesGroup: 'di-delegates-site',
+            diTagsGroup: 'di-tags-site',
+            paramsGroup: 'params-site',
+            nestedParamsGroups: ['params', 'params-web'],
+            nestedEventsGroups: ['events', 'events-web'],
         );
 
         $response = $runner->runAndGetResponse($request);

@@ -15,6 +15,7 @@ use Yiisoft\Validator\Rule\Uuid;
 #[FromQuery]
 final class Input extends AbstractInput
 {
+    /** @var positive-int */
     #[Integer(min: 1)]
     public int $page = 1;
 

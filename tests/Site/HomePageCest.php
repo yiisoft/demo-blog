@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace App\Tests\Web;
+namespace App\Tests\Site;
 
-use App\Tests\Support\WebTester;
+use App\Tests\Support\SiteTester;
 
 final class HomePageCest
 {
-    public function base(WebTester $I): void
+    public function base(SiteTester $I): void
     {
         $I->wantTo('home page works.');
         $I->amOnPage('/');

@@ -1,4 +1,4 @@
-actor: WebTester
+actor: SiteTester
 extensions:
   enabled:
     - Codeception\Extension\RunProcess:

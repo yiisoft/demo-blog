@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace App\Tests\Web;
+namespace App\Tests\Site;
 
-use App\Tests\Support\WebTester;
+use App\Tests\Support\SiteTester;
 
 final class NotFoundHandlerCest
 {
-    public function nonExistentPage(WebTester $I): void
+    public function nonExistentPage(SiteTester $I): void
     {
         $I->wantTo('see 404 page.');
         $I->amOnPage('/non-existent-page');
@@ -16,7 +16,7 @@ final class NotFoundHandlerCest
         $I->see('Page not found');
     }
 
-    public function returnHome(WebTester $I): void
+    public function returnHome(SiteTester $I): void
     {
         $I->wantTo('check "Go Back Home" link.');
         $I->amOnPage('/non-existent-page');

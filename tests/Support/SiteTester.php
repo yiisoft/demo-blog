@@ -19,7 +19,7 @@ namespace App\Tests\Support;
  *
  * @SuppressWarnings(PHPMD)
 */
-class WebTester extends \Codeception\Actor
+class SiteTester extends \Codeception\Actor
 {
     use _generated\WebTesterActions;
 

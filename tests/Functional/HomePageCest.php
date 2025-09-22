@@ -14,7 +14,7 @@ final class HomePageCest
 {
     public function base(FunctionalTester $tester): void
     {
-        $response = $tester->sendRequest(
+        $response = $tester->sendSiteRequest(
             new ServerRequest(uri: '/'),
         );
 
