@@ -9,12 +9,11 @@ use App\Blog\Domain\Post\Post;
 use App\Blog\Domain\Post\PostId;
 use App\Blog\Domain\Post\PostRepositoryInterface;
 use App\Blog\Domain\Post\PostStatus;
-use App\Shared\Uuid\UuidGeneratorInterface;
+use Ramsey\Uuid\Uuid;
 
 final readonly class Handler
 {
     public function __construct(
-        private UuidGeneratorInterface $uuidGenerator,
         private PostRepositoryInterface $postRepository,
     ) {}
 
@@ -25,7 +24,7 @@ final readonly class Handler
         }
 
         $post = new Post(
-            new PostId($this->uuidGenerator->uuid7()),
+            new PostId(Uuid::uuid7()),
             $command->title,
             $command->body,
             $command->slug,

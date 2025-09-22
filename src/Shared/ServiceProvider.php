@@ -8,8 +8,6 @@ use App\Shared\DataMapper\EntityHydratorInterface;
 use App\Shared\DataMapper\PropertyReaderInterface;
 use App\Shared\DataMapper\ReflectionPropertyReader;
 use App\Shared\DataMapper\YiiHydratorEntityHydrator;
-use App\Shared\Uuid\UuidGenerator;
-use App\Shared\Uuid\UuidGeneratorInterface;
 use Yiisoft\Aliases\Aliases;
 use Yiisoft\Cache\File\FileCache;
 use Yiisoft\Db\Cache\SchemaCache;
@@ -27,8 +25,6 @@ final readonly class ServiceProvider implements ServiceProviderInterface
     public function getDefinitions(): array
     {
         return [
-            UuidGeneratorInterface::class => UuidGenerator::class,
-
             EntityHydratorInterface::class => YiiHydratorEntityHydrator::class,
             PropertyReaderInterface::class => ReflectionPropertyReader::class,
 

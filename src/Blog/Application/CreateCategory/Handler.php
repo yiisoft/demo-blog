@@ -8,13 +8,12 @@ use App\Blog\Application\SlugAlreadyExistException;
 use App\Blog\Domain\Category\Category;
 use App\Blog\Domain\Category\CategoryId;
 use App\Blog\Domain\Category\CategoryRepositoryInterface;
-use App\Shared\Uuid\UuidGeneratorInterface;
+use Ramsey\Uuid\Uuid;
 
 final readonly class Handler
 {
     public function __construct(
         private CategoryRepositoryInterface $categoryRepository,
-        private UuidGeneratorInterface $uuidGenerator,
     ) {}
 
     /**
@@ -26,7 +25,7 @@ final readonly class Handler
             throw SlugAlreadyExistException::fromCategorySlug($command->slug);
         }
 
-        $categoryId = new CategoryId($this->uuidGenerator->uuid7());
+        $categoryId = new CategoryId(Uuid::uuid7());
 
         $category = new Category(
             $categoryId,
