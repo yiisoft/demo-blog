@@ -18,7 +18,6 @@ use Psr\Http\Message\ServerRequestInterface;
 use Yiisoft\ErrorHandler\Exception\UserException;
 use Yiisoft\Http\Method;
 use Yiisoft\Router\HydratorAttribute\RouteArgument;
-
 use Yiisoft\Validator\Rule\Uuid;
 
 use function sprintf;
