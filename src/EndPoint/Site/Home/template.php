@@ -34,12 +34,40 @@ $this->setTitle('Welcome to Yii3 Demo Blog');
             </div>
         </div>
         <div class="mt-5">
-            <div class="alert alert-secondary">
-                <h5><i class="bi bi-terminal me-1"></i> Admin User</h5>
-                <p class="mt-4 mb-2">Create your first admin account via console:</p>
-                <code>./yii user:create-admin admin q1w2e3r4</code>
-                <p class="mt-4 mb-2">Or fill the database with fake data:</p>
-                <code>./yii fake-data</code>
+            <h4 class="mb-3">Quick Start</h4>
+            <ul class="nav nav-tabs justify-content-center" id="quickStartTabs" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link active" id="native-tab" data-bs-toggle="tab" data-bs-target="#native" type="button" role="tab" aria-controls="native" aria-selected="true">
+                        <i class="bi bi-terminal me-1"></i> Native
+                    </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="docker-tab" data-bs-toggle="tab" data-bs-target="#docker" type="button" role="tab" aria-controls="docker" aria-selected="false">
+                        <i class="bi bi-box me-1"></i> Docker
+                    </button>
+                </li>
+            </ul>
+            <div class="tab-content mt-3" id="quickStartTabContent">
+                <div class="tab-pane fade show active" id="native" role="tabpanel" aria-labelledby="native-tab">
+                    <div class="p-3 bg-light rounded">
+                        <p class="mb-2">Start the development server:</p>
+                        <code class="d-block mb-3">./yii serve</code>
+                        <p class="mb-2">Create only admin account:</p>
+                        <code class="d-block mb-3">./yii user:create-admin admin q1w2e3r4</code>
+                        <p class="mb-2">Or fill the database with fake data:</p>
+                        <code class="d-block">./yii fake-data</code>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="docker" role="tabpanel" aria-labelledby="docker-tab">
+                    <div class="p-3 bg-light rounded">
+                        <p class="mb-2">Start the application:</p>
+                        <code class="d-block mb-3">make up</code>
+                        <p class="mb-2">Create only admin account (admin / q1w2e3r4):</p>
+                        <code class="d-block mb-3">make create-admin</code>
+                        <p class="mb-2">Or fill the database with fake data:</p>
+                        <code class="d-block">make fake-data</code>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

@@ -26,6 +26,8 @@
 
 ```shell
 composer install
+# or via docker
+make init
 ```
 
 4. Run application:
@@ -35,6 +37,9 @@ composer install
 
 # on Windows
 yii server
+
+# or via docker
+make up
 ```
 
 The application will be started on http://127.0.0.1:8080/.
