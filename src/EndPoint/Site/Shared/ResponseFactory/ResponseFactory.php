@@ -29,11 +29,11 @@ final readonly class ResponseFactory implements ResponseFactoryInterface
             ->withHeader('Location', $url);
     }
 
-    public function notFound(string $title = 'Page not found', string $message = ''): ResponseInterface
+    public function notFound(string $title = 'Page not found', string $description = ''): ResponseInterface
     {
         return $this->viewRenderer
             ->withLayout(Layout::ERROR)
-            ->render(__DIR__ . '/not-found.php', ['title' => $title, 'message' => $message])
+            ->render(__DIR__ . '/not-found.php', ['title' => $title, 'description' => $description])
             ->withStatus(Status::NOT_FOUND);
     }
 

@@ -8,6 +8,7 @@ use App\Blog\Application\DeleteCategory\Command;
 use App\Blog\Application\DeleteCategory\Handler;
 use App\Blog\Domain\Category\CategoryId;
 use App\Blog\Domain\Category\CategoryRepositoryInterface;
+use App\EndPoint\Site\Shared\ResponseFactory\ValidateOrNotFound\ValidateOrNotFound;
 use App\Shared\UrlGenerator;
 use App\EndPoint\Site\Shared\Layout\ContentNotices\ContentNotices;
 use App\EndPoint\Site\Shared\ResponseFactory\ResponseFactory;
@@ -15,6 +16,8 @@ use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Yiisoft\Http\Method;
 use Yiisoft\Router\HydratorAttribute\RouteArgument;
+
+use Yiisoft\Validator\Rule\Uuid;
 
 use function sprintf;
 
@@ -30,6 +33,7 @@ final readonly class Action
 
     public function __invoke(
         #[RouteArgument('id')]
+        #[ValidateOrNotFound(new Uuid())]
         CategoryId $categoryId,
         ServerRequestInterface $request,
     ): ResponseInterface {

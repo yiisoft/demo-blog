@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\EndPoint\Site\User\ChangePassword;
 
+use App\EndPoint\Site\Shared\ResponseFactory\ValidateOrNotFound\ValidateOrNotFound;
 use App\Shared\UrlGenerator;
 use App\User\Application\ChangePassword\Handler;
 use App\User\Domain\UserId;
@@ -14,6 +15,8 @@ use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Yiisoft\FormModel\FormHydrator;
 use Yiisoft\Router\HydratorAttribute\RouteArgument;
+
+use Yiisoft\Validator\Rule\Uuid;
 
 use function sprintf;
 
@@ -30,6 +33,7 @@ final readonly class Action
 
     public function __invoke(
         #[RouteArgument('id')]
+        #[ValidateOrNotFound(new Uuid())]
         UserId $userId,
         ServerRequestInterface $request,
     ): ResponseInterface {

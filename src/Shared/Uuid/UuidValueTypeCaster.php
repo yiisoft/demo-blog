@@ -6,7 +6,6 @@ namespace App\Shared\Uuid;
 
 use ReflectionNamedType;
 use ReflectionUnionType;
-use Yiisoft\ErrorHandler\Exception\UserException;
 use Yiisoft\Hydrator\Result;
 use Yiisoft\Hydrator\TypeCaster\TypeCastContext;
 use Yiisoft\Hydrator\TypeCaster\TypeCasterInterface;
@@ -16,13 +15,6 @@ use function is_string;
 
 final readonly class UuidValueTypeCaster implements TypeCasterInterface
 {
-    public function __construct(
-        public bool $throwUserException = false,
-    ) {}
-
-    /**
-     * @throws UserException
-     */
     public function cast(mixed $value, TypeCastContext $context): Result
     {
         $class = $this->tryGetClass($context);
@@ -32,24 +24,14 @@ final readonly class UuidValueTypeCaster implements TypeCasterInterface
 
         if (is_string($value)) {
             $result = $class::tryFromString($value);
-            return $result === null ? $this->failOrUserException($context) : Result::success($result);
+            return $result === null ? Result::fail() : Result::success($result);
         }
 
         if (is_object($value) && $value::class === $class) {
             return Result::success($value);
         }
 
-        return $this->failOrUserException($context);
-    }
-
-    /**
-     * @throws UserException
-     */
-    private function failOrUserException(TypeCastContext $context): Result
-    {
-        return $this->throwUserException
-            ? throw new UserException('Invalid ID.')
-            : Result::fail();
+        return Result::fail();
     }
 
     /**

@@ -8,6 +8,7 @@ use App\Blog\Application\DeletePost\Command;
 use App\Blog\Application\DeletePost\Handler;
 use App\Blog\Domain\Post\PostId;
 use App\Blog\Domain\Post\PostRepositoryInterface;
+use App\EndPoint\Site\Shared\ResponseFactory\ValidateOrNotFound\ValidateOrNotFound;
 use App\Shared\UrlGenerator;
 use App\EndPoint\Site\Shared\Layout\ContentNotices\ContentNotices;
 use App\EndPoint\Site\Shared\ResponseFactory\ResponseFactory;
@@ -15,6 +16,8 @@ use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Yiisoft\Http\Method;
 use Yiisoft\Router\HydratorAttribute\RouteArgument;
+
+use Yiisoft\Validator\Rule\Uuid;
 
 use function sprintf;
 
@@ -30,6 +33,7 @@ final readonly class Action
 
     public function __invoke(
         #[RouteArgument('id')]
+        #[ValidateOrNotFound(new Uuid())]
         PostId $postId,
         ServerRequestInterface $request,
     ): ResponseInterface {

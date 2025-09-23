@@ -58,7 +58,7 @@ return [
                     'typeCaster' => DynamicReference::to(
                         static fn() => new CompositeTypeCaster(
                             new PhpNativeTypeCaster(),
-                            new UuidValueTypeCaster(throwUserException: true),
+                            new UuidValueTypeCaster(),
                             new HydratorTypeCaster(),
                         ),
                     ),

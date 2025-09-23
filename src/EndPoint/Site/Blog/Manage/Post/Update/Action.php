@@ -9,6 +9,7 @@ use App\Blog\Application\UpdatePost\Handler;
 use App\Blog\Domain\Post\PostId;
 use App\Blog\Domain\Post\PostRepositoryInterface;
 use App\Blog\Read\CategoriesList\CategoriesListReader;
+use App\EndPoint\Site\Shared\ResponseFactory\ValidateOrNotFound\ValidateOrNotFound;
 use App\Shared\UrlGenerator;
 use App\EndPoint\Site\Shared\Identity\AuthenticatedUserProvider;
 use App\EndPoint\Site\Shared\Layout\ContentNotices\ContentNotices;
@@ -18,6 +19,7 @@ use Psr\Http\Message\ServerRequestInterface;
 use Yiisoft\FormModel\FormHydrator;
 use Yiisoft\Router\HydratorAttribute\RouteArgument;
 use Yiisoft\Strings\Inflector;
+use Yiisoft\Validator\Rule\Uuid;
 
 use function sprintf;
 
@@ -37,6 +39,7 @@ final readonly class Action
 
     public function __invoke(
         #[RouteArgument('id')]
+        #[ValidateOrNotFound(new Uuid())]
         PostId $postId,
         ServerRequestInterface $request,
     ): ResponseInterface {

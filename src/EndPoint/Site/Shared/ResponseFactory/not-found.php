@@ -12,7 +12,7 @@ use Yiisoft\View\WebView;
  * @var UrlGenerator $urlGenerator
  * @var CurrentRoute $currentRoute
  * @var string $title
- * @var string $message
+ * @var string $description
  */
 
 $this->setTitle('404');
@@ -22,8 +22,8 @@ $this->setTitle('404');
         <?= Html::encode($title) ?>
     </h1>
     <?php
-    if ($message !== '') {
-        echo Html::p($message);
+    if ($description !== '') {
+        echo Html::p($description);
     }
 ?>
     <p>
