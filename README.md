@@ -26,16 +26,32 @@
 
 ```shell
 composer install
+
 # or via docker
 make init
 ```
 
+4. Apply migrations:
+
+```shell
+# Linux
+./yii migrate:up
+
+# Windows
+yii migrate:up
+
+# or via docker
+make migrate-up
+```
+
+
 4. Run application:
 
 ```shell
+# Linux
 ./yii serve
 
-# on Windows
+# Windows
 yii server
 
 # or via docker

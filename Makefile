@@ -52,6 +52,9 @@ composer-dependency-analyzer: ## Run composer dependency analyzer
 cs-fix: ## Run code style fix
 	docker compose run --rm app composer cs-fix
 
+migrate-up: ## Run migrations
+	docker compose run --rm app ./yii migrate:up --force-yes
+
 fake-data: ## Generate fake data
 	docker compose run --rm app ./yii fake-data
 

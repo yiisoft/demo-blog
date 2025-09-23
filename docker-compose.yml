@@ -1,6 +1,7 @@
 services:
   app:
     build: .
+    user: ${UID}:${GID}
     volumes:
       - .:/app
     ports:

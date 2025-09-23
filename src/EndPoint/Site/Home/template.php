@@ -50,8 +50,6 @@ $this->setTitle('Welcome to Yii3 Demo Blog');
             <div class="tab-content mt-3" id="quickStartTabContent">
                 <div class="tab-pane fade show active" id="native" role="tabpanel" aria-labelledby="native-tab">
                     <div class="p-3 bg-light rounded">
-                        <p class="mb-2">Start the development server:</p>
-                        <code class="d-block mb-3">./yii serve</code>
                         <p class="mb-2">Create only admin account:</p>
                         <code class="d-block mb-3">./yii user:create-admin admin q1w2e3r4</code>
                         <p class="mb-2">Or fill the database with fake data:</p>
@@ -60,8 +58,6 @@ $this->setTitle('Welcome to Yii3 Demo Blog');
                 </div>
                 <div class="tab-pane fade" id="docker" role="tabpanel" aria-labelledby="docker-tab">
                     <div class="p-3 bg-light rounded">
-                        <p class="mb-2">Start the application:</p>
-                        <code class="d-block mb-3">make up</code>
                         <p class="mb-2">Create only admin account (admin / q1w2e3r4):</p>
                         <code class="d-block mb-3">make create-admin</code>
                         <p class="mb-2">Or fill the database with fake data:</p>
