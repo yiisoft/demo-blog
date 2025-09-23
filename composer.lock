@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "d9b663c139cf6d876dfdbfa277d36209",
+    "content-hash": "05477e768df3bd47cd6a69ef7f001117",
     "packages": [
         {
             "name": "alexkart/curl-builder",
@@ -5160,16 +5160,16 @@
         },
         {
             "name": "yiisoft/router",
-            "version": "4.0.0",
+            "version": "4.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/yiisoft/router.git",
-                "reference": "6ca2a514152a576dccb2c6031aeb8e89d4b60b97"
+                "reference": "f7696b924810b962a403c9e1ba52b1ca07bd2bcb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/router/zipball/6ca2a514152a576dccb2c6031aeb8e89d4b60b97",
-                "reference": "6ca2a514152a576dccb2c6031aeb8e89d4b60b97",
+                "url": "https://api.github.com/repos/yiisoft/router/zipball/f7696b924810b962a403c9e1ba52b1ca07bd2bcb",
+                "reference": "f7696b924810b962a403c9e1ba52b1ca07bd2bcb",
                 "shasum": ""
             },
             "require": {
@@ -5246,7 +5246,7 @@
                     "type": "opencollective"
                 }
             ],
-            "time": "2025-02-25T12:37:17+00:00"
+            "time": "2025-09-23T14:12:56+00:00"
         },
         {
             "name": "yiisoft/router-fastroute",

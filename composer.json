@@ -86,7 +86,7 @@
         "yiisoft/rbac-php": "^2.0",
         "yiisoft/request-body-parser": "^1.1.1",
         "yiisoft/request-provider": "^1.2",
-        "yiisoft/router": "^4",
+        "yiisoft/router": "^4.0.1",
         "yiisoft/router-fastroute": "^4.0.2",
         "yiisoft/security": "^1.1",
         "yiisoft/session": "^3.0",
