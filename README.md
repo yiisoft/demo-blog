@@ -44,8 +44,7 @@ yii migrate:up
 make migrate-up
 ```
 
-
-4. Run application:
+5. Run application:
 
 ```shell
 # Linux
