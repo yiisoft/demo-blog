@@ -8,6 +8,4 @@ use Exception;
 use Yiisoft\ErrorHandler\Exception\UserException;
 
 #[UserException]
-final class UserDeletionConstraintException extends Exception
-{
-}
+final class UserDeletionConstraintException extends Exception {}
