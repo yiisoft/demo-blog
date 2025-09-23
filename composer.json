@@ -108,6 +108,7 @@
         "codeception/module-asserts": "^3.2",
         "codeception/module-cli": "^2.0.1",
         "codeception/module-phpbrowser": "^3.0.2",
+        "fakerphp/faker": "^1.24",
         "friendsofphp/php-cs-fixer": "^3.87.2",
         "phpunit/phpunit": "^11.5.40",
         "rector/rector": "^2.1.7",

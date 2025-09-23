@@ -36,8 +36,10 @@ $this->setTitle('Welcome to Yii3 Demo Blog');
         <div class="mt-5">
             <div class="alert alert-secondary">
                 <h5><i class="bi bi-terminal me-1"></i> Admin User</h5>
-                <p class="mb-2">Create your first admin account via console:</p>
+                <p class="mt-4 mb-2">Create your first admin account via console:</p>
                 <code>./yii user:create-admin admin q1w2e3r4</code>
+                <p class="mt-4 mb-2">Or fill the database with fake data:</p>
+                <code>./yii fake-data</code>
             </div>
         </div>
     </div>
