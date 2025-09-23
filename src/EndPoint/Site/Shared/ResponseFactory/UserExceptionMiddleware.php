@@ -9,6 +9,7 @@ use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\MiddlewareInterface;
 use Psr\Http\Server\RequestHandlerInterface;
+use Throwable;
 use Yiisoft\ErrorHandler\Exception\UserException;
 use Yiisoft\Http\Status;
 
@@ -18,16 +19,22 @@ final readonly class UserExceptionMiddleware implements MiddlewareInterface
         private ResponseFactory $responseFactory,
     ) {}
 
+    /**
+     * @throws Throwable
+     */
     public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
     {
         try {
             return $handler->handle($request);
-        } catch (UserException $exception) {
-            return $this->handleException($exception, $request);
+        } catch (Throwable $exception) {
+            if (UserException::isUserException($exception)) {
+                return $this->handleUserException($exception, $request);
+            }
+            throw $exception;
         }
     }
 
-    public function handleException(UserException $exception, ServerRequestInterface $request): ResponseInterface
+    public function handleUserException(Throwable $exception, ServerRequestInterface $request): ResponseInterface
     {
         return $this->responseFactory
             ->render(
