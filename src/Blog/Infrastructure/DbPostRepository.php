@@ -46,6 +46,14 @@ final readonly class DbPostRepository implements PostRepositoryInterface
         return $query->exists();
     }
 
+    public function hasByCreatedByOrUpdatedBy(UserId $userId): bool
+    {
+        return $this->db->createQuery()
+            ->from(TableName::POST)
+            ->where(['or', ['created_by' => $userId], ['updated_by' => $userId]])
+            ->exists();
+    }
+
     public function add(Post $post): void
     {
         $this->db->transaction(
