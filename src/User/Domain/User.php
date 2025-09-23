@@ -6,20 +6,27 @@ namespace App\User\Domain;
 
 final class User
 {
+    public readonly UserId $id;
+    public private(set) Login $login;
+    public private(set) UserName $name;
     private string $passwordHash;
     public private(set) string $authKey;
-    public private(set) UserStatus $status = UserStatus::Active;
+    public private(set) UserStatus $status;
 
     public function __construct(
-        public readonly UserId $id,
-        public private(set) Login $login,
-        public private(set) UserName $name,
+        UserId $id,
+        Login $login,
+        UserName $name,
         Password $password,
         PasswordHasherInterface $passwordHasher,
         AuthKeyGeneratorInterface $authKeyGenerator,
     ) {
+        $this->id = $id;
+        $this->login = $login;
+        $this->name = $name;
         $this->setPassword($password, $passwordHasher);
         $this->generateAuthKey($authKeyGenerator);
+        $this->status = UserStatus::Active;
     }
 
     public function canSignIn(): bool
