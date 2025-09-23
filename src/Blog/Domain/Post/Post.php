@@ -12,11 +12,29 @@ use LogicException;
 final class Post
 {
     public readonly PostId $id;
-    public private(set) PostStatus $status;
+
+    public private(set) PostStatus $status {
+        set {
+            if ($value === PostStatus::Published && $this->publicationDate === null) {
+                throw new LogicException('Cannot publish a post without a publication date.');
+            }
+            $this->status = $value;
+        }
+    }
+
     public private(set) PostTitle $title;
     public private(set) string $body;
     public private(set) PostSlug $slug;
-    public private(set) DateTimeImmutable|null $publicationDate;
+
+    public private(set) DateTimeImmutable|null $publicationDate {
+        set {
+            if ($value === null && $this->isPublished()) {
+                throw new LogicException('Cannot unset publication date of a published post.');
+            }
+            $this->publicationDate = $value;
+        }
+    }
+
     public readonly DateTimeImmutable $createdAt;
     public readonly UserId $createdBy;
     public private(set) DateTimeImmutable $updatedAt;
@@ -68,19 +86,11 @@ final class Post
 
     public function changePublicationDate(DateTimeImmutable|null $date): void
     {
-        if ($date === null && $this->isPublished()) {
-            throw new LogicException('Cannot unset publication date of a published post.');
-        }
-
         $this->publicationDate = $date;
     }
 
     public function publish(): void
     {
-        if ($this->publicationDate === null) {
-            throw new LogicException('Cannot publish a post without a publication date.');
-        }
-
         $this->status = PostStatus::Published;
     }
 
