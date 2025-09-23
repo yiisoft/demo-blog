@@ -15,6 +15,6 @@ return (new Configuration())
     ->addPathToScan($root . '/yii', isDev: false)
     ->addPathToScan($root . '/tests', isDev: true)
     ->ignoreErrorsOnPackages(
-        ['yiisoft/config', 'yiisoft/router-fastroute', 'yiisoft/request-provider'],
+        ['yiisoft/config', 'yiisoft/router-fastroute', 'yiisoft/request-provider', 'psr/container'],
         [ErrorType::UNUSED_DEPENDENCY],
     );
