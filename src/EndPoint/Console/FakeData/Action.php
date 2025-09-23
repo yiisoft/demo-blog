@@ -228,7 +228,7 @@ final class Action extends Command
                 trim((string) preg_replace('/[^A-Za-z0-9-]+/', '-', $text), '-'),
                 0,
                 50,
-            )
+            ),
         );
     }
 }
