@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-use App\Blog\Read\RichPostDataReader\Post;
+use App\Blog\Read\Front\RichPostDataReader\Post;
 use App\Shared\Formatter;
 use App\Shared\UrlGenerator;
 use Yiisoft\Data\Paginator\OffsetPaginator;

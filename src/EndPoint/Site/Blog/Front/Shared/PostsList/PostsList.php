@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\EndPoint\Site\Blog\Front\Shared\PostsList;
 
-use App\Blog\Read\RichPostDataReader\Post;
+use App\Blog\Read\Front\RichPostDataReader\Post;
 use Yiisoft\Data\Paginator\OffsetPaginator;
 use Yiisoft\View\WebView;
 use Yiisoft\Widget\Widget;

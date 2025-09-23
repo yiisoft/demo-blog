@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Blog\Read\RichPostDataReader;
+namespace App\Blog\Read\Front\RichPostDataReader;
 
 use App\Blog\Domain\Category\CategoryId;
 use App\Blog\Domain\Category\CategoryName;
@@ -13,10 +13,10 @@ use App\Blog\Domain\Post\PostStatus;
 use App\Blog\Domain\Post\PostTitle;
 use App\Shared\Database\TableName;
 use DateTimeImmutable;
-use Exception;
 use Yiisoft\Arrays\ArrayHelper;
 use Yiisoft\Data\Db\QueryDataReader;
 use Yiisoft\Db\Connection\ConnectionInterface;
+use Yiisoft\Db\Expression\Expression;
 use Yiisoft\Db\QueryBuilder\Condition\Equals;
 
 final readonly class PostDataReaderFactory
@@ -37,7 +37,7 @@ final readonly class PostDataReaderFactory
             ])
             ->from(TableName::POST . ' p')
             ->where(['p.status' => PostStatus::Published])
-            ->andWhere(['<=', 'p.publication_date', new Exception('NOW()')])
+            ->andWhere(['<=', 'p.publication_date', new Expression('CURRENT_TIMESTAMP')])
             ->orderBy(['p.publication_date' => SORT_DESC])
             ->resultCallback(
                 function (array $rows): array {

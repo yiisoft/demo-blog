@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\EndPoint\Site\Blog\Front\Index;
 
-use App\Blog\Read\RichCategories\CategoryReader;
-use App\Blog\Read\RichPostDataReader\PostDataReaderFactory;
+use App\Blog\Read\Front\RichCategories\CategoryReader;
+use App\Blog\Read\Front\RichPostDataReader\PostDataReaderFactory;
 use App\Shared\UrlGenerator;
 use App\EndPoint\Site\Shared\ResponseFactory\ResponseFactory;
 use Psr\Http\Message\ResponseInterface;

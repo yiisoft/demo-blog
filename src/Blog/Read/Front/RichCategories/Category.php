@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Blog\Read\RichCategories;
+namespace App\Blog\Read\Front\RichCategories;
 
 use App\Blog\Domain\Category\CategoryId;
 use App\Blog\Domain\Category\CategoryName;

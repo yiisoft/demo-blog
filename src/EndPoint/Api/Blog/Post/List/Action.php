@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\EndPoint\Api\Blog\Post\List;
 
-use App\Blog\Read\RichPostDataReader\PostDataReaderFactory;
+use App\Blog\Read\Front\RichPostDataReader\PostDataReaderFactory;
 use App\EndPoint\Api\Shared\ResponseFactory\Presenter\OffsetPaginatorPresenter;
 use App\EndPoint\Api\Shared\ResponseFactory\ResponseFactory;
 use App\Shared\UrlGenerator;

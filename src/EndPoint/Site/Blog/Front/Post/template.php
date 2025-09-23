@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-use App\Blog\Read\RichPostDataReader\Post;
+use App\Blog\Read\Front\RichPostDataReader\Post;
 use App\EndPoint\Site\Shared\Access\Permission;
 use App\EndPoint\Site\Shared\Layout\Breadcrumbs\Breadcrumb;
 use App\Shared\Formatter;

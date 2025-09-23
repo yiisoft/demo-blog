@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Blog\Read\RichCategories;
+namespace App\Blog\Read\Front\RichCategories;
 
 use App\Blog\Domain\Category\CategoryId;
 use App\Blog\Domain\Category\CategoryName;
@@ -39,7 +39,7 @@ final readonly class CategoryReader
             )
             ->leftJoin(
                 TableName::POST . ' p',
-                'pc.post_id = p.id AND p.status = ' . PostStatus::Published->value . ' AND p.publication_date <= datetime("now")',
+                'pc.post_id = p.id AND p.status = ' . PostStatus::Published->value . ' AND p.publication_date <= CURRENT_TIMESTAMP',
             )
             ->groupBy(['c.id', 'c.name', 'c.slug'])
             ->having(new GreaterThan('count_posts', 0))

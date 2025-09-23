@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 use App\EndPoint\Site\Blog\Front\Shared\CategoriesPanel\CategoriesPanel;
-use App\Blog\Read\RichCategories\Category;
+use App\Blog\Read\Front\RichCategories\Category;
 use App\EndPoint\Site\Blog\Front\Shared\PostsList\PostsList;
 use App\Shared\Formatter;
 use App\Shared\UrlGenerator;

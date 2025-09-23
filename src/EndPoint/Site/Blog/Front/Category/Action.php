@@ -6,8 +6,8 @@ namespace App\EndPoint\Site\Blog\Front\Category;
 
 use App\Blog\Domain\Category\CategoryRepositoryInterface;
 use App\Blog\Domain\Category\CategorySlug;
-use App\Blog\Read\RichCategories\CategoryReader;
-use App\Blog\Read\RichPostDataReader\PostDataReaderFactory;
+use App\Blog\Read\Front\RichCategories\CategoryReader;
+use App\Blog\Read\Front\RichPostDataReader\PostDataReaderFactory;
 use App\Shared\UrlGenerator;
 use App\EndPoint\Site\Shared\ResponseFactory\ResponseFactory;
 use Psr\Http\Message\ResponseInterface;
