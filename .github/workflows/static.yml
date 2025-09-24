@@ -33,8 +33,6 @@ jobs:
         os:
           - ubuntu-latest
         php:
-          - "8.2"
-          - "8.3"
           - "8.4"
 
     steps:

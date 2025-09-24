@@ -2,8 +2,8 @@
 
 declare(strict_types=1);
 
-use App\Command\Hello;
+use App\EndPoint\Console;
 
 return [
-    'hello' => Hello::class,
+    'user:create-admin' => Console\CreateAdmin\Action::class,
 ];

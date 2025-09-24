@@ -2,21 +2,18 @@
 
 declare(strict_types=1);
 
-use Yiisoft\Config\Config;
-use Yiisoft\Definitions\DynamicReference;
+use Yiisoft\Router\Group;
 use Yiisoft\Router\RouteCollection;
 use Yiisoft\Router\RouteCollectionInterface;
 use Yiisoft\Router\RouteCollector;
 
-/** @var Config $config */
-
 return [
-    RouteCollectionInterface::class => [
-        'class' => RouteCollection::class,
-        '__construct()' => [
-            'collector' => DynamicReference::to(
-                static fn() => (new RouteCollector())->addRoute(...$config->get('routes')),
+    RouteCollectionInterface::class => static fn() => new RouteCollection(
+        new RouteCollector()->addRoute(
+            Group::create('/api')->routes(
+                ...require(dirname(__DIR__, 2) . '/api/routes.php'),
             ),
-        ],
-    ],
+            ...require(dirname(__DIR__, 2) . '/site/routes.php'),
+        ),
+    ),
 ];

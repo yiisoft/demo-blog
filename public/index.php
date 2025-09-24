@@ -6,6 +6,7 @@ use App\Environment;
 use Psr\Log\LogLevel;
 use Yiisoft\ErrorHandler\ErrorHandler;
 use Yiisoft\ErrorHandler\Renderer\HtmlRenderer;
+use Yiisoft\ErrorHandler\Renderer\JsonRenderer;
 use Yiisoft\Log\Logger;
 use Yiisoft\Log\Target\File\FileTarget;
 use Yiisoft\Yii\Runner\Http\HttpApplicationRunner;
@@ -38,22 +39,61 @@ if (PHP_SAPI === 'cli-server') {
 }
 
 // Run HTTP application runner
-$runner = new HttpApplicationRunner(
+if (str_starts_with($_SERVER['REQUEST_URI'], '/api/')) {
+    new HttpApplicationRunner(
+        rootPath: $root,
+        debug: Environment::appDebug(),
+        checkEvents: Environment::appDebug(),
+        environment: Environment::appEnv(),
+        bootstrapGroup: 'bootstrap-api',
+        eventsGroup: 'events-api',
+        diGroup: 'di-api',
+        diProvidersGroup: 'di-providers-api',
+        diDelegatesGroup: 'di-delegates-api',
+        diTagsGroup: 'di-tags-api',
+        paramsGroup: 'params-api',
+        nestedParamsGroups: ['params', 'params-web'],
+        nestedEventsGroups: ['events', 'events-web'],
+        temporaryErrorHandler: new ErrorHandler(
+            new Logger(
+                [
+                    new FileTarget($root . '/runtime/logs/api-container-building.log')
+                        ->setLevels([
+                            LogLevel::EMERGENCY,
+                            LogLevel::ERROR,
+                            LogLevel::WARNING,
+                        ]),
+                ],
+            ),
+            new JsonRenderer(),
+        ),
+    )->run();
+}
+new HttpApplicationRunner(
     rootPath: $root,
     debug: Environment::appDebug(),
     checkEvents: Environment::appDebug(),
     environment: Environment::appEnv(),
+    bootstrapGroup: 'bootstrap-site',
+    eventsGroup: 'events-site',
+    diGroup: 'di-site',
+    diProvidersGroup: 'di-providers-site',
+    diDelegatesGroup: 'di-delegates-site',
+    diTagsGroup: 'di-tags-site',
+    paramsGroup: 'params-site',
+    nestedParamsGroups: ['params', 'params-web'],
+    nestedEventsGroups: ['events', 'events-web'],
     temporaryErrorHandler: new ErrorHandler(
         new Logger(
             [
-                (new FileTarget($root . '/runtime/logs/app-container-building.log'))->setLevels([
-                    LogLevel::EMERGENCY,
-                    LogLevel::ERROR,
-                    LogLevel::WARNING,
-                ]),
+                new FileTarget($root . '/runtime/logs/site-container-building.log')
+                    ->setLevels([
+                        LogLevel::EMERGENCY,
+                        LogLevel::ERROR,
+                        LogLevel::WARNING,
+                    ]),
             ],
         ),
         new HtmlRenderer(),
     ),
-);
-$runner->run();
+)->run();

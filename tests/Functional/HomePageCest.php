@@ -14,13 +14,13 @@ final class HomePageCest
 {
     public function base(FunctionalTester $tester): void
     {
-        $response = $tester->sendRequest(
+        $response = $tester->sendSiteRequest(
             new ServerRequest(uri: '/'),
         );
 
         assertSame(200, $response->getStatusCode());
         assertStringContainsString(
-            'Don\'t forget to check the guide',
+            'Welcome to Yii3 Demo Blog',
             $response->getBody()->getContents(),
         );
     }

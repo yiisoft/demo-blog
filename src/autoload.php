@@ -4,6 +4,9 @@ declare(strict_types=1);
 
 use App\Environment;
 
-require_once dirname(__DIR__) . '/vendor/autoload.php';
+$root = dirname(__DIR__);
 
+require_once $root . '/vendor/autoload.php';
+
+Dotenv\Dotenv::createImmutable($root)->load();
 Environment::prepare();

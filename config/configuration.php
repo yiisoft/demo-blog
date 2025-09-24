@@ -8,37 +8,56 @@ use App\Environment;
 return [
     'config-plugin' => [
         'params' => 'common/params.php',
-        'params-web' => [
+        'params-site' => [
             '$params',
-            'web/params.php',
+            '$params-web',
+            'site/params.php',
+        ],
+        'params-api' => [
+            '$params',
+            '$params-web',
+            'api/params.php',
         ],
         'params-console' => [
             '$params',
             'console/params.php',
         ],
         'di' => 'common/di/*.php',
-        'di-web' => [
+        'di-site' => [
             '$di',
-            'web/di/*.php',
+            '$di-web',
+            'site/di/*.php',
+        ],
+        'di-api' => [
+            '$di',
+            '$di-web',
+            'api/di/*.php',
         ],
         'di-console' => '$di',
         'di-delegates' => [],
+        'di-delegates-site' => '$di-delegates',
+        'di-delegates-api' => '$di-delegates',
         'di-delegates-console' => '$di-delegates',
-        'di-delegates-web' => '$di-delegates',
-        'di-providers' => [],
-        'di-providers-web' => [
-            '$di-providers',
-        ],
-        'di-providers-console' => [
-            '$di-providers',
-        ],
+        'di-providers' => 'common/di-providers.php',
+        'di-providers-site' => '$di-providers',
+        'di-providers-api' => '$di-providers',
+        'di-providers-console' => '$di-providers',
         'events' => [],
-        'events-web' => ['$events'],
-        'events-console' => ['$events'],
+        'events-site' => [
+            '$events',
+            '$events-web',
+        ],
+        'events-api' => [
+            '$events',
+            '$events-web',
+        ],
+        'events-console' => '$events',
         'routes' => 'common/routes.php',
         'bootstrap' => 'common/bootstrap.php',
-        'bootstrap-web' => '$bootstrap',
+        'bootstrap-site' => '$bootstrap',
+        'bootstrap-api' => '$bootstrap',
         'bootstrap-console' => '$bootstrap',
+        'widgets-site' => 'site/widgets.php',
     ],
     'config-plugin-environments' => [
         Environment::DEV => [

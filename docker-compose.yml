@@ -1,0 +1,9 @@
+services:
+  app:
+    build: .
+    user: ${UID}:${GID}
+    volumes:
+      - .:/app
+    ports:
+      - "8080:8080"
+    command: php ./yii serve 0.0.0.0
