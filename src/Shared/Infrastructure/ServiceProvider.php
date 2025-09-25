@@ -41,7 +41,7 @@ final readonly class ServiceProvider implements ServiceProviderInterface
                 'setNewMigrationNamespace()' => ['App\\Shared\\Infrastructure\\Database\\Migration'],
                 'setSourceNamespaces()' => [['App\\Shared\\Infrastructure\\Database\\Migration']],
                 'setSourcePaths()' => [[
-                    dirname(__DIR__, 2) . '/vendor/yiisoft/rbac-db/migrations/assignments',
+                    dirname(__DIR__, 3) . '/vendor/yiisoft/rbac-db/migrations/assignments',
                 ]],
             ],
         ];
