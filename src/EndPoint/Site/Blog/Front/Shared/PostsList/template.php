@@ -46,13 +46,8 @@ use Yiisoft\Yii\DataView\Pagination\PaginationContext;
         </div>
     </div>
 <?php } ?>
-<?= OffsetPagination::widget()
-    ->withContext(
-        new PaginationContext(
-            $urlGenerator->blog(PaginationContext::URL_PLACEHOLDER),
-            $urlGenerator->blog(PaginationContext::URL_PLACEHOLDER),
-            $urlGenerator->blog(),
-        ),
-    )
-    ->withPaginator($paginator)
-?>
+<?= OffsetPagination::create(
+    $paginator,
+    $urlGenerator->blog(PaginationContext::URL_PLACEHOLDER),
+    $urlGenerator->blog(),
+) ?>
