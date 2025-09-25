@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace App\EndPoint\Site\User\ChangePassword;
 
+use App\EndPoint\Site\Shared\Layout\ContentNotices\ContentNotices;
+use App\EndPoint\Site\Shared\ResponseFactory\ResponseFactory;
 use App\EndPoint\Site\Shared\ResponseFactory\ValidateOrNotFound\ValidateOrNotFound;
-use App\Shared\UrlGenerator;
+use App\Shared\Infrastructure\UrlGenerator;
 use App\User\Application\ChangePassword\Handler;
 use App\User\Domain\UserId;
 use App\User\Domain\UserRepositoryInterface;
-use App\EndPoint\Site\Shared\Layout\ContentNotices\ContentNotices;
-use App\EndPoint\Site\Shared\ResponseFactory\ResponseFactory;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Yiisoft\FormModel\FormHydrator;

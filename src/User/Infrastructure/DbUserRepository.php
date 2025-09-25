@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace App\User\Infrastructure;
 
-use App\Shared\Database\TableName;
-use App\Shared\DataMapper\EntityHydratorInterface;
-use App\Shared\DataMapper\PropertyReaderInterface;
+use App\Shared\Infrastructure\Database\Table;
+use App\Shared\Infrastructure\DataMapper\EntityHydratorInterface;
+use App\Shared\Infrastructure\DataMapper\PropertyReaderInterface;
 use App\User\Domain\Login;
-use App\User\Domain\UserName;
 use App\User\Domain\User;
 use App\User\Domain\UserId;
+use App\User\Domain\UserName;
 use App\User\Domain\UserRepositoryInterface;
 use App\User\Domain\UserStatus;
 use Yiisoft\Db\Connection\ConnectionInterface;
@@ -47,7 +47,7 @@ final readonly class DbUserRepository implements UserRepositoryInterface
     public function hasByLogin(Login $login): bool
     {
         return $this->db->createQuery()
-            ->from(TableName::USER)
+            ->from(Table::USER)
             ->where(['login' => $login])
             ->exists();
     }
@@ -55,21 +55,21 @@ final readonly class DbUserRepository implements UserRepositoryInterface
     public function add(User $user): void
     {
         $this->db->createCommand()
-            ->insert(TableName::USER, ['id' => $user->id, ...$this->extractData($user)])
+            ->insert(Table::USER, ['id' => $user->id, ...$this->extractData($user)])
             ->execute();
     }
 
     public function update(User $user): void
     {
         $this->db->createCommand()
-            ->update(TableName::USER, $this->extractData($user), ['id' => $user->id])
+            ->update(Table::USER, $this->extractData($user), ['id' => $user->id])
             ->execute();
     }
 
     public function delete(UserId $id): void
     {
         $this->db->createCommand()
-            ->delete(TableName::USER, ['id' => $id])
+            ->delete(Table::USER, ['id' => $id])
             ->execute();
     }
 
@@ -87,7 +87,7 @@ final readonly class DbUserRepository implements UserRepositoryInterface
     private function createQuery(): QueryInterface
     {
         return $this->db->createQuery()
-            ->from(TableName::USER)
+            ->from(Table::USER)
             ->select(['id', 'login', 'name', 'status', 'password_hash', 'auth_key'])
             ->resultCallback(
                 function (array $rows): array {

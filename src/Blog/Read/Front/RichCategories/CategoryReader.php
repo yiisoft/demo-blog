@@ -8,7 +8,7 @@ use App\Blog\Domain\Category\CategoryId;
 use App\Blog\Domain\Category\CategoryName;
 use App\Blog\Domain\Category\CategorySlug;
 use App\Blog\Domain\Post\PostStatus;
-use App\Shared\Database\TableName;
+use App\Shared\Infrastructure\Database\Table;
 use Yiisoft\Db\Connection\ConnectionInterface;
 use Yiisoft\Db\QueryBuilder\Condition\GreaterThan;
 
@@ -32,13 +32,13 @@ final readonly class CategoryReader
                 'c.slug',
                 'COUNT(p.id) as count_posts',
             ])
-            ->from(TableName::CATEGORY . ' c')
+            ->from(Table::CATEGORY . ' c')
             ->leftJoin(
-                TableName::POST_CATEGORY . ' pc',
+                Table::POST_CATEGORY . ' pc',
                 'c.id = pc.category_id',
             )
             ->leftJoin(
-                TableName::POST . ' p',
+                Table::POST . ' p',
                 'pc.post_id = p.id AND p.status = ' . PostStatus::Published->value . ' AND p.publication_date <= CURRENT_TIMESTAMP',
             )
             ->groupBy(['c.id', 'c.name', 'c.slug'])

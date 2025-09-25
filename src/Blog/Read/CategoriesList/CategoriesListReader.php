@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Blog\Read\CategoriesList;
 
-use App\Shared\Database\TableName;
+use App\Shared\Infrastructure\Database\Table;
 use Yiisoft\Db\Connection\ConnectionInterface;
 
 final readonly class CategoriesListReader
@@ -21,7 +21,7 @@ final readonly class CategoriesListReader
         /** @var array<string, string> */
         return $this->db
             ->select('name')
-            ->from(TableName::CATEGORY)
+            ->from(Table::CATEGORY)
             ->orderBy(['name' => SORT_ASC])
             ->indexBy('id')
             ->column();

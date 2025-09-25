@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\EndPoint\Site\Logout;
 
-use App\Shared\UrlGenerator;
 use App\EndPoint\Site\Shared\ResponseFactory\ResponseFactory;
+use App\Shared\Infrastructure\UrlGenerator;
 use Psr\Http\Message\ResponseInterface;
 use Yiisoft\User\CurrentUser;
 

@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\Shared\Database;
+namespace App\Shared\Infrastructure\Database;
 
-final readonly class TableName
+final readonly class Table
 {
     public const string USER = 'user';
     public const string RBAC_ASSIGNMENT = 'yii_rbac_assignment';

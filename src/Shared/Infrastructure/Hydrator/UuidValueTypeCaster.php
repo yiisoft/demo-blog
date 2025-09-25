@@ -2,8 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\Shared\Uuid;
+namespace App\Shared\Infrastructure\Hydrator;
 
+use App\Shared\Domain\UuidValue;
 use ReflectionNamedType;
 use ReflectionUnionType;
 use Yiisoft\Hydrator\Result;

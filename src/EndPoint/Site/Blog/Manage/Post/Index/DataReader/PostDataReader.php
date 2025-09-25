@@ -8,7 +8,7 @@ use App\Blog\Domain\Post\PostId;
 use App\Blog\Domain\Post\PostSlug;
 use App\Blog\Domain\Post\PostStatus;
 use App\Blog\Domain\Post\PostTitle;
-use App\Shared\Database\TableName;
+use App\Shared\Infrastructure\Database\Table;
 use App\User\Domain\UserId;
 use App\User\Domain\UserName;
 use DateTimeImmutable;
@@ -39,11 +39,11 @@ final class PostDataReader extends QueryDataReader
                     'uu.name AS updated_by_name',
                     "GROUP_CONCAT(c.name, ', ') AS category_names",
                 ])
-                ->from(TableName::POST . ' p')
-                ->innerJoin(TableName::USER . ' uc', 'uc.id = p.created_by')
-                ->innerJoin(TableName::USER . ' uu', 'uu.id = p.updated_by')
-                ->leftJoin(TableName::POST_CATEGORY . ' pc', 'p.id = pc.post_id')
-                ->leftJoin(TableName::CATEGORY . ' c', 'pc.category_id = c.id')
+                ->from(Table::POST . ' p')
+                ->innerJoin(Table::USER . ' uc', 'uc.id = p.created_by')
+                ->innerJoin(Table::USER . ' uu', 'uu.id = p.updated_by')
+                ->leftJoin(Table::POST_CATEGORY . ' pc', 'p.id = pc.post_id')
+                ->leftJoin(Table::CATEGORY . ' c', 'pc.category_id = c.id')
                 ->groupBy('p.id')
                 ->resultCallback(
                     static function (array $rows): array {

@@ -16,7 +16,7 @@ use App\Blog\Domain\Post\PostSlug;
 use App\Blog\Domain\Post\PostTitle;
 use App\EndPoint\Site\Shared\Access\RbacManager;
 use App\EndPoint\Site\Shared\Access\Role;
-use App\Shared\Database\TableName;
+use App\Shared\Infrastructure\Database\Table;
 use App\User\Domain\AuthKeyGeneratorInterface;
 use App\User\Domain\Login;
 use App\User\Domain\Password;
@@ -97,10 +97,10 @@ final class Action extends Command
 
     private function clearData(): void
     {
-        $this->db->createCommand()->delete(TableName::POST_CATEGORY)->execute();
-        $this->db->createCommand()->delete(TableName::POST)->execute();
-        $this->db->createCommand()->delete(TableName::CATEGORY)->execute();
-        $this->db->createCommand()->delete(TableName::USER)->execute();
+        $this->db->createCommand()->delete(Table::POST_CATEGORY)->execute();
+        $this->db->createCommand()->delete(Table::POST)->execute();
+        $this->db->createCommand()->delete(Table::CATEGORY)->execute();
+        $this->db->createCommand()->delete(Table::USER)->execute();
     }
 
     private function createAdministrator(): User

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 use App\Blog\Domain\Category\CategoryId;
 use App\Blog\Read\Front\RichCategories\Category;
-use App\Shared\UrlGenerator;
+use App\Shared\Infrastructure\UrlGenerator;
 use Yiisoft\Html\Html;
 
 /**

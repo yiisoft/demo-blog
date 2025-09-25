@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\EndPoint\Site\Shared\Access;
 
-use App\Shared\Database\TableName;
+use App\Shared\Infrastructure\Database\Table;
 use App\User\Domain\UserId;
 use Stringable;
 use Yiisoft\Access\AccessCheckerInterface;
@@ -50,7 +50,7 @@ final readonly class RbacManager implements AccessCheckerInterface
                 'user_id as id',
                 'item_name as role',
             ])
-            ->from(TableName::RBAC_ASSIGNMENT)
+            ->from(Table::RBAC_ASSIGNMENT)
             ->andWhere(['user_id' => $userIds])
             ->all();
 

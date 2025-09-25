@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace App\EndPoint\Site\Profile\UpdateProfile;
 
-use App\Shared\UrlGenerator;
-use App\User\Application\UpdateProfile\Handler;
-use App\User\Domain\UserRepositoryInterface;
 use App\EndPoint\Site\Shared\Identity\AuthenticatedUserProvider;
 use App\EndPoint\Site\Shared\Layout\ContentNotices\ContentNotices;
 use App\EndPoint\Site\Shared\ResponseFactory\ResponseFactory;
+use App\Shared\Infrastructure\UrlGenerator;
+use App\User\Application\UpdateProfile\Handler;
+use App\User\Domain\UserRepositoryInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Yiisoft\FormModel\FormHydrator;

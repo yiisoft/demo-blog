@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Shared\DataMapper;
+namespace App\Shared\Infrastructure\DataMapper;
 
 interface EntityHydratorInterface
 {

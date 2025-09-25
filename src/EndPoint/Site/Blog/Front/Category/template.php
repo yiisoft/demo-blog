@@ -3,13 +3,13 @@
 declare(strict_types=1);
 
 use App\Blog\Domain\Category\Category as DomainCategory;
-use App\EndPoint\Site\Blog\Front\Shared\CategoriesPanel\CategoriesPanel;
 use App\Blog\Read\Front\RichCategories\Category;
+use App\EndPoint\Site\Blog\Front\Shared\CategoriesPanel\CategoriesPanel;
 use App\EndPoint\Site\Blog\Front\Shared\PostsList\PostsList;
 use App\EndPoint\Site\Shared\Access\Permission;
-use App\Shared\Formatter;
-use App\Shared\UrlGenerator;
 use App\EndPoint\Site\Shared\Layout\Breadcrumbs\Breadcrumb;
+use App\Shared\Infrastructure\Formatter;
+use App\Shared\Infrastructure\UrlGenerator;
 use Yiisoft\Data\Paginator\OffsetPaginator;
 use Yiisoft\Html\Html;
 use Yiisoft\Html\NoEncode;

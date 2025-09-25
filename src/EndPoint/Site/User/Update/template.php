@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-use App\EndPoint\Site\User\ShortUserInfo;
-use App\EndPoint\Site\User\Update\Form;
-use App\Shared\UrlGenerator;
-use App\User\Domain\UserStatus;
 use App\EndPoint\Site\Shared\Access\Role;
 use App\EndPoint\Site\Shared\Layout\Breadcrumbs\Breadcrumb;
+use App\EndPoint\Site\User\ShortUserInfo;
+use App\EndPoint\Site\User\Update\Form;
+use App\Shared\Infrastructure\UrlGenerator;
+use App\User\Domain\UserStatus;
 use Yiisoft\FormModel\FieldFactory;
 use Yiisoft\Html\Html;
 use Yiisoft\View\WebView;

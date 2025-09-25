@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace App\EndPoint\Site\User\Create;
 
-use App\Shared\UrlGenerator;
-use App\User\Application\CreateUser\Handler;
-use App\User\Application\LoginAlreadyExistException;
 use App\EndPoint\Site\Shared\Layout\ContentNotices\ContentNotices;
 use App\EndPoint\Site\Shared\ResponseFactory\ResponseFactory;
+use App\Shared\Infrastructure\UrlGenerator;
+use App\User\Application\CreateUser\Handler;
+use App\User\Application\LoginAlreadyExistException;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Yiisoft\FormModel\FormHydrator;

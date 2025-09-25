@@ -3,8 +3,8 @@
 declare(strict_types=1);
 
 use App\Blog\Read\Front\RichPostDataReader\Post;
-use App\Shared\Formatter;
-use App\Shared\UrlGenerator;
+use App\Shared\Infrastructure\Formatter;
+use App\Shared\Infrastructure\UrlGenerator;
 use Yiisoft\Data\Paginator\OffsetPaginator;
 use Yiisoft\Html\Html;
 use Yiisoft\View\WebView;

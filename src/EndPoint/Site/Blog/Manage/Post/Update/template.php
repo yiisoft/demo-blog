@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 use App\Blog\Domain\Post\PostStatus;
 use App\EndPoint\Site\Blog\Manage\Post\Update\Form;
-use App\Shared\UrlGenerator;
 use App\EndPoint\Site\Shared\Layout\Breadcrumbs\Breadcrumb;
+use App\Shared\Infrastructure\UrlGenerator;
 use Yiisoft\FormModel\FieldFactory;
 use Yiisoft\Html\Html;
 use Yiisoft\View\WebView;

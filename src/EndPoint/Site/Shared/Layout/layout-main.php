@@ -2,7 +2,6 @@
 
 declare(strict_types=1);
 
-use App\Shared\UrlGenerator;
 use App\EndPoint\Site\Shared\Access\Permission;
 use App\EndPoint\Site\Shared\Identity\UserIdentity;
 use App\EndPoint\Site\Shared\Layout\Breadcrumbs\Breadcrumbs;
@@ -10,6 +9,7 @@ use App\EndPoint\Site\Shared\Layout\ContentNotices\ContentNoticesWidget;
 use App\EndPoint\Site\Shared\Layout\MainAsset;
 use App\EndPoint\Site\Shared\Layout\Menu\Item;
 use App\EndPoint\Site\Shared\Layout\Menu\MainMenu;
+use App\Shared\Infrastructure\UrlGenerator;
 use Yiisoft\Html\Html;
 use Yiisoft\Router\CurrentRoute;
 use Yiisoft\User\CurrentUser;

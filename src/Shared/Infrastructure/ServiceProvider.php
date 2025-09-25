@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace App\Shared;
+namespace App\Shared\Infrastructure;
 
-use App\Shared\DataMapper\EntityHydratorInterface;
-use App\Shared\DataMapper\PropertyReaderInterface;
-use App\Shared\DataMapper\ReflectionPropertyReader;
-use App\Shared\DataMapper\YiiHydratorEntityHydrator;
+use App\Shared\Infrastructure\DataMapper\EntityHydratorInterface;
+use App\Shared\Infrastructure\DataMapper\PropertyReaderInterface;
+use App\Shared\Infrastructure\DataMapper\ReflectionPropertyReader;
+use App\Shared\Infrastructure\DataMapper\YiiHydratorEntityHydrator;
 use Yiisoft\Aliases\Aliases;
 use Yiisoft\Cache\File\FileCache;
 use Yiisoft\Db\Cache\SchemaCache;
@@ -38,8 +38,8 @@ final readonly class ServiceProvider implements ServiceProviderInterface
             ),
 
             MigrationService::class => [
-                'setNewMigrationNamespace()' => ['App\\Shared\\Database\\Migration'],
-                'setSourceNamespaces()' => [['App\\Shared\\Database\\Migration']],
+                'setNewMigrationNamespace()' => ['App\\Shared\\Infrastructure\\Database\\Migration'],
+                'setSourceNamespaces()' => [['App\\Shared\\Infrastructure\\Database\\Migration']],
                 'setSourcePaths()' => [[
                     dirname(__DIR__, 2) . '/vendor/yiisoft/rbac-db/migrations/assignments',
                 ]],

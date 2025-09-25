@@ -11,8 +11,8 @@ use App\Blog\Domain\Post\PostRepositoryInterface;
 use App\Blog\Domain\Post\PostSlug;
 use App\Blog\Domain\Post\PostStatus;
 use App\Blog\Domain\Post\PostTitle;
-use App\Shared\Database\TableName;
-use App\Shared\DataMapper\EntityHydratorInterface;
+use App\Shared\Infrastructure\Database\Table;
+use App\Shared\Infrastructure\DataMapper\EntityHydratorInterface;
 use App\User\Domain\UserId;
 use DateTimeImmutable;
 use Yiisoft\Db\Connection\ConnectionInterface;
@@ -39,7 +39,7 @@ final readonly class DbPostRepository implements PostRepositoryInterface
 
     public function hasBySlug(PostSlug $slug, PostId|null $excludeId = null): bool
     {
-        $query = $this->db->createQuery()->from(TableName::POST)->where(['slug' => $slug]);
+        $query = $this->db->createQuery()->from(Table::POST)->where(['slug' => $slug]);
         if ($excludeId !== null) {
             $query->andWhere(new NotEquals('id', $excludeId));
         }
@@ -49,7 +49,7 @@ final readonly class DbPostRepository implements PostRepositoryInterface
     public function hasByCreatedByOrUpdatedBy(UserId $userId): bool
     {
         return $this->db->createQuery()
-            ->from(TableName::POST)
+            ->from(Table::POST)
             ->where(['or', ['created_by' => $userId], ['updated_by' => $userId]])
             ->exists();
     }
@@ -59,7 +59,7 @@ final readonly class DbPostRepository implements PostRepositoryInterface
         $this->db->transaction(
             function () use ($post) {
                 $this->db->createCommand()
-                    ->insert(TableName::POST, ['id' => $post->id, ...$this->extractData($post)])
+                    ->insert(Table::POST, ['id' => $post->id, ...$this->extractData($post)])
                     ->execute();
 
                 $this->saveCategories($post);
@@ -72,7 +72,7 @@ final readonly class DbPostRepository implements PostRepositoryInterface
         $this->db->transaction(
             function () use ($post) {
                 $this->db->createCommand()
-                    ->update(TableName::POST, $this->extractData($post), ['id' => $post->id])
+                    ->update(Table::POST, $this->extractData($post), ['id' => $post->id])
                     ->execute();
 
                 $this->saveCategories($post);
@@ -85,11 +85,11 @@ final readonly class DbPostRepository implements PostRepositoryInterface
         $this->db->transaction(
             function () use ($id) {
                 $this->db->createCommand()
-                    ->delete(TableName::POST_CATEGORY, ['post_id' => $id])
+                    ->delete(Table::POST_CATEGORY, ['post_id' => $id])
                     ->execute();
 
                 $this->db->createCommand()
-                    ->delete(TableName::POST, ['id' => $id])
+                    ->delete(Table::POST, ['id' => $id])
                     ->execute();
             },
         );
@@ -113,7 +113,7 @@ final readonly class DbPostRepository implements PostRepositoryInterface
     private function saveCategories(Post $post): void
     {
         $this->db->createCommand()
-            ->delete(TableName::POST_CATEGORY, ['post_id' => $post->id])
+            ->delete(Table::POST_CATEGORY, ['post_id' => $post->id])
             ->execute();
 
         if (!empty($post->categoryIds)) {
@@ -123,7 +123,7 @@ final readonly class DbPostRepository implements PostRepositoryInterface
             );
 
             $this->db->createCommand()
-                ->insertBatch(TableName::POST_CATEGORY, $rows, ['post_id', 'category_id'])
+                ->insertBatch(Table::POST_CATEGORY, $rows, ['post_id', 'category_id'])
                 ->execute();
         }
     }
@@ -131,8 +131,8 @@ final readonly class DbPostRepository implements PostRepositoryInterface
     private function createQuery(): QueryInterface
     {
         return $this->db->createQuery()
-            ->from(TableName::POST . ' p')
-            ->leftJoin(TableName::POST_CATEGORY . ' pc', 'p.id = pc.post_id')
+            ->from(Table::POST . ' p')
+            ->leftJoin(Table::POST_CATEGORY . ' pc', 'p.id = pc.post_id')
             ->select([
                 'p.id',
                 'p.status',

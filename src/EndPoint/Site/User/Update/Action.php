@@ -4,16 +4,16 @@ declare(strict_types=1);
 
 namespace App\EndPoint\Site\User\Update;
 
-use App\EndPoint\Site\Shared\ResponseFactory\ValidateOrNotFound\ValidateOrNotFound;
-use App\Shared\UrlGenerator;
-use App\User\Application\LoginAlreadyExistException;
-use App\User\Application\UpdateUser\Handler;
-use App\User\Domain\UserId;
-use App\User\Domain\UserRepositoryInterface;
 use App\EndPoint\Site\Shared\Access\RbacManager;
 use App\EndPoint\Site\Shared\Identity\AuthenticatedUserProvider;
 use App\EndPoint\Site\Shared\Layout\ContentNotices\ContentNotices;
 use App\EndPoint\Site\Shared\ResponseFactory\ResponseFactory;
+use App\EndPoint\Site\Shared\ResponseFactory\ValidateOrNotFound\ValidateOrNotFound;
+use App\Shared\Infrastructure\UrlGenerator;
+use App\User\Application\LoginAlreadyExistException;
+use App\User\Application\UpdateUser\Handler;
+use App\User\Domain\UserId;
+use App\User\Domain\UserRepositoryInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Yiisoft\ErrorHandler\Exception\UserException;
