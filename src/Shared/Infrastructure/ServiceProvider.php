@@ -38,8 +38,8 @@ final readonly class ServiceProvider implements ServiceProviderInterface
             ),
 
             MigrationService::class => [
-                'setNewMigrationNamespace()' => ['App\\Shared\\Database\\Migration'],
-                'setSourceNamespaces()' => [['App\\Shared\\Database\\Migration']],
+                'setNewMigrationNamespace()' => ['App\\Shared\\Infrastructure\\Database\\Migration'],
+                'setSourceNamespaces()' => [['App\\Shared\\Infrastructure\\Database\\Migration']],
                 'setSourcePaths()' => [[
                     dirname(__DIR__, 2) . '/vendor/yiisoft/rbac-db/migrations/assignments',
                 ]],
