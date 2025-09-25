@@ -3,8 +3,8 @@
 declare(strict_types=1);
 
 use App\Blog\Domain\Category\Category;
-use App\Shared\UrlGenerator;
 use App\EndPoint\Site\Shared\Layout\Breadcrumbs\Breadcrumb;
+use App\Shared\Infrastructure\UrlGenerator;
 use Yiisoft\Html\Html;
 use Yiisoft\View\WebView;
 use Yiisoft\Yii\View\Renderer\Csrf;

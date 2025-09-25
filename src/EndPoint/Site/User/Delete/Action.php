@@ -4,15 +4,15 @@ declare(strict_types=1);
 
 namespace App\EndPoint\Site\User\Delete;
 
+use App\EndPoint\Site\Shared\Identity\AuthenticatedUserProvider;
+use App\EndPoint\Site\Shared\Layout\ContentNotices\ContentNotices;
+use App\EndPoint\Site\Shared\ResponseFactory\ResponseFactory;
 use App\EndPoint\Site\Shared\ResponseFactory\ValidateOrNotFound\ValidateOrNotFound;
-use App\Shared\UrlGenerator;
+use App\Shared\Infrastructure\UrlGenerator;
 use App\User\Application\DeleteUser\Command;
 use App\User\Application\DeleteUser\Handler;
 use App\User\Domain\UserId;
 use App\User\Domain\UserRepositoryInterface;
-use App\EndPoint\Site\Shared\Identity\AuthenticatedUserProvider;
-use App\EndPoint\Site\Shared\Layout\ContentNotices\ContentNotices;
-use App\EndPoint\Site\Shared\ResponseFactory\ResponseFactory;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Yiisoft\ErrorHandler\Exception\UserException;

@@ -6,9 +6,9 @@ namespace App\EndPoint\Site\Blog\Manage\Category\Create;
 
 use App\Blog\Application\CreateCategory\Handler;
 use App\Blog\Application\SlugAlreadyExistException;
-use App\Shared\UrlGenerator;
 use App\EndPoint\Site\Shared\Layout\ContentNotices\ContentNotices;
 use App\EndPoint\Site\Shared\ResponseFactory\ResponseFactory;
+use App\Shared\Infrastructure\UrlGenerator;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Yiisoft\FormModel\FormHydrator;

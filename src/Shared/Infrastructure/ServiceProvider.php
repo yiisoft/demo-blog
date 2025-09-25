@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace App\Shared;
+namespace App\Shared\Infrastructure;
 
-use App\Shared\DataMapper\EntityHydratorInterface;
-use App\Shared\DataMapper\PropertyReaderInterface;
-use App\Shared\DataMapper\ReflectionPropertyReader;
-use App\Shared\DataMapper\YiiHydratorEntityHydrator;
+use App\Shared\Infrastructure\DataMapper\EntityHydratorInterface;
+use App\Shared\Infrastructure\DataMapper\PropertyReaderInterface;
+use App\Shared\Infrastructure\DataMapper\ReflectionPropertyReader;
+use App\Shared\Infrastructure\DataMapper\YiiHydratorEntityHydrator;
 use Yiisoft\Aliases\Aliases;
 use Yiisoft\Cache\File\FileCache;
 use Yiisoft\Db\Cache\SchemaCache;

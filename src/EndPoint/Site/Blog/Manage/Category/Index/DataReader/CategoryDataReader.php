@@ -7,7 +7,7 @@ namespace App\EndPoint\Site\Blog\Manage\Category\Index\DataReader;
 use App\Blog\Domain\Category\CategoryId;
 use App\Blog\Domain\Category\CategoryName;
 use App\Blog\Domain\Category\CategorySlug;
-use App\Shared\Database\TableName;
+use App\Shared\Infrastructure\Database\Table;
 use Yiisoft\Data\Db\QueryDataReader;
 use Yiisoft\Data\Reader\Sort;
 use Yiisoft\Db\Connection\ConnectionInterface;
@@ -28,8 +28,8 @@ final class CategoryDataReader extends QueryDataReader
                     'c.slug',
                     'COUNT(pc.post_id) AS count_posts',
                 ])
-                ->from(TableName::CATEGORY . ' c')
-                ->leftJoin(TableName::POST_CATEGORY . ' pc', 'c.id = pc.category_id')
+                ->from(Table::CATEGORY . ' c')
+                ->leftJoin(Table::POST_CATEGORY . ' pc', 'c.id = pc.category_id')
                 ->groupBy('c.id')
                 ->resultCallback(
                     static function (array $rows): array {

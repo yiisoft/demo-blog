@@ -3,8 +3,8 @@
 declare(strict_types=1);
 
 use App\Blog\Domain\Post\Post;
-use App\Shared\UrlGenerator;
 use App\EndPoint\Site\Shared\Layout\Breadcrumbs\Breadcrumb;
+use App\Shared\Infrastructure\UrlGenerator;
 use Yiisoft\Html\Html;
 use Yiisoft\Strings\StringHelper;
 use Yiisoft\View\WebView;

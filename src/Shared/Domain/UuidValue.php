@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Shared\Uuid;
+namespace App\Shared\Domain;
 
 use Ramsey\Uuid\Uuid;
 use Ramsey\Uuid\UuidInterface;

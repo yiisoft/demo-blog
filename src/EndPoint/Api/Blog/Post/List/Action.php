@@ -7,7 +7,7 @@ namespace App\EndPoint\Api\Blog\Post\List;
 use App\Blog\Read\Front\RichPostDataReader\PostDataReaderFactory;
 use App\EndPoint\Api\Shared\ResponseFactory\Presenter\OffsetPaginatorPresenter;
 use App\EndPoint\Api\Shared\ResponseFactory\ResponseFactory;
-use App\Shared\UrlGenerator;
+use App\Shared\Infrastructure\UrlGenerator;
 use Psr\Http\Message\ResponseInterface;
 use Yiisoft\Data\Paginator\OffsetPaginator;
 use Yiisoft\Http\Status;

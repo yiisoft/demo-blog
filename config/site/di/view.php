@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-use App\Shared\Formatter;
-use App\Shared\UrlGenerator;
 use App\EndPoint\Site\Shared\Layout\Layout;
+use App\Shared\Infrastructure\Formatter;
+use App\Shared\Infrastructure\UrlGenerator;
 use Yiisoft\Aliases\Aliases;
 use Yiisoft\Assets\AssetManager;
 use Yiisoft\Definitions\Reference;

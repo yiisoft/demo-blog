@@ -11,7 +11,7 @@ use App\Blog\Domain\Post\PostId;
 use App\Blog\Domain\Post\PostSlug;
 use App\Blog\Domain\Post\PostStatus;
 use App\Blog\Domain\Post\PostTitle;
-use App\Shared\Database\TableName;
+use App\Shared\Infrastructure\Database\Table;
 use DateTimeImmutable;
 use Yiisoft\Arrays\ArrayHelper;
 use Yiisoft\Data\Db\QueryDataReader;
@@ -35,7 +35,7 @@ final readonly class PostDataReaderFactory
                 'p.body',
                 'p.publication_date',
             ])
-            ->from(TableName::POST . ' p')
+            ->from(Table::POST . ' p')
             ->where(['p.status' => PostStatus::Published])
             ->andWhere(['<=', 'p.publication_date', new Expression('CURRENT_TIMESTAMP')])
             ->orderBy(['p.publication_date' => SORT_DESC])
@@ -71,7 +71,7 @@ final readonly class PostDataReaderFactory
         if ($categoryId !== null) {
             $query
                 ->innerJoin(
-                    TableName::POST_CATEGORY . ' pc',
+                    Table::POST_CATEGORY . ' pc',
                     'p.id = pc.post_id AND pc.category_id = :categoryId',
                     [':categoryId' => $categoryId],
                 )
@@ -99,8 +99,8 @@ final readonly class PostDataReaderFactory
                 'c.name as category_name',
                 'c.slug as category_slug',
             ])
-            ->from(TableName::POST_CATEGORY . ' pc')
-            ->innerJoin(TableName::CATEGORY . ' c', 'c.id=pc.category_id')
+            ->from(Table::POST_CATEGORY . ' pc')
+            ->innerJoin(Table::CATEGORY . ' c', 'c.id=pc.category_id')
             ->andWhere(['pc.post_id' => $postIds])
             ->all();
 

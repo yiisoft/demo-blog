@@ -6,8 +6,8 @@ namespace App\EndPoint\Site\Blog\Front\Index;
 
 use App\Blog\Read\Front\RichCategories\CategoryReader;
 use App\Blog\Read\Front\RichPostDataReader\PostDataReaderFactory;
-use App\Shared\UrlGenerator;
 use App\EndPoint\Site\Shared\ResponseFactory\ResponseFactory;
+use App\Shared\Infrastructure\UrlGenerator;
 use Psr\Http\Message\ResponseInterface;
 use Yiisoft\Data\Paginator\OffsetPaginator;
 use Yiisoft\Router\HydratorAttribute\RouteArgument;

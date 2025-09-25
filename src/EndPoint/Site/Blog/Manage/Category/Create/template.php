@@ -3,8 +3,8 @@
 declare(strict_types=1);
 
 use App\EndPoint\Site\Blog\Manage\Category\Create\Form;
-use App\Shared\UrlGenerator;
 use App\EndPoint\Site\Shared\Layout\Breadcrumbs\Breadcrumb;
+use App\Shared\Infrastructure\UrlGenerator;
 use Yiisoft\FormModel\FieldFactory;
 use Yiisoft\Html\Html;
 use Yiisoft\View\WebView;

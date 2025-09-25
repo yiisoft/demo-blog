@@ -9,8 +9,8 @@ use App\Blog\Domain\Category\CategoryId;
 use App\Blog\Domain\Category\CategoryName;
 use App\Blog\Domain\Category\CategoryRepositoryInterface;
 use App\Blog\Domain\Category\CategorySlug;
-use App\Shared\Database\TableName;
-use App\Shared\DataMapper\EntityHydratorInterface;
+use App\Shared\Infrastructure\Database\Table;
+use App\Shared\Infrastructure\DataMapper\EntityHydratorInterface;
 use Yiisoft\Db\Connection\ConnectionInterface;
 use Yiisoft\Db\Query\QueryInterface;
 use Yiisoft\Db\QueryBuilder\Condition\NotEquals;
@@ -41,7 +41,7 @@ final readonly class DbCategoryRepository implements CategoryRepositoryInterface
 
     public function hasBySlug(CategorySlug $slug, CategoryId|null $excludeId = null): bool
     {
-        $query = $this->db->createQuery()->from(TableName::CATEGORY)->where(['slug' => $slug]);
+        $query = $this->db->createQuery()->from(Table::CATEGORY)->where(['slug' => $slug]);
         if ($excludeId !== null) {
             $query->andWhere(new NotEquals('id', $excludeId));
         }
@@ -51,14 +51,14 @@ final readonly class DbCategoryRepository implements CategoryRepositoryInterface
     public function add(Category $category): void
     {
         $this->db->createCommand()
-            ->insert(TableName::CATEGORY, ['id' => $category->id, ...$this->extractData($category)])
+            ->insert(Table::CATEGORY, ['id' => $category->id, ...$this->extractData($category)])
             ->execute();
     }
 
     public function update(Category $category): void
     {
         $this->db->createCommand()
-            ->update(TableName::CATEGORY, $this->extractData($category), ['id' => $category->id])
+            ->update(Table::CATEGORY, $this->extractData($category), ['id' => $category->id])
             ->execute();
     }
 
@@ -67,11 +67,11 @@ final readonly class DbCategoryRepository implements CategoryRepositoryInterface
         $this->db->transaction(
             function () use ($id) {
                 $this->db->createCommand()
-                    ->delete(TableName::POST_CATEGORY, ['category_id' => $id])
+                    ->delete(Table::POST_CATEGORY, ['category_id' => $id])
                     ->execute();
 
                 $this->db->createCommand()
-                    ->delete(TableName::CATEGORY, ['id' => $id])
+                    ->delete(Table::CATEGORY, ['id' => $id])
                     ->execute();
             },
         );
@@ -89,7 +89,7 @@ final readonly class DbCategoryRepository implements CategoryRepositoryInterface
     private function createQuery(): QueryInterface
     {
         return $this->db->createQuery()
-            ->from(TableName::CATEGORY)
+            ->from(Table::CATEGORY)
             ->select([
                 'id',
                 'name',

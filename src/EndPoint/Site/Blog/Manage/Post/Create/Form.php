@@ -9,7 +9,7 @@ use App\Blog\Domain\Category\CategoryId;
 use App\Blog\Domain\Post\PostSlug;
 use App\Blog\Domain\Post\PostStatus;
 use App\Blog\Domain\Post\PostTitle;
-use App\Shared\Uuid\UuidValueCollection;
+use App\Shared\Infrastructure\Hydrator\UuidValueCollection;
 use App\User\Domain\UserId;
 use DateTimeImmutable;
 use Yiisoft\FormModel\Attribute\Safe;

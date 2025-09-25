@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace App\EndPoint\Site\Login;
 
-use App\Shared\UrlGenerator;
-use App\User\Application\TrySignIn\Handler;
-use App\User\Domain\AuthKeyGeneratorInterface;
 use App\EndPoint\Site\Shared\Identity\UserIdentity;
 use App\EndPoint\Site\Shared\Layout\Layout;
 use App\EndPoint\Site\Shared\ResponseFactory\ResponseFactory;
+use App\Shared\Infrastructure\UrlGenerator;
+use App\User\Application\TrySignIn\Handler;
+use App\User\Domain\AuthKeyGeneratorInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Yiisoft\FormModel\FormHydrator;

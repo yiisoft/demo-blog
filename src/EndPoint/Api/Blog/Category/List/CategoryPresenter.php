@@ -6,7 +6,7 @@ namespace App\EndPoint\Api\Blog\Category\List;
 
 use App\Blog\Read\Front\RichCategories\Category;
 use App\EndPoint\Api\Shared\ResponseFactory\Presenter\PresenterInterface;
-use App\Shared\UrlGenerator;
+use App\Shared\Infrastructure\UrlGenerator;
 use Yiisoft\DataResponse\DataResponse;
 
 /**

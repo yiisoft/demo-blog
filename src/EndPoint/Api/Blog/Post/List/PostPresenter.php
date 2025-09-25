@@ -6,7 +6,7 @@ namespace App\EndPoint\Api\Blog\Post\List;
 
 use App\Blog\Read\Front\RichPostDataReader\Post;
 use App\EndPoint\Api\Shared\ResponseFactory\Presenter\PresenterInterface;
-use App\Shared\UrlGenerator;
+use App\Shared\Infrastructure\UrlGenerator;
 use Yiisoft\DataResponse\DataResponse;
 
 /**

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-use App\Shared\UrlGenerator;
+use App\Shared\Infrastructure\UrlGenerator;
 use Yiisoft\Html\Html;
 use Yiisoft\Router\CurrentRoute;
 use Yiisoft\View\WebView;

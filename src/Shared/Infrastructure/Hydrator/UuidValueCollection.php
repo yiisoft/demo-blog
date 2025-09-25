@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Shared\Uuid;
+namespace App\Shared\Infrastructure\Hydrator;
 
 use Attribute;
 use Yiisoft\Hydrator\Attribute\Parameter\ParameterAttributeInterface;

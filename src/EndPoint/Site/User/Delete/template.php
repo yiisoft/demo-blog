@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-use App\EndPoint\Site\User\ShortUserInfo;
-use App\Shared\UrlGenerator;
-use App\User\Domain\User;
 use App\EndPoint\Site\Shared\Layout\Breadcrumbs\Breadcrumb;
+use App\EndPoint\Site\User\ShortUserInfo;
+use App\Shared\Infrastructure\UrlGenerator;
+use App\User\Domain\User;
 use Yiisoft\Html\Html;
 use Yiisoft\View\WebView;
 use Yiisoft\Yii\View\Renderer\Csrf;
