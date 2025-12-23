@@ -169,7 +169,7 @@ final readonly class DbPostRepository implements PostRepositoryInterface
                             $categoryIds = [];
                             if ($row['category_ids'] !== null && $row['category_ids'] !== '') {
                                 $categoryIds = array_map(
-                                    static fn(string $id) => CategoryId::fromString($id),
+                                    CategoryId::fromString(...),
                                     explode(',', $row['category_ids']),
                                 );
                             }
