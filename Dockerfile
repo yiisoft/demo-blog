@@ -5,6 +5,7 @@ RUN apt -y update && apt -y upgrade
 # Required tools
 RUN apt -y install \
     unzip \
+    git \
     libicu-dev
 
 # PHP extensions

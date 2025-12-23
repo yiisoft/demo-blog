@@ -12,10 +12,10 @@ use App\Shared\Infrastructure\UrlGenerator;
 use Yiisoft\Html\Html;
 use Yiisoft\Html\NoEncode;
 use Yiisoft\View\WebView;
-use Yiisoft\Yii\DataView\Column\ActionButton;
-use Yiisoft\Yii\DataView\Column\ActionColumn;
-use Yiisoft\Yii\DataView\Column\DataColumn;
-use Yiisoft\Yii\DataView\GridView;
+use Yiisoft\Yii\DataView\GridView\Column\ActionButton;
+use Yiisoft\Yii\DataView\GridView\Column\ActionColumn;
+use Yiisoft\Yii\DataView\GridView\Column\DataColumn;
+use Yiisoft\Yii\DataView\GridView\GridView;
 
 /**
  * @var WebView $this

@@ -2,6 +2,8 @@ services:
   app:
     build: .
     user: ${UID}:${GID}
+    environment:
+      COMPOSER_CACHE_DIR: /app/runtime/cache/composer
     volumes:
       - .:/app
     ports:
