@@ -35,7 +35,7 @@ composer-update: ## Run composer update
 	docker compose run --rm app composer update
 
 codecept-build: ## Run codeception build
-	docker compose run --rm app vendor/bin/codecept build
+	docker compose run --rm app composer codecept-build
 
 test:
 	docker compose run --rm app composer test

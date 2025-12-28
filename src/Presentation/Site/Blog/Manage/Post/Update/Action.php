@@ -1,0 +1,86 @@
+<?php
+
+declare(strict_types=1);
+
+namespace App\Presentation\Site\Blog\Manage\Post\Update;
+
+use App\Application\Post\UpdatePost\Handler;
+use App\Application\SlugAlreadyExistException;
+use App\Domain\Post\PostId;
+use App\Domain\Post\PostRepositoryInterface;
+use App\Presentation\Site\Shared\Identity\AuthenticatedUserProvider;
+use App\Presentation\Site\Shared\Layout\ContentNotices\ContentNotices;
+use App\Presentation\Site\Shared\ResponseFactory\ResponseFactory;
+use App\Presentation\Site\Shared\ResponseFactory\ValidateOrNotFound\ValidateOrNotFound;
+use App\Shared\Read\CategoriesList\CategoriesListReader;
+use App\Shared\UrlGenerator;
+use Psr\Http\Message\ResponseInterface;
+use Psr\Http\Message\ServerRequestInterface;
+use Yiisoft\FormModel\FormHydrator;
+use Yiisoft\Router\HydratorAttribute\RouteArgument;
+use Yiisoft\Strings\Inflector;
+use Yiisoft\Validator\Rule\Uuid;
+
+use function sprintf;
+
+final readonly class Action
+{
+    public function __construct(
+        private FormHydrator $formHydrator,
+        private Handler $handler,
+        private PostRepositoryInterface $postRepository,
+        private ContentNotices $contentNotices,
+        private ResponseFactory $responseFactory,
+        private UrlGenerator $urlGenerator,
+        private AuthenticatedUserProvider $authenticatedUserProvider,
+        private Inflector $inflector,
+        private CategoriesListReader $categoriesListReader,
+    ) {}
+
+    public function __invoke(
+        #[RouteArgument('id')]
+        #[ValidateOrNotFound(new Uuid())]
+        PostId $postId,
+        ServerRequestInterface $request,
+    ): ResponseInterface {
+        $post = $this->postRepository->getOrUserException($postId);
+        $form = new Form(
+            $post,
+            $this->categoriesListReader->all(),
+        );
+
+        if (!$this->formHydrator->populateFromPostAndValidate($form, $request)) {
+            return $this->renderForm($form);
+        }
+
+        $command = $form->createCommand(
+            $this->authenticatedUserProvider->getId(),
+            $this->inflector,
+        );
+
+        try {
+            $this->handler->handle($command);
+        } catch (SlugAlreadyExistException $exception) {
+            $form->getValidationResult()->addError($exception->getMessage(), valuePath: ['slug']);
+            return $this->renderForm($form);
+        }
+
+        $this->contentNotices->success(
+            sprintf(
+                'Post "%s" is updated.',
+                $form->title,
+            ),
+        );
+        return $this->responseFactory->temporarilyRedirect(
+            $this->urlGenerator->postUpdate($post->id),
+        );
+    }
+
+    private function renderForm(Form $form): ResponseInterface
+    {
+        return $this->responseFactory->render(
+            __DIR__ . '/template.php',
+            ['form' => $form],
+        );
+    }
+}

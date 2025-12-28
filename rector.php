@@ -7,19 +7,22 @@ use Rector\Config\RectorConfig;
 use Rector\Php74\Rector\Closure\ClosureToArrowFunctionRector;
 use Rector\Php80\Rector\Class_\ClassPropertyAssignToConstructorPromotionRector;
 use Rector\Php81\Rector\Property\ReadOnlyPropertyRector;
+use Rector\Php83\Rector\ClassMethod\AddOverrideAttributeToOverriddenMethodsRector;
 
 return RectorConfig::configure()
     ->withPaths([
         __DIR__ . '/src',
         __DIR__ . '/tests',
     ])
-    ->withPhpSets(php82: true)
+    ->withPhpSets(php85: true)
     ->withRules([
         InlineConstructorDefaultToPropertyRector::class,
     ])
+    ->withSkipPath('tests/Support/_generated')
     ->withSkip([
         ClassPropertyAssignToConstructorPromotionRector::class,
         InlineConstructorDefaultToPropertyRector::class,
         ClosureToArrowFunctionRector::class,
         ReadOnlyPropertyRector::class,
+        AddOverrideAttributeToOverriddenMethodsRector::class,
     ]);

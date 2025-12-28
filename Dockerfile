@@ -1,4 +1,4 @@
-FROM php:8.4-cli
+FROM php:8.5-cli
 
 RUN apt -y update && apt -y upgrade
 
@@ -19,7 +19,7 @@ COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 ENV LC_ALL=C.UTF-8
 
 # Xdebug
-RUN pecl install xdebug-3.4.1 \
+RUN pecl install xdebug-3.5.0 \
     && docker-php-ext-enable xdebug
 
 # PHP configuration

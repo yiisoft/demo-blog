@@ -9,21 +9,24 @@ use PhpCsFixer\Runner\Parallel\ParallelConfigFactory;
 ini_set('memory_limit', '512M');
 
 $root = __DIR__;
-$finder = (new Finder())
+$finder = new Finder()
     ->in([
         $root . '/config',
         $root . '/src',
         $root . '/tests',
     ])
+    ->exclude([
+        'Support/_generated',
+    ])
     ->append([
         $root . '/public/index.php',
     ]);
 
-return (new Config())
+return new Config()
     ->setCacheFile(__DIR__ . '/runtime/cache/.php-cs-fixer.cache')
     ->setParallelConfig(ParallelConfigFactory::detect())
     ->setRules([
-        '@PER-CS2.0' => true,
+        '@PER-CS3.0' => true,
         'no_unused_imports' => true,
     ])
     ->setFinder($finder);
