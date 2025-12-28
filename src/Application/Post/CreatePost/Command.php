@@ -21,7 +21,7 @@ final readonly class Command
         public string $body,
         public PostSlug $slug,
         public PostStatus $status,
-        public DateTimeImmutable|null $publicationDate,
+        public ?DateTimeImmutable $publicationDate,
         public UserId $createdBy,
         public array $categoryIds,
     ) {}

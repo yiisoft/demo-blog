@@ -43,11 +43,11 @@ use Yiisoft\Yii\Console\ExitCode;
 )]
 final class Action extends Command
 {
-    private const ADMIN_LOGIN = 'admin';
-    private const ADMIN_PASSWORD = 'q1w2e3r4';
-    private const USERS_COUNT = 5;
-    private const CATEGORIES_COUNT = 10;
-    private const POSTS_COUNT = 23;
+    private const string ADMIN_LOGIN = 'admin';
+    private const string ADMIN_PASSWORD = 'q1w2e3r4';
+    private const int USERS_COUNT = 5;
+    private const int CATEGORIES_COUNT = 10;
+    private const int POSTS_COUNT = 23;
 
     private Generator $faker;
 

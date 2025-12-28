@@ -18,7 +18,7 @@ final readonly class ItemHandler
         private CurrentUser $currentUser,
     ) {}
 
-    public function handle(Item $item): HandledItem|null
+    public function handle(Item $item): ?HandledItem
     {
         if ($item->permission !== null && !$this->currentUser->can($item->permission)) {
             return null;

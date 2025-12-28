@@ -28,7 +28,7 @@ final class Form extends FormModel
     public string $password = '';
 
     #[Required]
-    public Role|null $role = null;
+    public ?Role $role = null;
 
     /**
      * @psalm-suppress ArgumentTypeCoercion, PossiblyNullArgument

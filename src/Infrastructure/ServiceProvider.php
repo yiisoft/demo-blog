@@ -41,8 +41,8 @@ final readonly class ServiceProvider implements ServiceProviderInterface
             UserRepositoryInterface::class => DbUserRepository::class,
 
             // User
-            AuthKeyGeneratorInterface::class =>
-                static fn() => new RandomAuthKeyGenerator(
+            AuthKeyGeneratorInterface::class
+                => static fn() => new RandomAuthKeyGenerator(
                     length: 64,
                     duration: 432000, // 5 days
                 ),

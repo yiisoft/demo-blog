@@ -31,7 +31,7 @@ final class Form extends FormModel
     public function __construct(
         public readonly User $user,
         #[Required]
-        public Role|null $role,
+        public ?Role $role,
         public readonly bool $isCurrentUser,
     ) {
         $this->login = $user->login->toString();

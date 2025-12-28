@@ -24,7 +24,7 @@ final readonly class RbacManager implements AccessCheckerInterface
         return $this->manager->userHasPermission($userId, $permissionName, $parameters);
     }
 
-    public function tryGetRoleByUserId(UserId $userId): Role|null
+    public function tryGetRoleByUserId(UserId $userId): ?Role
     {
         return $this->getRolesByUserId($userId)[0] ?? null;
     }

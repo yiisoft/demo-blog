@@ -16,7 +16,7 @@ use Yiisoft\Validator\Rule\Required;
 
 final class Form extends FormModel
 {
-    public const ERROR_MESSAGE = 'Incorrect login or password.';
+    public const string ERROR_MESSAGE = 'Incorrect login or password.';
 
     #[Trim]
     #[Required]

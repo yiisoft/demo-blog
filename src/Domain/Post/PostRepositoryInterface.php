@@ -10,7 +10,7 @@ interface PostRepositoryInterface
 {
     public function getOrUserException(PostId $id): Post;
 
-    public function hasBySlug(PostSlug $slug, PostId|null $excludeId = null): bool;
+    public function hasBySlug(PostSlug $slug, ?PostId $excludeId = null): bool;
 
     public function hasByCreatedByOrUpdatedBy(UserId $userId): bool;
 

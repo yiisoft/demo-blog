@@ -6,9 +6,9 @@ namespace App\Domain\User;
 
 interface UserRepositoryInterface
 {
-    public function tryGet(UserId $id): User|null;
+    public function tryGet(UserId $id): ?User;
 
-    public function tryGetByLogin(Login $login): User|null;
+    public function tryGetByLogin(Login $login): ?User;
 
     public function getOrUserException(UserId $id): User;
 

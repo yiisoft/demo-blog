@@ -8,7 +8,7 @@ final readonly class HandledItem
 {
     public function __construct(
         public string $label,
-        public string|null $url,
+        public ?string $url,
         public bool $active,
     ) {}
 }

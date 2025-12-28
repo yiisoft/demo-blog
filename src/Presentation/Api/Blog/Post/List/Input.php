@@ -20,5 +20,5 @@ final class Input extends AbstractInput
     public int $page = 1;
 
     #[Validate(new Uuid(message: 'Invalid category ID format.', skipOnEmpty: new WhenMissing()))]
-    public CategoryId|null $categoryId = null;
+    public ?CategoryId $categoryId = null;
 }

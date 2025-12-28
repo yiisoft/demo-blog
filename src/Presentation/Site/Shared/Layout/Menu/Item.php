@@ -15,10 +15,10 @@ final readonly class Item
      */
     public function __construct(
         public string $label,
-        public string|null $urlName = null,
+        public ?string $urlName = null,
         public array $urlParameters = [],
-        public string|null $customUrl = null,
-        public Permission|null $permission = null,
+        public ?string $customUrl = null,
+        public ?Permission $permission = null,
         public ?Closure $activeCallback = null,
     ) {}
 }

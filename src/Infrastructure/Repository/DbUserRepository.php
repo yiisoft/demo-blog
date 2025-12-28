@@ -25,13 +25,13 @@ final readonly class DbUserRepository implements UserRepositoryInterface
         private ConnectionInterface $db,
     ) {}
 
-    public function tryGet(UserId $id): User|null
+    public function tryGet(UserId $id): ?User
     {
         /** @var User */
         return $this->createQuery()->where(['id' => $id])->one();
     }
 
-    public function tryGetByLogin(Login $login): User|null
+    public function tryGetByLogin(Login $login): ?User
     {
         /** @var User */
         return $this->createQuery()->where(['login' => $login])->one();

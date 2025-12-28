@@ -38,7 +38,7 @@ final readonly class UuidValueTypeCaster implements TypeCasterInterface
     /**
      * @return class-string<UuidValue>|null
      */
-    private function tryGetClass(TypeCastContext $context): string|null
+    private function tryGetClass(TypeCastContext $context): ?string
     {
         $type = $context->getReflectionType();
         if ($type instanceof ReflectionNamedType) {

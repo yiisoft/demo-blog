@@ -19,7 +19,7 @@ final readonly class PostSlug implements \Stringable
         Assert::maxLength($value, self::LENGTH_LIMIT);
     }
 
-    public static function tryFromString(string $value): self|null
+    public static function tryFromString(string $value): ?self
     {
         $length = mb_strlen($value);
         return $value === '' || $length > self::LENGTH_LIMIT

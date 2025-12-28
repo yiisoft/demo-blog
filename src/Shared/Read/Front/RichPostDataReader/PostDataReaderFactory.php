@@ -25,7 +25,7 @@ final readonly class PostDataReaderFactory
         private ConnectionInterface $db,
     ) {}
 
-    public function create(CategoryId|null $categoryId = null): QueryDataReader
+    public function create(?CategoryId $categoryId = null): QueryDataReader
     {
         $query = $this->db->createQuery()
             ->select([

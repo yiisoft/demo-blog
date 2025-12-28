@@ -26,7 +26,7 @@ final class Post
     public private(set) string $body;
     public private(set) PostSlug $slug;
 
-    public private(set) DateTimeImmutable|null $publicationDate {
+    public private(set) ?DateTimeImmutable $publicationDate {
         set {
             if ($value === null && $this->isPublished()) {
                 throw new LogicException('Cannot unset publication date of a published post.');
@@ -52,7 +52,7 @@ final class Post
         PostTitle $title,
         string $body,
         PostSlug $slug,
-        DateTimeImmutable|null $publicationDate,
+        ?DateTimeImmutable $publicationDate,
         UserId $createdBy,
         array $categoryIds,
     ) {
@@ -84,7 +84,7 @@ final class Post
         $this->slug = $slug;
     }
 
-    public function changePublicationDate(DateTimeImmutable|null $date): void
+    public function changePublicationDate(?DateTimeImmutable $date): void
     {
         $this->publicationDate = $date;
     }

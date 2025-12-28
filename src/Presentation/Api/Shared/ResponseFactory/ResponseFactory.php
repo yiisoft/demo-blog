@@ -31,7 +31,7 @@ final readonly class ResponseFactory
     public function fail(
         string $message,
         array|object|null $data = null,
-        int|null $code = null,
+        ?int $code = null,
         int $httpCode = Status::BAD_REQUEST,
         PresenterInterface $presenter = new AsIsPresenter(),
     ): ResponseInterface {

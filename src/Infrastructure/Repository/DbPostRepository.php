@@ -37,7 +37,7 @@ final readonly class DbPostRepository implements PostRepositoryInterface
             ?? throw new UserException('Post not found.');
     }
 
-    public function hasBySlug(PostSlug $slug, PostId|null $excludeId = null): bool
+    public function hasBySlug(PostSlug $slug, ?PostId $excludeId = null): bool
     {
         $query = $this->db->createQuery()->from(Table::POST)->where(['slug' => $slug]);
         if ($excludeId !== null) {

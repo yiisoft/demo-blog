@@ -26,8 +26,8 @@ final class MainMenu extends Widget
                 continue;
             }
             $li[] = Html::li(
-                $item->url === null ? $item->label :
-                    Html::a(
+                $item->url === null ? $item->label
+                    : Html::a(
                         $item->label,
                         $item->url,
                         [
