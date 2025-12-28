@@ -33,7 +33,7 @@ jobs:
         os:
           - ubuntu-latest
         php:
-          - "8.5"
+          - "8.5.1"
 
     steps:
       - name: Checkout
