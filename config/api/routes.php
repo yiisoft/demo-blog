@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-use App\EndPoint\Api;
+use App\Presentation\Api;
 use Yiisoft\Router\Route;
 
 return [

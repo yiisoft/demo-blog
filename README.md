@@ -14,7 +14,7 @@
 
 ## Requirements
 
-- PHP 8.4 or higher.
+- PHP 8.5.1 or higher.
 
 ## General usage
 

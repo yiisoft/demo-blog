@@ -2,8 +2,8 @@
 
 declare(strict_types=1);
 
-use App\EndPoint\Site\Shared\Access\RbacManager;
-use App\EndPoint\Site\Shared\Identity\IdentityRepository;
+use App\Presentation\Site\Shared\Access\RbacManager;
+use App\Presentation\Site\Shared\Identity\IdentityRepository;
 use Yiisoft\Auth\IdentityRepositoryInterface;
 use Yiisoft\Definitions\Reference;
 use Yiisoft\Session\SessionInterface;

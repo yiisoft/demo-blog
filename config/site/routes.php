@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-use App\EndPoint\Site;
-use App\EndPoint\Site\Shared\Access\CheckAccess;
-use App\EndPoint\Site\Shared\Access\Permission;
+use App\Presentation\Site;
+use App\Presentation\Site\Shared\Access\CheckAccess;
+use App\Presentation\Site\Shared\Access\Permission;
 use Yiisoft\Auth\Middleware\Authentication;
 use Yiisoft\Router\Group;
 use Yiisoft\Router\Route;

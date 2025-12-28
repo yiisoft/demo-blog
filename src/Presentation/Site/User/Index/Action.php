@@ -1,0 +1,27 @@
+<?php
+
+declare(strict_types=1);
+
+namespace App\Presentation\Site\User\Index;
+
+use App\Presentation\Site\User\Index\DataReader\UserDataReader;
+use App\Presentation\Site\Shared\ResponseFactory\ResponseFactory;
+use Psr\Http\Message\ResponseInterface;
+
+final readonly class Action
+{
+    public function __construct(
+        private UserDataReader $userDataReader,
+        private ResponseFactory $responseFactory,
+    ) {}
+
+    public function __invoke(): ResponseInterface
+    {
+        return $this->responseFactory->render(
+            __DIR__ . '/template.php',
+            [
+                'dataReader' => $this->userDataReader,
+            ],
+        );
+    }
+}

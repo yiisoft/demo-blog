@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-use App\EndPoint\Api\Shared\ResponseFactory\ExceptionResponderFactory;
-use App\EndPoint\Api\Shared\ResponseFactory\NotFoundMiddleware;
-use App\Shared\Infrastructure\Hydrator\UuidValueTypeCaster;
+use App\Presentation\Api\Shared\ResponseFactory\ExceptionResponderFactory;
+use App\Presentation\Api\Shared\ResponseFactory\NotFoundMiddleware;
+use App\Infrastructure\Hydrator\UuidValueTypeCaster;
 use Yiisoft\DataResponse\Formatter\JsonDataResponseFormatter;
 use Yiisoft\DataResponse\Formatter\XmlDataResponseFormatter;
 use Yiisoft\DataResponse\Middleware\ContentNegotiator;
