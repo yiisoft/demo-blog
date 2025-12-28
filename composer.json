@@ -39,7 +39,7 @@
         "composer-dependency-analyser": "composer-dependency-analyser"
     },
     "require": {
-        "php": "^8.5.1",
+        "php": "^8.5",
         "ext-filter": "*",
         "ext-intl": "*",
         "ext-mbstring": "*",
