@@ -14,7 +14,7 @@ return [
         '__construct()' => [
             'itemsStorage' => DynamicReference::to([
                 'class' => ItemsStorage::class,
-                '__construct()' => [dirname(__DIR__, 3) . '/src/Presentation/Site/Shared/Access/config.php'],
+                '__construct()' => [dirname(__DIR__) . '/rbac-items.php'],
             ]),
             'assignmentsStorage' => DynamicReference::to(AssignmentsStorage::class),
         ],
