@@ -2,7 +2,7 @@ name: Code Style
 
 on:
   pull_request_target:
-    paths-ignore:
+    paths:
       - 'config/**'
       - 'public/**'
       - 'src/**'
