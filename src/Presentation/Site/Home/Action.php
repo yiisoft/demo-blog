@@ -6,12 +6,12 @@ namespace App\Presentation\Site\Home;
 
 use Psr\Http\Message\ResponseInterface;
 use Yiisoft\Db\Connection\ConnectionInterface;
-use Yiisoft\Yii\View\Renderer\ViewRenderer;
+use Yiisoft\Yii\View\Renderer\WebViewRenderer;
 
 final readonly class Action
 {
     public function __construct(
-        private ViewRenderer $viewRenderer,
+        private WebViewRenderer $viewRenderer,
     ) {}
 
     public function __invoke(ConnectionInterface $db): ResponseInterface

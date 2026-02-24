@@ -7,7 +7,6 @@ namespace App\Presentation\Api\Blog\Post\List;
 use App\Presentation\Api\Shared\ResponseFactory\Presenter\PresenterInterface;
 use App\Shared\Read\Front\RichPostDataReader\Post;
 use App\Shared\UrlGenerator;
-use Yiisoft\DataResponse\DataResponse;
 
 /**
  * @implements PresenterInterface<Post>
@@ -18,9 +17,9 @@ final readonly class PostPresenter implements PresenterInterface
         private UrlGenerator $urlGenerator,
     ) {}
 
-    public function present(mixed $value, DataResponse $response): DataResponse
+    public function present(mixed $value): array
     {
-        return $response->withData([
+        return [
             'id' => $value->id->toString(),
             'title' => $value->title->toString(),
             'url' => $this->urlGenerator->post($value->slug, absolute: true),
@@ -30,6 +29,6 @@ final readonly class PostPresenter implements PresenterInterface
                 static fn($category) => $category->id->toString(),
                 $value->categories,
             ),
-        ]);
+        ];
     }
 }
