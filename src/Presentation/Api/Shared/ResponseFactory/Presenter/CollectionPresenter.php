@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace App\Presentation\Api\Shared\ResponseFactory\Presenter;
 
-use Yiisoft\DataResponse\DataResponse;
-
 /**
  * @implements PresenterInterface<iterable>
  */
