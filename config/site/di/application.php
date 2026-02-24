@@ -6,7 +6,6 @@ use App\Presentation\Site\Shared\ResponseFactory\ExceptionResponderFactory;
 use App\Presentation\Site\Shared\ResponseFactory\NotFoundMiddleware;
 use App\Infrastructure\Hydrator\UuidValueTypeCaster;
 use Yiisoft\Csrf\CsrfTokenMiddleware;
-use Yiisoft\DataResponse\Middleware\FormatDataResponse;
 use Yiisoft\Definitions\DynamicReference;
 use Yiisoft\Definitions\Reference;
 use Yiisoft\ErrorHandler\Middleware\ErrorCatcher;
@@ -37,7 +36,6 @@ return [
                         SessionMiddleware::class,
                         CookieLoginMiddleware::class,
                         CsrfTokenMiddleware::class,
-                        FormatDataResponse::class,
                         Router::class,
                         NotFoundMiddleware::class,
                     ],

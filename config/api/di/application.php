@@ -5,10 +5,9 @@ declare(strict_types=1);
 use App\Presentation\Api\Shared\ResponseFactory\ExceptionResponderFactory;
 use App\Presentation\Api\Shared\ResponseFactory\NotFoundMiddleware;
 use App\Infrastructure\Hydrator\UuidValueTypeCaster;
-use Yiisoft\DataResponse\Formatter\JsonDataResponseFormatter;
-use Yiisoft\DataResponse\Formatter\XmlDataResponseFormatter;
-use Yiisoft\DataResponse\Middleware\ContentNegotiator;
-use Yiisoft\DataResponse\Middleware\FormatDataResponseAsJson;
+use Yiisoft\DataResponse\Formatter\JsonFormatter;
+use Yiisoft\DataResponse\Formatter\XmlFormatter;
+use Yiisoft\DataResponse\Middleware\ContentNegotiatorDataResponseMiddleware;
 use Yiisoft\Definitions\DynamicReference;
 use Yiisoft\Definitions\Reference;
 use Yiisoft\ErrorHandler\Middleware\ErrorCatcher;
@@ -34,11 +33,13 @@ return [
                 'withMiddlewares()' => [
                     [
                         ErrorCatcher::class,
-                        FormatDataResponseAsJson::class,
-                        static fn() => new ContentNegotiator([
-                            'application/xml' => new XmlDataResponseFormatter(),
-                            'application/json' => new JsonDataResponseFormatter(),
-                        ]),
+                        static fn() => new ContentNegotiatorDataResponseMiddleware(
+                            formatters: [
+                                'application/xml' => new XmlFormatter(),
+                                'application/json' => new JsonFormatter(),
+                            ],
+                            fallback: new JsonFormatter(),
+                        ),
                         static fn(ExceptionResponderFactory $factory) => $factory->create(),
                         RequestBodyParser::class,
                         Router::class,
