@@ -1,4 +1,4 @@
-<?php  //[STAMP] a23bca0732bc97113dc71c5f66c6f210
+<?php  //[STAMP] e77180061ef91605e9bc23e96b6a1c2f
 // phpcs:ignoreFile
 namespace App\Tests\Support\_generated;
 
@@ -934,9 +934,9 @@ trait SiteTesterActions
      *      'checkbox1' => true,
      *      // ...
      * ];
-     * $I->submitForm('//form[@id=my-form]', string $form, 'submitButton');
+     * $I->submitForm('//form[@id=my-form]', $form, 'submitButton');
      * // $I->amOnPage('/path/to/form-page') may be needed
-     * $I->seeInFormFields('//form[@id=my-form]', string $form);
+     * $I->seeInFormFields('//form[@id=my-form]', $form);
      * ```
      * @see \Codeception\Lib\InnerBrowser::seeInFormFields()
      */
@@ -995,9 +995,9 @@ trait SiteTesterActions
      *      'checkbox1' => true,
      *      // ...
      * ];
-     * $I->submitForm('//form[@id=my-form]', string $form, 'submitButton');
+     * $I->submitForm('//form[@id=my-form]', $form, 'submitButton');
      * // $I->amOnPage('/path/to/form-page') may be needed
-     * $I->seeInFormFields('//form[@id=my-form]', string $form);
+     * $I->seeInFormFields('//form[@id=my-form]', $form);
      * ```
      * @see \Codeception\Lib\InnerBrowser::seeInFormFields()
      */
