@@ -12,9 +12,7 @@ abstract readonly class UuidValue implements Stringable
 {
     final public function __construct(
         public UuidInterface $uuid,
-    ) {
-
-    }
+    ) {}
 
     final public static function fromString(string $value): static
     {
