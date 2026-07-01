@@ -1,33 +1,29 @@
-permissions:
-  contents: read # Required to check out the repository.
+name: build
 
 on:
   pull_request:
-    paths-ignore:
-      - 'docs/**'
-      - 'README.md'
-      - 'CHANGELOG.md'
-      - '.gitignore'
-      - '.gitattributes'
-      - 'infection.json.dist'
-      - 'psalm.xml'
+    paths: &paths
+      - '.github/workflows/build.yml'
+      - 'assets/**'
+      - 'config/**'
+      - 'public/**'
+      - 'src/**'
+      - 'tests/**'
+      - 'codeception.yml'
+      - 'composer.*'
+      - 'yii'
+      - 'yii.bat'
 
   push:
     branches: ['master']
-    paths-ignore:
-      - 'docs/**'
-      - 'README.md'
-      - 'CHANGELOG.md'
-      - '.gitignore'
-      - '.gitattributes'
-      - 'infection.json.dist'
-      - 'psalm.xml'
-
-name: build
+    paths: *paths
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
   cancel-in-progress: true
+
+permissions:
+  contents: read
 
 jobs:
   codeception:

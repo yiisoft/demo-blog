@@ -1,33 +1,26 @@
-permissions:
-  contents: read # Required to check out the repository.
+name: static analysis
 
 on:
   pull_request:
-    paths-ignore:
-      - 'docs/**'
-      - 'README.md'
-      - 'CHANGELOG.md'
-      - '.gitignore'
-      - '.gitattributes'
-      - 'infection.json.dist'
-      - 'phpunit.xml.dist'
-
+    paths: &paths
+      - '.github/workflows/static.yml'
+      - 'config/**'
+      - 'public/**'
+      - 'src/**'
+      - 'psalm.xml'
+      - 'composer.*'
+      - 'yii'
+      - 'yii.bat'
   push:
     branches: ['master']
-    paths-ignore:
-      - 'docs/**'
-      - 'README.md'
-      - 'CHANGELOG.md'
-      - '.gitignore'
-      - '.gitattributes'
-      - 'infection.json.dist'
-      - 'phpunit.xml.dist'
-
-name: static analysis
+    paths: *paths
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
   cancel-in-progress: true
+
+permissions:
+  contents: read
 
 jobs:
   psalm:
