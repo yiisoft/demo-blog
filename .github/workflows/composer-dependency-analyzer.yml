@@ -1,35 +1,27 @@
-permissions:
-  contents: read # Required to check out the repository.
+name: Composer dependency analyzer
 
 on:
   pull_request:
-    paths-ignore:
-      - 'docs/**'
-      - 'README.md'
-      - 'CHANGELOG.md'
-      - '.gitignore'
-      - '.gitattributes'
-      - 'infection.json.dist'
-      - 'phpunit.xml.dist'
-      - 'psalm.xml'
-
+    paths: &paths
+    - '.github/workflows/composer-dependency-analyzer.yml'
+    - 'config/**'
+    - 'public/**'
+    - 'src/**'
+    - 'tests/**'
+    - 'composer.*'
+    - 'composer-dependency-analyser.php'
+    - 'yii'
+    - 'yii.bat'
   push:
     branches: ['master']
-    paths-ignore:
-      - 'docs/**'
-      - 'README.md'
-      - 'CHANGELOG.md'
-      - '.gitignore'
-      - '.gitattributes'
-      - 'infection.json.dist'
-      - 'phpunit.xml.dist'
-      - 'psalm.xml'
-
-name: Composer dependency analyzer
+    paths: *paths
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
   cancel-in-progress: true
+
+permissions:
+  contents: read
 
 jobs:
   analyzer:
