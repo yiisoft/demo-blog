@@ -3,25 +3,25 @@ name: Composer dependency analyzer
 on:
   pull_request:
     paths: &paths
-    - '.github/workflows/composer-dependency-analyzer.yml'
-    - 'config/**'
-    - 'public/**'
-    - 'src/**'
-    - 'tests/**'
-    - 'composer.*'
-    - 'composer-dependency-analyser.php'
-    - 'yii'
-    - 'yii.bat'
+      - '.github/workflows/composer-dependency-analyzer.yml'
+      - 'config/**'
+      - 'public/**'
+      - 'src/**'
+      - 'tests/**'
+      - 'composer.*'
+      - 'composer-dependency-analyser.php'
+      - 'yii'
+      - 'yii.bat'
   push:
     branches: ['master']
     paths: *paths
 
+permissions:
+  contents: read
+
 concurrency:
   group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
   cancel-in-progress: true
-
-permissions:
-  contents: read
 
 jobs:
   analyzer:
