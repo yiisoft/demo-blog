@@ -22,7 +22,7 @@ $this->setTitle('Welcome to Yii3 Demo Blog');
             <h3>Get Started</h3>
             <p class="mb-4">Ready to explore? Check out these resources:</p>
             <div class="btn-group">
-                <a href="https://github.com/yiisoft/docs/blob/master/guide/en/README.md" class="btn btn-outline-primary">
+                <a href="https://yiisoft.github.io/docs/guide/" class="btn btn-outline-primary">
                     <i class="bi bi-book me-1"></i> Documentation
                 </a>
                 <a href="https://github.com/yiisoft/demo-blog" class="btn btn-outline-primary">
