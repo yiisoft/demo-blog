@@ -1,4 +1,4 @@
-<?php  //[STAMP] e77180061ef91605e9bc23e96b6a1c2f
+<?php  //[STAMP] 0a9fdf8472a331418fd1f8fd3cedfe4f
 // phpcs:ignoreFile
 namespace App\Tests\Support\_generated;
 
@@ -2141,6 +2141,19 @@ trait SiteTesterActions
      */
     public function moveBack(int $numberOfSteps = 1): void {
         $this->getScenario()->runStep(new \Codeception\Step\Action('moveBack', func_get_args()));
+    }
+
+ 
+    /**
+     * [!] Method is generated. Documentation taken from corresponding module.
+     *
+     * Moves forward in history.
+     *
+     * @param int $numberOfSteps (default value 1)
+     * @see \Codeception\Lib\InnerBrowser::moveForward()
+     */
+    public function moveForward(int $numberOfSteps = 1): void {
+        $this->getScenario()->runStep(new \Codeception\Step\Action('moveForward', func_get_args()));
     }
 
  
