@@ -54,7 +54,7 @@
         "ramsey/uuid": "^4.9.4",
         "symfony/console": "^8.1.8",
         "vlucas/phpdotenv": "^5.7.0",
-        "webmozart/assert": "^2.4.1",
+        "webmozart/assert": "^2.5.0",
         "yiisoft/access": "^2.0.1",
         "yiisoft/aliases": "^3.1.1",
         "yiisoft/arrays": "^3.2.1",
