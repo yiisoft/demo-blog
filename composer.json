@@ -55,7 +55,7 @@
         "symfony/console": "^8.1.10",
         "vlucas/phpdotenv": "^5.8.0",
         "webmozart/assert": "^2.5.0",
-        "yiisoft/access": "^2.0.1",
+        "yiisoft/access": "^2.0.2",
         "yiisoft/aliases": "^3.1.1",
         "yiisoft/arrays": "^3.2.1",
         "yiisoft/assets": "^5.1.2",
