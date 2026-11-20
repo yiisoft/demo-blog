@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "36a1ba7690d5c9a5d56e6921f5b7614f",
+    "content-hash": "a0b874abfdc417906bf64f647635235d",
     "packages": [
         {
             "name": "alexkart/curl-builder",
@@ -2297,28 +2297,32 @@
         },
         {
             "name": "yiisoft/arrays",
-            "version": "3.2.1",
+            "version": "3.2.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/yiisoft/arrays.git",
-                "reference": "8efada90e4fd540b3da476779bc1b7bd9319b62f"
+                "reference": "f34b310f04ad5aa35e3f159d6191edea0be2b3f8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/arrays/zipball/8efada90e4fd540b3da476779bc1b7bd9319b62f",
-                "reference": "8efada90e4fd540b3da476779bc1b7bd9319b62f",
+                "url": "https://api.github.com/repos/yiisoft/arrays/zipball/f34b310f04ad5aa35e3f159d6191edea0be2b3f8",
+                "reference": "f34b310f04ad5aa35e3f159d6191edea0be2b3f8",
                 "shasum": ""
             },
             "require": {
-                "php": "8.1 - 8.5",
+                "php": "8.1 - 8.6",
                 "yiisoft/strings": "^2.6"
             },
             "require-dev": {
                 "bamarni/composer-bin-plugin": "^1.8.2",
+                "friendsofphp/php-cs-fixer": "^3.95.27",
                 "phpbench/phpbench": "^1.4.1",
+                "phpstan/phpstan": "^2.3",
                 "phpunit/phpunit": "^10.5.48",
-                "rector/rector": "^2.1.2",
-                "spatie/phpunit-watcher": "^1.24"
+                "rector/rector": "^2.7.0",
+                "shipmonk/composer-dependency-analyser": "^1.8",
+                "spatie/phpunit-watcher": "^1.24",
+                "yiisoft/code-style": "^1.1.0"
             },
             "type": "library",
             "extra": {
@@ -2362,7 +2366,7 @@
                     "type": "opencollective"
                 }
             ],
-            "time": "2025-11-26T12:25:21+00:00"
+            "time": "2026-11-13T11:52:14+00:00"
         },
         {
             "name": "yiisoft/assets",

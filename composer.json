@@ -57,7 +57,7 @@
         "webmozart/assert": "^2.5.0",
         "yiisoft/access": "^2.0.2",
         "yiisoft/aliases": "^3.1.1",
-        "yiisoft/arrays": "^3.2.1",
+        "yiisoft/arrays": "^3.2.2",
         "yiisoft/assets": "^5.1.2",
         "yiisoft/auth": "^3.3.1",
         "yiisoft/cache-file": "^3.2",
